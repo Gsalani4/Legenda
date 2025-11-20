@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { Calendar, Clock, MapPin, ShoppingCart } from 'lucide-react';
+import { Calendar, Clock, MapPin, ShoppingCart, Loader2 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
 import { Checkbox } from '../components/ui/checkbox';
-import { addons } from '../mockData';
 import { useToast } from '../hooks/use-toast';
 import { useLanguage } from '../context/LanguageContext';
+import { addonService, locationService, vehicleService, bookingService } from '../services/api';
 
 const CheckoutPage = () => {
   const { toast } = useToast();
-  const { t, getAddonTranslation, getLocationTranslation } = useLanguage();
+  const { t, currentLanguage } = useLanguage();
+  const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
   const [cart, setCart] = useState([]);
+  const [vehicles, setVehicles] = useState([]);
+  const [addons, setAddons] = useState([]);
+  const [locations, setLocations] = useState([]);
   const [selectedAddons, setSelectedAddons] = useState([]);
   const [formData, setFormData] = useState({
     pickupLocation: '',
@@ -31,11 +36,38 @@ const CheckoutPage = () => {
   });
 
   useEffect(() => {
-    const savedCart = localStorage.getItem('rentalCart');
-    if (savedCart) {
-      setCart(JSON.parse(savedCart));
+    loadData();
+  }, [currentLanguage]);
+
+  const loadData = async () => {
+    try {
+      setLoading(true);
+      const [vehiclesRes, addonsRes, locationsRes] = await Promise.all([
+        vehicleService.getAll(),
+        addonService.getAll(currentLanguage),
+        locationService.getAll(currentLanguage)
+      ]);
+
+      setVehicles(vehiclesRes.data.vehicles || []);
+      setAddons(addonsRes.data.addons || []);
+      setLocations(locationsRes.data.locations || []);
+
+      // Load cart from localStorage
+      const savedCart = localStorage.getItem('rentalCart');
+      if (savedCart) {
+        setCart(JSON.parse(savedCart));
+      }
+    } catch (error) {
+      console.error('Error loading data:', error);
+      toast({
+        title: t.checkout.errorTitle,
+        description: 'Failed to load data',
+        variant: 'destructive'
+      });
+    } finally {
+      setLoading(false);
     }
-  }, []);
+  };
 
   const handleInputChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -58,7 +90,7 @@ const CheckoutPage = () => {
     return cartTotal + addonsTotal;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     if (!formData.pickupLocation || !formData.dropoffLocation || !formData.pickupDate || !formData.dropoffDate) {
@@ -70,27 +102,86 @@ const CheckoutPage = () => {
       return;
     }
 
-    const booking = {
-      ...formData,
-      cart,
-      addons: selectedAddons,
-      total: calculateTotal(),
-      bookingDate: new Date().toISOString()
-    };
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone) {
+      toast({
+        title: t.checkout.errorTitle,
+        description: t.checkout.errorMessage,
+        variant: 'destructive'
+      });
+      return;
+    }
 
-    localStorage.setItem('lastBooking', JSON.stringify(booking));
-    
-    toast({
-      title: t.checkout.successTitle,
-      description: t.checkout.successMessage,
-    });
+    if (cart.length === 0) {
+      toast({
+        title: t.checkout.errorTitle,
+        description: 'Please select a vehicle first',
+        variant: 'destructive'
+      });
+      return;
+    }
 
-    setTimeout(() => {
-      window.location.href = '/';
-    }, 2000);
+    try {
+      setSubmitting(true);
+
+      const bookingData = {
+        customer: {
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          email: formData.email,
+          phone: formData.phone
+        },
+        pickup: {
+          location_id: parseInt(formData.pickupLocation),
+          date: formData.pickupDate,
+          time: formData.pickupTime || '10:00'
+        },
+        dropoff: {
+          location_id: parseInt(formData.dropoffLocation),
+          date: formData.dropoffDate,
+          time: formData.dropoffTime || '10:00'
+        },
+        vehicle_id: cart[0].id,
+        addon_ids: selectedAddons.map(a => a.id),
+        payment_method: formData.paymentMethod,
+        language: currentLanguage
+      };
+
+      const response = await bookingService.create(bookingData);
+
+      if (response.data.success) {
+        localStorage.setItem('lastBooking', JSON.stringify(response.data.booking));
+        
+        toast({
+          title: t.checkout.successTitle,
+          description: t.checkout.successMessage,
+        });
+
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 2000);
+      }
+    } catch (error) {
+      console.error('Booking error:', error);
+      toast({
+        title: t.checkout.errorTitle,
+        description: error.response?.data?.detail || 'Booking failed. Please try again.',
+        variant: 'destructive'
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
-  const locations = [1, 2, 3, 4];
+  if (loading) {
+    return (
+      <div className="container mx-auto px-4 py-16 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="w-12 h-12 animate-spin text-blue-600" />
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -125,10 +216,9 @@ const CheckoutPage = () => {
                       <SelectValue placeholder={t.checkout.selectLocation} />
                     </SelectTrigger>
                     <SelectContent>
-                      {locations.map(locId => {
-                        const loc = getLocationTranslation(locId);
-                        return <SelectItem key={locId} value={locId.toString()}>{loc.name}</SelectItem>;
-                      })}
+                      {locations.map(loc => (
+                        <SelectItem key={loc.id} value={loc.id.toString()}>{loc.name}</SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                 </div>
@@ -142,10 +232,9 @@ const CheckoutPage = () => {
                       <SelectValue placeholder={t.checkout.selectLocation} />
                     </SelectTrigger>
                     <SelectContent>
-                      {locations.map(locId => {
-                        const loc = getLocationTranslation(locId);
-                        return <SelectItem key={locId} value={locId.toString()}>{loc.name}</SelectItem>;
-                      })}
+                      {locations.map(loc => (
+                        <SelectItem key={loc.id} value={loc.id.toString()}>{loc.name}</SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                 </div>
@@ -188,26 +277,23 @@ const CheckoutPage = () => {
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-4">
-                {addons.map(addon => {
-                  const addonTrans = getAddonTranslation(addon.id);
-                  return (
-                    <div key={addon.id} className="flex items-start gap-3 p-4 border rounded-lg hover:border-blue-500 transition-colors cursor-pointer" onClick={() => handleAddonToggle(addon)}>
-                      <Checkbox checked={selectedAddons.some(a => a.id === addon.id)} onCheckedChange={() => handleAddonToggle(addon)} />
-                      <div className="flex-1">
-                        <div className="flex items-center justify-between">
-                          <h4 className="font-medium text-sm">{addonTrans.name}</h4>
-                          <div className="text-right">
-                            {addon.onSale && (
-                              <span className="text-xs text-gray-400 line-through block">₾{addon.originalPrice}</span>
-                            )}
-                            <span className="font-bold text-blue-600">₾{addon.price}{t.checkout.perDay}</span>
-                          </div>
+                {addons.map(addon => (
+                  <div key={addon.id} className="flex items-start gap-3 p-4 border rounded-lg hover:border-blue-500 transition-colors cursor-pointer" onClick={() => handleAddonToggle(addon)}>
+                    <Checkbox checked={selectedAddons.some(a => a.id === addon.id)} onCheckedChange={() => handleAddonToggle(addon)} />
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between">
+                        <h4 className="font-medium text-sm">{addon.name}</h4>
+                        <div className="text-right">
+                          {addon.on_sale && addon.original_price && (
+                            <span className="text-xs text-gray-400 line-through block">₾{addon.original_price}</span>
+                          )}
+                          <span className="font-bold text-blue-600">₾{addon.price}{t.checkout.perDay}</span>
                         </div>
-                        <p className="text-xs text-gray-500 mt-1">{addonTrans.description}</p>
                       </div>
+                      <p className="text-xs text-gray-500 mt-1">{addon.description}</p>
                     </div>
-                  );
-                })}
+                  </div>
+                ))}
               </div>
             </CardContent>
           </Card>
@@ -299,18 +385,15 @@ const CheckoutPage = () => {
                         <p className="font-bold">₾{item.price * item.days}</p>
                       </div>
                     ))}
-                    {selectedAddons.map((addon) => {
-                      const addonTrans = getAddonTranslation(addon.id);
-                      return (
-                        <div key={addon.id} className="flex justify-between items-start pb-3 border-b">
-                          <div>
-                            <p className="font-medium text-sm">{addonTrans.name}</p>
-                            <p className="text-xs text-gray-500">{cart[0]?.days || 1} {t.checkout.days} × ₾{addon.price}</p>
-                          </div>
-                          <p className="font-bold">₾{addon.price * (cart[0]?.days || 1)}</p>
+                    {selectedAddons.map((addon) => (
+                      <div key={addon.id} className="flex justify-between items-start pb-3 border-b">
+                        <div>
+                          <p className="font-medium text-sm">{addon.name}</p>
+                          <p className="text-xs text-gray-500">{cart[0]?.days || 1} {t.checkout.days} × ₾{addon.price}</p>
                         </div>
-                      );
-                    })}
+                        <p className="font-bold">₾{addon.price * (cart[0]?.days || 1)}</p>
+                      </div>
+                    ))}
                   </div>
 
                   <div className="pt-4 border-t">
@@ -318,8 +401,20 @@ const CheckoutPage = () => {
                       <span className="text-lg font-bold">{t.checkout.total}:</span>
                       <span className="text-2xl font-bold text-blue-600">₾{calculateTotal()}</span>
                     </div>
-                    <Button className="w-full bg-blue-600 hover:bg-blue-700" size="lg" onClick={handleSubmit}>
-                      {t.checkout.bookNow}
+                    <Button 
+                      className="w-full bg-blue-600 hover:bg-blue-700" 
+                      size="lg" 
+                      onClick={handleSubmit}
+                      disabled={submitting}
+                    >
+                      {submitting ? (
+                        <>
+                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                          Processing...
+                        </>
+                      ) : (
+                        t.checkout.bookNow
+                      )}
                     </Button>
                   </div>
                 </>
@@ -333,20 +428,17 @@ const CheckoutPage = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {addons.slice(0, 3).map(addon => {
-                  const addonTrans = getAddonTranslation(addon.id);
-                  return (
-                    <div key={addon.id} className="flex gap-3 p-2 hover:bg-gray-50 rounded-lg transition-colors cursor-pointer">
-                      <div className="w-16 h-16 bg-gray-100 rounded flex items-center justify-center">
-                        <span className="text-2xl">🛡️</span>
-                      </div>
-                      <div className="flex-1">
-                        <p className="font-medium text-sm">{addonTrans.name}</p>
-                        <p className="text-blue-600 font-bold text-sm">₾{addon.price}</p>
-                      </div>
+                {addons.slice(0, 3).map(addon => (
+                  <div key={addon.id} className="flex gap-3 p-2 hover:bg-gray-50 rounded-lg transition-colors cursor-pointer">
+                    <div className="w-16 h-16 bg-gray-100 rounded flex items-center justify-center">
+                      <span className="text-2xl">🛡️</span>
                     </div>
-                  );
-                })}
+                    <div className="flex-1">
+                      <p className="font-medium text-sm">{addon.name}</p>
+                      <p className="text-blue-600 font-bold text-sm">₾{addon.price}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </CardContent>
           </Card>
