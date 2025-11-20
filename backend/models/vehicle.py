@@ -4,7 +4,7 @@ from datetime import datetime
 from bson import ObjectId
 
 class Vehicle(BaseModel):
-    id: Optional[PyObjectId] = Field(default_factory=PyObjectId, alias="_id")
+    id: Optional[str] = Field(default=None, alias="_id")
     name: str
     category: str
     price: float
@@ -15,7 +15,7 @@ class Vehicle(BaseModel):
     updated_at: datetime = Field(default_factory=datetime.utcnow)
 
     class Config:
-        allow_population_by_field_name = True
+        populate_by_name = True
         arbitrary_types_allowed = True
         json_encoders = {ObjectId: str}
 
