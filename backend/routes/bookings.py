@@ -1,8 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from typing import List
-import os
 from datetime import datetime
-from motor.motor_asyncio import AsyncIOMotorClient
+from database import get_database
 from models.booking import (
     Booking, BookingCreate, BookingResponse,
     PriceCalculation, PriceCalculationResponse,
@@ -13,10 +12,6 @@ import random
 import string
 
 router = APIRouter()
-
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
 
 def generate_booking_id():
     """Generate unique booking ID"""
@@ -34,6 +29,7 @@ def calculate_days(pickup_date: str, dropoff_date: str) -> int:
 @router.post('/bookings', response_model=dict)
 async def create_booking(booking_data: BookingCreate):
     try:
+        db = get_database()
         # Get vehicle details
         vehicle = await db.vehicles.find_one({"_id": ObjectId(booking_data.vehicle_id)})
         if not vehicle:
@@ -107,6 +103,7 @@ async def create_booking(booking_data: BookingCreate):
 @router.get('/bookings/{booking_id}', response_model=dict)
 async def get_booking(booking_id: str):
     try:
+        db = get_database()
         booking = await db.bookings.find_one({"booking_id": booking_id})
         if not booking:
             raise HTTPException(status_code=404, detail="Booking not found")
@@ -121,6 +118,7 @@ async def get_booking(booking_id: str):
 @router.post('/calculate-price', response_model=dict)
 async def calculate_price(calc: PriceCalculation):
     try:
+        db = get_database()
         # Get vehicle
         vehicle = await db.vehicles.find_one({"_id": ObjectId(calc.vehicle_id)})
         if not vehicle:
