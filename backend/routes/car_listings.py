@@ -1,0 +1,176 @@
+from fastapi import APIRouter, HTTPException, Query
+from typing import Optional, List
+from database import get_database
+from models.car_listing import CarListing, CarListingCreate, CarListingUpdate
+from bson import ObjectId
+from datetime import datetime
+
+router = APIRouter()
+
+@router.get('/listings', response_model=dict)
+async def get_listings(
+    listing_type: Optional[str] = Query(None),
+    status: Optional[str] = Query("active"),
+    limit: int = Query(100, le=100)
+):
+    """Get all car listings with optional filters"""
+    try:
+        db = get_database()
+        query = {}
+        
+        if listing_type:
+            query["listing_type"] = listing_type
+        if status:
+            query["status"] = status
+            
+        listings = await db.car_listings.find(query).sort("created_at", -1).limit(limit).to_list(limit)
+        
+        listing_list = []
+        for listing in listings:
+            listing_list.append({
+                "id": str(listing["_id"]),
+                "listing_type": listing["listing_type"],
+                "brand": listing["brand"],
+                "model": listing["model"],
+                "year": listing["year"],
+                "price": listing["price"],
+                "price_type": listing["price_type"],
+                "currency": listing.get("currency", "GEL"),
+                "mileage": listing["mileage"],
+                "fuel_type": listing["fuel_type"],
+                "transmission": listing["transmission"],
+                "images": listing.get("images", []),
+                "description": listing["description"],
+                "features": listing.get("features", []),
+                "status": listing["status"],
+                "contact_phone": listing.get("contact_phone", "+995 500 88 30 88"),
+                "contact_email": listing.get("contact_email", "info@mgzavrobani.ge"),
+                "views": listing.get("views", 0),
+                "created_at": listing["created_at"].isoformat()
+            })
+        
+        return {"success": True, "listings": listing_list}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.get('/listings/{listing_id}', response_model=dict)
+async def get_listing(listing_id: str):
+    """Get single listing by ID and increment view count"""
+    try:
+        db = get_database()
+        listing = await db.car_listings.find_one({"_id": ObjectId(listing_id)})
+        
+        if not listing:
+            raise HTTPException(status_code=404, detail="Listing not found")
+        
+        # Increment view count
+        await db.car_listings.update_one(
+            {"_id": ObjectId(listing_id)},
+            {"$inc": {"views": 1}}
+        )
+        
+        return {
+            "success": True,
+            "listing": {
+                "id": str(listing["_id"]),
+                "listing_type": listing["listing_type"],
+                "brand": listing["brand"],
+                "model": listing["model"],
+                "year": listing["year"],
+                "price": listing["price"],
+                "price_type": listing["price_type"],
+                "currency": listing.get("currency", "GEL"),
+                "mileage": listing["mileage"],
+                "fuel_type": listing["fuel_type"],
+                "transmission": listing["transmission"],
+                "images": listing.get("images", []),
+                "description": listing["description"],
+                "features": listing.get("features", []),
+                "status": listing["status"],
+                "contact_phone": listing.get("contact_phone", "+995 500 88 30 88"),
+                "contact_email": listing.get("contact_email", "info@mgzavrobani.ge"),
+                "views": listing.get("views", 0) + 1,
+                "created_at": listing["created_at"].isoformat(),
+                "updated_at": listing.get("updated_at", listing["created_at"]).isoformat()
+            }
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.post('/listings', response_model=dict)
+async def create_listing(listing_data: CarListingCreate):
+    """Create new car listing (admin only - will add auth later)"""
+    try:
+        db = get_database()
+        
+        listing = {
+            **listing_data.dict(),
+            "currency": "GEL",
+            "status": "active",
+            "views": 0,
+            "created_at": datetime.utcnow(),
+            "updated_at": datetime.utcnow()
+        }
+        
+        result = await db.car_listings.insert_one(listing)
+        
+        return {
+            "success": True,
+            "listing_id": str(result.inserted_id),
+            "message": "Listing created successfully"
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.put('/listings/{listing_id}', response_model=dict)
+async def update_listing(listing_id: str, listing_data: CarListingUpdate):
+    """Update car listing (admin only - will add auth later)"""
+    try:
+        db = get_database()
+        
+        # Get only non-None values
+        update_data = {k: v for k, v in listing_data.dict().items() if v is not None}
+        
+        if not update_data:
+            raise HTTPException(status_code=400, detail="No data to update")
+        
+        update_data["updated_at"] = datetime.utcnow()
+        
+        result = await db.car_listings.update_one(
+            {"_id": ObjectId(listing_id)},
+            {"$set": update_data}
+        )
+        
+        if result.matched_count == 0:
+            raise HTTPException(status_code=404, detail="Listing not found")
+        
+        return {
+            "success": True,
+            "message": "Listing updated successfully"
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.delete('/listings/{listing_id}', response_model=dict)
+async def delete_listing(listing_id: str):
+    """Delete car listing (admin only - will add auth later)"""
+    try:
+        db = get_database()
+        
+        result = await db.car_listings.delete_one({"_id": ObjectId(listing_id)})
+        
+        if result.deleted_count == 0:
+            raise HTTPException(status_code=404, detail="Listing not found")
+        
+        return {
+            "success": True,
+            "message": "Listing deleted successfully"
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
