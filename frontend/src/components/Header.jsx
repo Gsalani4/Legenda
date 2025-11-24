@@ -31,7 +31,7 @@ const Header = () => {
       
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
-          <div className="flex items-center gap-3">
+          <a href="/" className="flex items-center gap-3">
             <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">
               MG
             </div>
@@ -39,16 +39,11 @@ const Header = () => {
               <h1 className="font-bold text-xl text-gray-900">{t.header.companyName}</h1>
               <p className="text-xs text-gray-500">{t.header.tagline}</p>
             </div>
-          </div>
+          </a>
           
           <nav className="hidden md:flex items-center gap-6">
-            <a href="/" className="text-gray-700 hover:text-blue-600 transition-colors">{t.header.home}</a>
-            <a href="/vehicles" className="text-gray-700 hover:text-blue-600 transition-colors">{t.header.vehicles}</a>
-            <a href="/services" className="text-gray-700 hover:text-blue-600 transition-colors">{t.header.services}</a>
-            <a href="/contact" className="text-gray-700 hover:text-blue-600 transition-colors">{t.header.contact}</a>
-            <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
-              {t.header.booking}
-            </Button>
+            <a href="/" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Ana Sayfa</a>
+            <a href="/admin" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Admin</a>
           </nav>
           
           <Button variant="ghost" size="icon" className="md:hidden">
