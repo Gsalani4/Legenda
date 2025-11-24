@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import Optional
 from datetime import datetime
 
@@ -19,5 +19,3 @@ class AdminLogin(BaseModel):
 class AdminToken(BaseModel):
     access_token: str
     token_type: str = "bearer"
-
-from pydantic import Field
