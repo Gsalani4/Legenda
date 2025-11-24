@@ -7,10 +7,8 @@ import logging
 from pathlib import Path
 
 # Import routes
-from routes.vehicles import router as vehicles_router
-from routes.addons import router as addons_router
-from routes.locations import router as locations_router
-from routes.bookings import router as bookings_router
+from routes.car_listings import router as listings_router
+from routes.admin import router as admin_router
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -20,24 +18,21 @@ mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
-# Create the main app without a prefix
-app = FastAPI()
+# Create the main app
+app = FastAPI(title="MGZAVROBANI API", version="2.0.0")
 
-# Create a router with the /api prefix
+# Create API router
 api_router = APIRouter(prefix="/api")
 
-# Health check route
 @api_router.get("/")
 async def root():
-    return {"message": "MGZAVROBANI Car Rental API", "status": "active"}
+    return {"message": "MGZAVROBANI Car Listings API", "status": "active", "version": "2.0.0"}
 
-# Include all routers
-api_router.include_router(vehicles_router, tags=["vehicles"])
-api_router.include_router(addons_router, tags=["addons"])
-api_router.include_router(locations_router, tags=["locations"])
-api_router.include_router(bookings_router, tags=["bookings"])
+# Include routers
+api_router.include_router(listings_router, tags=["listings"])
+api_router.include_router(admin_router, tags=["admin"])
 
-# Include the api router in the main app
+# Include API router in main app
 app.include_router(api_router)
 
 app.add_middleware(
