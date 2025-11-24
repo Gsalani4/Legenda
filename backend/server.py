@@ -9,6 +9,7 @@ from pathlib import Path
 # Import routes
 from routes.car_listings import router as listings_router
 from routes.admin import router as admin_router
+from routes.site_settings import router as settings_router
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
