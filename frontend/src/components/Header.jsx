@@ -1,10 +1,10 @@
 import React from 'react';
 import { Phone, Clock, MapPin, Menu } from 'lucide-react';
 import { Button } from './ui/button';
-import { useLanguage } from '../context/LanguageContext';
+import { useSettings } from '../context/SettingsContext';
 
 const Header = () => {
-  const { t } = useLanguage();
+  const { settings } = useSettings();
   
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
@@ -13,17 +13,17 @@ const Header = () => {
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4" />
-              <span>{t.header.schedule}</span>
+              <span>{settings.contact.working_hours}</span>
             </div>
             <div className="flex items-center gap-2">
               <MapPin className="w-4 h-4" />
-              <span>{t.header.address}</span>
+              <span>{settings.contact.address}</span>
             </div>
           </div>
           <div className="flex items-center gap-2">
             <Phone className="w-4 h-4" />
-            <a href="tel:+995500883088" className="hover:underline">
-              {t.header.phone}
+            <a href={`tel:${settings.contact.phone}`} className="hover:underline">
+              {settings.contact.phone}
             </a>
           </div>
         </div>
@@ -36,8 +36,8 @@ const Header = () => {
               MG
             </div>
             <div>
-              <h1 className="font-bold text-xl text-gray-900">{t.header.companyName}</h1>
-              <p className="text-xs text-gray-500">{t.header.tagline}</p>
+              <h1 className="font-bold text-xl text-gray-900">MGZAVROBANI</h1>
+              <p className="text-xs text-gray-500">Car Rental in Georgia</p>
             </div>
           </a>
           
