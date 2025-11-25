@@ -32,13 +32,25 @@ const HomePage = () => {
   };
 
   const getListingTypeText = (type) => {
-    return type === 'rental' ? 'Kiralık' : 'Satılık';
+    const texts = {
+      ka: { rental: 'ქირავდება', sale: 'იყიდება' },
+      en: { rental: 'For Rent', sale: 'For Sale' },
+      ru: { rental: 'Аренда', sale: 'Продажа' },
+      tr: { rental: 'Kiralık', sale: 'Satılık' },
+      az: { rental: 'Kirayə', sale: 'Satılır' }
+    };
+    return texts[currentLanguage][type] || texts['en'][type];
   };
 
   const getPriceText = (listing) => {
     const price = `₾${listing.price}`;
+    const perDay = { ka: '/დღე', en: '/day', ru: '/день', tr: '/gün', az: '/gün' };
+    const perMonth = { ka: '/თვე', en: '/month', ru: '/месяц', tr: '/ay', az: '/ay' };
+    
     if (listing.listing_type === 'rental') {
-      return listing.price_type === 'daily' ? `${price}/gün` : `${price}/ay`;
+      return listing.price_type === 'daily' 
+        ? `${price}${perDay[currentLanguage] || perDay['en']}` 
+        : `${price}${perMonth[currentLanguage] || perMonth['en']}`;
     }
     return price;
   };
