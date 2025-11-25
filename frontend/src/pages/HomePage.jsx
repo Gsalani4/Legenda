@@ -71,8 +71,20 @@ const HomePage = () => {
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             MGZAVROBANI
           </h1>
-          <p className="text-xl md:text-2xl mb-2">Gürcistan'da Araç Kiralama ve Satış</p>
-          <p className="text-lg opacity-90">En İyi Fiyatlarla Kaliteli Araçlar</p>
+          <p className="text-xl md:text-2xl mb-2">
+            {currentLanguage === 'ka' && 'ავტომობილების დაქირავება და გაყიდვა საქართველოში'}
+            {currentLanguage === 'en' && 'Car Rental and Sales in Georgia'}
+            {currentLanguage === 'ru' && 'Аренда и продажа автомобилей в Грузии'}
+            {currentLanguage === 'tr' && 'Gürcistan\'da Araç Kiralama ve Satış'}
+            {currentLanguage === 'az' && 'Gürcüstanda Avtomobil İcarəsi və Satışı'}
+          </p>
+          <p className="text-lg opacity-90">
+            {currentLanguage === 'ka' && 'საუკეთესო ფასებით ხარისხიანი ავტომობილები'}
+            {currentLanguage === 'en' && 'Quality Vehicles at the Best Prices'}
+            {currentLanguage === 'ru' && 'Качественные автомобили по лучшим ценам'}
+            {currentLanguage === 'tr' && 'En İyi Fiyatlarla Kaliteli Araçlar'}
+            {currentLanguage === 'az' && 'Ən Yaxşı Qiymətlərlə Keyfiyyətli Avtomobillər'}
+          </p>
         </div>
       </div>
 
@@ -85,21 +97,33 @@ const HomePage = () => {
               onClick={() => setFilter('all')}
               className={filter === 'all' ? 'bg-blue-600' : ''}
             >
-              Tüm İlanlar
+              {currentLanguage === 'ka' && 'ყველა განცხადება'}
+              {currentLanguage === 'en' && 'All Listings'}
+              {currentLanguage === 'ru' && 'Все объявления'}
+              {currentLanguage === 'tr' && 'Tüm İlanlar'}
+              {currentLanguage === 'az' && 'Bütün Elanlar'}
             </Button>
             <Button
               variant={filter === 'rental' ? 'default' : 'outline'}
               onClick={() => setFilter('rental')}
               className={filter === 'rental' ? 'bg-blue-600' : ''}
             >
-              Kiralık Araçlar
+              {currentLanguage === 'ka' && 'ქირავდება'}
+              {currentLanguage === 'en' && 'For Rent'}
+              {currentLanguage === 'ru' && 'Аренда'}
+              {currentLanguage === 'tr' && 'Kiralık Araçlar'}
+              {currentLanguage === 'az' && 'Kirayə Avtomobilləri'}
             </Button>
             <Button
               variant={filter === 'sale' ? 'default' : 'outline'}
               onClick={() => setFilter('sale')}
               className={filter === 'sale' ? 'bg-blue-600' : ''}
             >
-              Satılık Araçlar
+              {currentLanguage === 'ka' && 'იყიდება'}
+              {currentLanguage === 'en' && 'For Sale'}
+              {currentLanguage === 'ru' && 'Продажа'}
+              {currentLanguage === 'tr' && 'Satılık Araçlar'}
+              {currentLanguage === 'az' && 'Satılık Avtomobillər'}
             </Button>
           </div>
         </div>
@@ -110,7 +134,13 @@ const HomePage = () => {
         {listings.length === 0 ? (
           <div className="text-center py-16">
             <Car className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-            <p className="text-gray-500 text-lg">Şu anda aktif ilan bulunmamaktadır.</p>
+            <p className="text-gray-500 text-lg">
+              {currentLanguage === 'ka' && 'ამჟამად აქტიური განცხადებები არ არის.'}
+              {currentLanguage === 'en' && 'No active listings at the moment.'}
+              {currentLanguage === 'ru' && 'В данный момент нет активных объявлений.'}
+              {currentLanguage === 'tr' && 'Şu anda aktif ilan bulunmamaktadır.'}
+              {currentLanguage === 'az' && 'Hal-hazırda aktiv elan yoxdur.'}
+            </p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
