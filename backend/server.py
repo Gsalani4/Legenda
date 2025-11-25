@@ -32,6 +32,7 @@ async def root():
 # Include routers
 api_router.include_router(listings_router, tags=["listings"])
 api_router.include_router(admin_router, tags=["admin"])
+api_router.include_router(settings_router, tags=["settings"])
 
 # Include API router in main app
 app.include_router(api_router)
