@@ -6,26 +6,31 @@ import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import CarDetailPage from './pages/CarDetailPage';
 import AdminPanel from './pages/AdminPanel';
+import AdminSettingsPage from './pages/AdminSettingsPage';
 import { Toaster } from './components/ui/sonner';
 import { LanguageProvider } from './context/LanguageContext';
+import { SettingsProvider } from './context/SettingsContext';
 
 function App() {
   return (
     <LanguageProvider>
-      <div className="App min-h-screen flex flex-col">
-        <BrowserRouter>
-          <Header />
-          <main className="flex-1">
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/car/:id" element={<CarDetailPage />} />
-              <Route path="/admin" element={<AdminPanel />} />
-            </Routes>
-          </main>
-          <Footer />
-          <Toaster />
-        </BrowserRouter>
-      </div>
+      <SettingsProvider>
+        <div className="App min-h-screen flex flex-col">
+          <BrowserRouter>
+            <Header />
+            <main className="flex-1">
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/car/:id" element={<CarDetailPage />} />
+                <Route path="/admin" element={<AdminPanel />} />
+                <Route path="/admin/settings" element={<AdminSettingsPage />} />
+              </Routes>
+            </main>
+            <Footer />
+            <Toaster />
+          </BrowserRouter>
+        </div>
+      </SettingsProvider>
     </LanguageProvider>
   );
 }
