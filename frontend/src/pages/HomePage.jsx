@@ -176,22 +176,6 @@ const HomePage = () => {
         )}
       </div>
 
-      {/* Contact Section */}
-      <div className="bg-gray-900 text-white py-12 mt-16">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-2xl font-bold mb-6">Bizimle İletişime Geçin</h2>
-          <div className="flex flex-col md:flex-row justify-center items-center gap-6">
-            <a href="tel:+995500883088" className="flex items-center gap-2 hover:text-blue-400 transition-colors">
-              <Phone className="w-5 h-5" />
-              +995 500 88 30 88
-            </a>
-            <a href="mailto:info@mgzavrobani.ge" className="flex items-center gap-2 hover:text-blue-400 transition-colors">
-              <Mail className="w-5 h-5" />
-              info@mgzavrobani.ge
-            </a>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };
