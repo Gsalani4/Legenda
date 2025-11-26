@@ -187,7 +187,7 @@ const CarDetailPage = () => {
                 <div className="flex justify-between items-start">
                   <div>
                     <CardTitle className="text-3xl">{listing.brand} {listing.model}</CardTitle>
-                    <p className="text-gray-500 mt-2">{listing.year} Model</p>
+                    <p className="text-gray-500 mt-2">{listing.year} {translateModelText(currentLanguage)}</p>
                   </div>
                   <div className="flex items-center gap-2 text-gray-500">
                     <Eye className="w-4 h-4" />
