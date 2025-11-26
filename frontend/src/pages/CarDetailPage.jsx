@@ -235,7 +235,7 @@ const CarDetailPage = () => {
                           {currentLanguage === 'tr' && 'Yakıt'}
                           {currentLanguage === 'az' && 'Yanacaq'}
                         </p>
-                        <p className="font-semibold">{listing.fuel_type}</p>
+                        <p className="font-semibold">{translateFuelType(listing.fuel_type, currentLanguage)}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
@@ -248,7 +248,7 @@ const CarDetailPage = () => {
                           {currentLanguage === 'tr' && 'Vites'}
                           {currentLanguage === 'az' && 'Sürətlər qutusu'}
                         </p>
-                        <p className="font-semibold">{listing.transmission}</p>
+                        <p className="font-semibold">{translateTransmission(listing.transmission, currentLanguage)}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
