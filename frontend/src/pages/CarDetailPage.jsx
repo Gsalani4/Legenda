@@ -203,7 +203,13 @@ const CarDetailPage = () => {
               <CardContent className="space-y-6">
                 {/* Technical Specs */}
                 <div>
-                  <h3 className="font-semibold text-lg mb-4">Teknik Özellikler</h3>
+                  <h3 className="font-semibold text-lg mb-4">
+                    {currentLanguage === 'ka' && 'ტექნიკური მახასიათებლები'}
+                    {currentLanguage === 'en' && 'Technical Specifications'}
+                    {currentLanguage === 'ru' && 'Технические характеристики'}
+                    {currentLanguage === 'tr' && 'Teknik Özellikler'}
+                    {currentLanguage === 'az' && 'Texniki Xüsusiyyətlər'}
+                  </h3>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                     <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
                       <Gauge className="w-5 h-5 text-blue-600" />
