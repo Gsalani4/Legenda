@@ -335,7 +335,13 @@ const CarDetailPage = () => {
                       <Phone className="w-5 h-5" />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500">Telefon</p>
+                      <p className="text-sm text-gray-500">
+                        {currentLanguage === 'ka' && 'ტელეფონი'}
+                        {currentLanguage === 'en' && 'Phone'}
+                        {currentLanguage === 'ru' && 'Телефон'}
+                        {currentLanguage === 'tr' && 'Telefon'}
+                        {currentLanguage === 'az' && 'Telefon'}
+                      </p>
                       <p className="font-semibold">{listing.contact_phone}</p>
                     </div>
                   </a>
@@ -348,14 +354,24 @@ const CarDetailPage = () => {
                       <Mail className="w-5 h-5" />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500">E-posta</p>
+                      <p className="text-sm text-gray-500">
+                        {currentLanguage === 'ka' && 'ელ-ფოსტა'}
+                        {currentLanguage === 'en' && 'Email'}
+                        {currentLanguage === 'ru' && 'Эл. почта'}
+                        {currentLanguage === 'tr' && 'E-posta'}
+                        {currentLanguage === 'az' && 'E-poçt'}
+                      </p>
                       <p className="font-semibold text-sm">{listing.contact_email}</p>
                     </div>
                   </a>
 
                   <Button className="w-full bg-green-600 hover:bg-green-700" size="lg">
                     <Phone className="w-4 h-4 mr-2" />
-                    Hemen Ara
+                    {currentLanguage === 'ka' && 'დაკავშირება'}
+                    {currentLanguage === 'en' && 'Call Now'}
+                    {currentLanguage === 'ru' && 'Позвонить'}
+                    {currentLanguage === 'tr' && 'Hemen Ara'}
+                    {currentLanguage === 'az' && 'İndi Zəng Et'}
                   </Button>
                 </div>
               </CardContent>
