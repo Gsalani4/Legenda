@@ -58,8 +58,20 @@ const CarDetailPage = () => {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <Car className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-          <p className="text-gray-500 text-lg mb-4">İlan bulunamadı.</p>
-          <Button onClick={() => navigate('/')}>Ana Sayfaya Dön</Button>
+          <p className="text-gray-500 text-lg mb-4">
+            {currentLanguage === 'ka' && 'განცხადება ვერ მოიძებნა.'}
+            {currentLanguage === 'en' && 'Listing not found.'}
+            {currentLanguage === 'ru' && 'Объявление не найдено.'}
+            {currentLanguage === 'tr' && 'İlan bulunamadı.'}
+            {currentLanguage === 'az' && 'Elan tapılmadı.'}
+          </p>
+          <Button onClick={() => navigate('/')}>
+            {currentLanguage === 'ka' && 'მთავარზე დაბრუნება'}
+            {currentLanguage === 'en' && 'Back to Home'}
+            {currentLanguage === 'ru' && 'Вернуться на главную'}
+            {currentLanguage === 'tr' && 'Ana Sayfaya Dön'}
+            {currentLanguage === 'az' && 'Ana Səhifəyə Qayıt'}
+          </Button>
         </div>
       </div>
     );
@@ -67,10 +79,26 @@ const CarDetailPage = () => {
 
   const getPriceText = () => {
     const price = `₾${listing.price}`;
+    const perDay = { ka: '/დღე', en: '/day', ru: '/день', tr: '/gün', az: '/gün' };
+    const perMonth = { ka: '/თვე', en: '/month', ru: '/месяц', tr: '/ay', az: '/ay' };
+    
     if (listing.listing_type === 'rental') {
-      return listing.price_type === 'daily' ? `${price}/gün` : `${price}/ay`;
+      return listing.price_type === 'daily' 
+        ? `${price}${perDay[currentLanguage] || perDay['en']}` 
+        : `${price}${perMonth[currentLanguage] || perMonth['en']}`;
     }
     return price;
+  };
+  
+  const getListingTypeText = (type) => {
+    const texts = {
+      ka: { rental: 'ქირავდება', sale: 'იყიდება' },
+      en: { rental: 'For Rent', sale: 'For Sale' },
+      ru: { rental: 'Аренда', sale: 'Продажа' },
+      tr: { rental: 'Kiralık', sale: 'Satılık' },
+      az: { rental: 'Kirayə', sale: 'Satılır' }
+    };
+    return texts[currentLanguage][type] || texts['en'][type];
   };
 
   return (
