@@ -209,7 +209,11 @@ const HomePage = () => {
 
                 <CardFooter className="bg-gray-50 p-4">
                   <Button className="w-full bg-blue-600 hover:bg-blue-700">
-                    Detayları Gör
+                    {currentLanguage === 'ka' && 'დეტალები'}
+                    {currentLanguage === 'en' && 'View Details'}
+                    {currentLanguage === 'ru' && 'Подробнее'}
+                    {currentLanguage === 'tr' && 'Detayları Gör'}
+                    {currentLanguage === 'az' && 'Ətraflı'}
                   </Button>
                 </CardFooter>
               </Card>
