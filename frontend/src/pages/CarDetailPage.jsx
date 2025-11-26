@@ -307,13 +307,25 @@ const CarDetailPage = () => {
               <CardContent className="p-6 space-y-6">
                 {/* Price */}
                 <div>
-                  <p className="text-sm text-gray-500 mb-2">Fiyat</p>
+                  <p className="text-sm text-gray-500 mb-2">
+                    {currentLanguage === 'ka' && 'ფასი'}
+                    {currentLanguage === 'en' && 'Price'}
+                    {currentLanguage === 'ru' && 'Цена'}
+                    {currentLanguage === 'tr' && 'Fiyat'}
+                    {currentLanguage === 'az' && 'Qiymət'}
+                  </p>
                   <p className="text-4xl font-bold text-blue-600">{getPriceText()}</p>
                 </div>
 
                 {/* Contact Info */}
                 <div className="border-t pt-6 space-y-4">
-                  <h3 className="font-semibold text-lg">İletişim Bilgileri</h3>
+                  <h3 className="font-semibold text-lg">
+                    {currentLanguage === 'ka' && 'საკონტაქტო ინფორმაცია'}
+                    {currentLanguage === 'en' && 'Contact Information'}
+                    {currentLanguage === 'ru' && 'Контактная информация'}
+                    {currentLanguage === 'tr' && 'İletişim Bilgileri'}
+                    {currentLanguage === 'az' && 'Əlaqə Məlumatları'}
+                  </h3>
                   
                   <a 
                     href={`tel:${listing.contact_phone}`}
