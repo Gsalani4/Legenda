@@ -268,14 +268,26 @@ const CarDetailPage = () => {
 
                 {/* Description */}
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Açıklama</h3>
+                  <h3 className="font-semibold text-lg mb-3">
+                    {currentLanguage === 'ka' && 'აღწერა'}
+                    {currentLanguage === 'en' && 'Description'}
+                    {currentLanguage === 'ru' && 'Описание'}
+                    {currentLanguage === 'tr' && 'Açıklama'}
+                    {currentLanguage === 'az' && 'Təsvir'}
+                  </h3>
                   <p className="text-gray-700 whitespace-pre-line">{listing.description}</p>
                 </div>
 
                 {/* Features */}
                 {listing.features && listing.features.length > 0 && (
                   <div>
-                    <h3 className="font-semibold text-lg mb-3">Özellikler</h3>
+                    <h3 className="font-semibold text-lg mb-3">
+                      {currentLanguage === 'ka' && 'მახასიათებლები'}
+                      {currentLanguage === 'en' && 'Features'}
+                      {currentLanguage === 'ru' && 'Особенности'}
+                      {currentLanguage === 'tr' && 'Özellikler'}
+                      {currentLanguage === 'az' && 'Xüsusiyyətlər'}
+                    </h3>
                     <div className="flex flex-wrap gap-2">
                       {listing.features.map((feature, idx) => (
                         <Badge key={idx} variant="outline" className="text-sm">
