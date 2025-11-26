@@ -182,7 +182,7 @@ const HomePage = () => {
                   </h3>
                   
                   {/* Year */}
-                  <p className="text-gray-500 text-sm mb-3">{listing.year} Model</p>
+                  <p className="text-gray-500 text-sm mb-3">{listing.year} {translateModelText(currentLanguage)}</p>
                   
                   {/* Features */}
                   <div className="grid grid-cols-2 gap-2 mb-4">
@@ -192,11 +192,11 @@ const HomePage = () => {
                     </div>
                     <div className="flex items-center gap-2 text-sm text-gray-600">
                       <Fuel className="w-4 h-4" />
-                      {listing.fuel_type}
+                      {translateFuelType(listing.fuel_type, currentLanguage)}
                     </div>
                     <div className="flex items-center gap-2 text-sm text-gray-600">
                       <Settings className="w-4 h-4" />
-                      {listing.transmission}
+                      {translateTransmission(listing.transmission, currentLanguage)}
                     </div>
                   </div>
                   
