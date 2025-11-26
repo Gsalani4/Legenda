@@ -82,6 +82,20 @@ code {
     }
 }
 
+/* Hide Sonner watermark */
+[data-sonner-toast] [data-icon] {
+    display: none !important;
+}
+
+[data-sonner-toast] [data-content] ~ div:last-child {
+    display: none !important;
+}
+
+/* Alternative: hide the entire footer of toast */
+.sonner-toast-footer {
+    display: none !important;
+}
+
 @layer base {
     [data-debug-wrapper="true"] {
         display: contents !important;
