@@ -190,7 +190,13 @@ const CarDetailPage = () => {
                   </div>
                   <div className="flex items-center gap-2 text-gray-500">
                     <Eye className="w-4 h-4" />
-                    <span>{listing.views} görüntülenme</span>
+                    <span>
+                      {listing.views} {currentLanguage === 'ka' && 'ნახვა'}
+                      {currentLanguage === 'en' && 'views'}
+                      {currentLanguage === 'ru' && 'просмотров'}
+                      {currentLanguage === 'tr' && 'görüntülenme'}
+                      {currentLanguage === 'az' && 'baxış'}
+                    </span>
                   </div>
                 </div>
               </CardHeader>
