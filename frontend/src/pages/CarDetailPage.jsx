@@ -107,7 +107,11 @@ const CarDetailPage = () => {
         {/* Back Button */}
         <Button variant="ghost" onClick={() => navigate('/')} className="mb-6">
           <ArrowLeft className="w-4 h-4 mr-2" />
-          Geri Dön
+          {currentLanguage === 'ka' && 'უკან'}
+          {currentLanguage === 'en' && 'Back'}
+          {currentLanguage === 'ru' && 'Назад'}
+          {currentLanguage === 'tr' && 'Geri Dön'}
+          {currentLanguage === 'az' && 'Geri'}
         </Button>
 
         <div className="grid lg:grid-cols-3 gap-8">
