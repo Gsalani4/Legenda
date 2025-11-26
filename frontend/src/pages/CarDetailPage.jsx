@@ -214,28 +214,52 @@ const CarDetailPage = () => {
                     <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
                       <Gauge className="w-5 h-5 text-blue-600" />
                       <div>
-                        <p className="text-sm text-gray-500">Kilometre</p>
+                        <p className="text-sm text-gray-500">
+                          {currentLanguage === 'ka' && 'გარბენი'}
+                          {currentLanguage === 'en' && 'Mileage'}
+                          {currentLanguage === 'ru' && 'Пробег'}
+                          {currentLanguage === 'tr' && 'Kilometre'}
+                          {currentLanguage === 'az' && 'Yürüş'}
+                        </p>
                         <p className="font-semibold">{listing.mileage.toLocaleString()} km</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
                       <Fuel className="w-5 h-5 text-blue-600" />
                       <div>
-                        <p className="text-sm text-gray-500">Yakıt</p>
+                        <p className="text-sm text-gray-500">
+                          {currentLanguage === 'ka' && 'საწვავი'}
+                          {currentLanguage === 'en' && 'Fuel'}
+                          {currentLanguage === 'ru' && 'Топливо'}
+                          {currentLanguage === 'tr' && 'Yakıt'}
+                          {currentLanguage === 'az' && 'Yanacaq'}
+                        </p>
                         <p className="font-semibold">{listing.fuel_type}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
                       <Settings className="w-5 h-5 text-blue-600" />
                       <div>
-                        <p className="text-sm text-gray-500">Vites</p>
+                        <p className="text-sm text-gray-500">
+                          {currentLanguage === 'ka' && 'ტრანსმისია'}
+                          {currentLanguage === 'en' && 'Transmission'}
+                          {currentLanguage === 'ru' && 'Коробка передач'}
+                          {currentLanguage === 'tr' && 'Vites'}
+                          {currentLanguage === 'az' && 'Sürətlər qutusu'}
+                        </p>
                         <p className="font-semibold">{listing.transmission}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
                       <Calendar className="w-5 h-5 text-blue-600" />
                       <div>
-                        <p className="text-sm text-gray-500">Yıl</p>
+                        <p className="text-sm text-gray-500">
+                          {currentLanguage === 'ka' && 'წელი'}
+                          {currentLanguage === 'en' && 'Year'}
+                          {currentLanguage === 'ru' && 'Год'}
+                          {currentLanguage === 'tr' && 'Yıl'}
+                          {currentLanguage === 'az' && 'İl'}
+                        </p>
                         <p className="font-semibold">{listing.year}</p>
                       </div>
                     </div>
