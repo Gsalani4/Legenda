@@ -4,6 +4,7 @@ import { Car, Fuel, Gauge, Settings, Phone, Mail, Calendar, Eye, ArrowLeft, Chev
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
+import { useLanguage } from '../context/LanguageContext';
 import axios from 'axios';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL + '/api';
@@ -11,6 +12,7 @@ const API_URL = process.env.REACT_APP_BACKEND_URL + '/api';
 const CarDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { currentLanguage } = useLanguage();
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
