@@ -204,7 +204,7 @@ const CarDetailPage = () => {
               <CardContent className="space-y-6">
                 {/* Technical Specs */}
                 <div>
-                  <h3 className="font-semibold text-lg mb-4">
+                  <h3 className="font-semibold text-lg mb-4 text-white">
                     {currentLanguage === 'ka' && 'ტექნიკური მახასიათებლები'}
                     {currentLanguage === 'en' && 'Technical Specifications'}
                     {currentLanguage === 'ru' && 'Технические характеристики'}
