@@ -107,7 +107,7 @@ const HomePage = () => {
             <Button
               variant={filter === 'rental' ? 'default' : 'outline'}
               onClick={() => setFilter('rental')}
-              className={filter === 'rental' ? 'bg-blue-600' : ''}
+              className={filter === 'rental' ? 'bg-[#FF7A00] hover:bg-[#ff8c1a] text-white' : 'bg-black text-white border-gray-700 hover:bg-[#111111]'}
             >
               {currentLanguage === 'ka' && 'ქირავდება'}
               {currentLanguage === 'en' && 'For Rent'}
