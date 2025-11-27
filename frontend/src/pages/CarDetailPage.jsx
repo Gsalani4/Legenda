@@ -59,7 +59,7 @@ const CarDetailPage = () => {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <Car className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-          <p className="text-gray-500 text-lg mb-4">
+          <p className="text-gray-400 text-lg mb-4">
             {currentLanguage === 'ka' && 'განცხადება ვერ მოიძებნა.'}
             {currentLanguage === 'en' && 'Listing not found.'}
             {currentLanguage === 'ru' && 'Объявление не найдено.'}
@@ -212,10 +212,10 @@ const CarDetailPage = () => {
                     {currentLanguage === 'az' && 'Texniki Xüsusiyyətlər'}
                   </h3>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                    <div className="flex items-center gap-3 p-3 bg-black rounded-lg">
                       <Gauge className="w-5 h-5 text-[#FF7A00]" />
                       <div>
-                        <p className="text-sm text-gray-500">
+                        <p className="text-sm text-gray-400">
                           {currentLanguage === 'ka' && 'გარბენი'}
                           {currentLanguage === 'en' && 'Mileage'}
                           {currentLanguage === 'ru' && 'Пробег'}
@@ -225,10 +225,10 @@ const CarDetailPage = () => {
                         <p className="font-semibold">{listing.mileage.toLocaleString()} km</p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                    <div className="flex items-center gap-3 p-3 bg-black rounded-lg">
                       <Fuel className="w-5 h-5 text-[#FF7A00]" />
                       <div>
-                        <p className="text-sm text-gray-500">
+                        <p className="text-sm text-gray-400">
                           {currentLanguage === 'ka' && 'საწვავი'}
                           {currentLanguage === 'en' && 'Fuel'}
                           {currentLanguage === 'ru' && 'Топливо'}
@@ -238,10 +238,10 @@ const CarDetailPage = () => {
                         <p className="font-semibold">{translateFuelType(listing.fuel_type, currentLanguage)}</p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                    <div className="flex items-center gap-3 p-3 bg-black rounded-lg">
                       <Settings className="w-5 h-5 text-[#FF7A00]" />
                       <div>
-                        <p className="text-sm text-gray-500">
+                        <p className="text-sm text-gray-400">
                           {currentLanguage === 'ka' && 'ტრანსმისია'}
                           {currentLanguage === 'en' && 'Transmission'}
                           {currentLanguage === 'ru' && 'Коробка передач'}
@@ -251,10 +251,10 @@ const CarDetailPage = () => {
                         <p className="font-semibold">{translateTransmission(listing.transmission, currentLanguage)}</p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                    <div className="flex items-center gap-3 p-3 bg-black rounded-lg">
                       <Calendar className="w-5 h-5 text-[#FF7A00]" />
                       <div>
-                        <p className="text-sm text-gray-500">
+                        <p className="text-sm text-gray-400">
                           {currentLanguage === 'ka' && 'წელი'}
                           {currentLanguage === 'en' && 'Year'}
                           {currentLanguage === 'ru' && 'Год'}
@@ -276,7 +276,7 @@ const CarDetailPage = () => {
                     {currentLanguage === 'tr' && 'Açıklama'}
                     {currentLanguage === 'az' && 'Təsvir'}
                   </h3>
-                  <p className="text-gray-700 whitespace-pre-line">{listing.description}</p>
+                  <p className="text-gray-300 whitespace-pre-line">{listing.description}</p>
                 </div>
 
                 {/* Features */}
@@ -308,7 +308,7 @@ const CarDetailPage = () => {
               <CardContent className="p-6 space-y-6">
                 {/* Price */}
                 <div>
-                  <p className="text-sm text-gray-500 mb-2">
+                  <p className="text-sm text-gray-400 mb-2">
                     {currentLanguage === 'ka' && 'ფასი'}
                     {currentLanguage === 'en' && 'Price'}
                     {currentLanguage === 'ru' && 'Цена'}
@@ -336,7 +336,7 @@ const CarDetailPage = () => {
                       <Phone className="w-5 h-5" />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm text-gray-400">
                         {currentLanguage === 'ka' && 'ტელეფონი'}
                         {currentLanguage === 'en' && 'Phone'}
                         {currentLanguage === 'ru' && 'Телефон'}
@@ -355,7 +355,7 @@ const CarDetailPage = () => {
                       <Mail className="w-5 h-5" />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm text-gray-400">
                         {currentLanguage === 'ka' && 'ელ-ფოსტა'}
                         {currentLanguage === 'en' && 'Email'}
                         {currentLanguage === 'ru' && 'Эл. почта'}
