@@ -304,7 +304,7 @@ const CarDetailPage = () => {
 
           {/* Sidebar - Contact & Price */}
           <div className="lg:col-span-1">
-            <Card className="sticky top-24">
+            <Card className="sticky top-24 bg-[#111111] border-gray-800">
               <CardContent className="p-6 space-y-6">
                 {/* Price */}
                 <div>
