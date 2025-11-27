@@ -366,7 +366,7 @@ const CarDetailPage = () => {
                     </div>
                   </a>
 
-                  <Button className="w-full bg-green-600 hover:bg-green-700" size="lg">
+                  <Button className="w-full bg-[#FF7A00] hover:bg-[#ff8c1a] text-white" size="lg">
                     <Phone className="w-4 h-4 mr-2" />
                     {currentLanguage === 'ka' && 'დაკავშირება'}
                     {currentLanguage === 'en' && 'Call Now'}
