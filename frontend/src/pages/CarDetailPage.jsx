@@ -213,7 +213,7 @@ const CarDetailPage = () => {
                   </h3>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                     <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                      <Gauge className="w-5 h-5 text-blue-600" />
+                      <Gauge className="w-5 h-5 text-[#FF7A00]" />
                       <div>
                         <p className="text-sm text-gray-500">
                           {currentLanguage === 'ka' && 'გარბენი'}
@@ -226,7 +226,7 @@ const CarDetailPage = () => {
                       </div>
                     </div>
                     <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                      <Fuel className="w-5 h-5 text-blue-600" />
+                      <Fuel className="w-5 h-5 text-[#FF7A00]" />
                       <div>
                         <p className="text-sm text-gray-500">
                           {currentLanguage === 'ka' && 'საწვავი'}
@@ -239,7 +239,7 @@ const CarDetailPage = () => {
                       </div>
                     </div>
                     <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                      <Settings className="w-5 h-5 text-blue-600" />
+                      <Settings className="w-5 h-5 text-[#FF7A00]" />
                       <div>
                         <p className="text-sm text-gray-500">
                           {currentLanguage === 'ka' && 'ტრანსმისია'}
@@ -252,7 +252,7 @@ const CarDetailPage = () => {
                       </div>
                     </div>
                     <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                      <Calendar className="w-5 h-5 text-blue-600" />
+                      <Calendar className="w-5 h-5 text-[#FF7A00]" />
                       <div>
                         <p className="text-sm text-gray-500">
                           {currentLanguage === 'ka' && 'წელი'}
@@ -315,7 +315,7 @@ const CarDetailPage = () => {
                     {currentLanguage === 'tr' && 'Fiyat'}
                     {currentLanguage === 'az' && 'Qiymət'}
                   </p>
-                  <p className="text-4xl font-bold text-blue-600">{getPriceText()}</p>
+                  <p className="text-4xl font-bold text-[#FF7A00]">{getPriceText()}</p>
                 </div>
 
                 {/* Contact Info */}
@@ -330,9 +330,9 @@ const CarDetailPage = () => {
                   
                   <a 
                     href={`tel:${listing.contact_phone}`}
-                    className="flex items-center gap-3 p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+                    className="flex items-center gap-3 p-4 bg-[#111111] rounded-lg hover:bg-[#151515] transition-colors"
                   >
-                    <div className="bg-blue-600 text-white p-2 rounded-full">
+                    <div className="bg-[#FF7A00] text-white p-2 rounded-full">
                       <Phone className="w-5 h-5" />
                     </div>
                     <div>
@@ -349,9 +349,9 @@ const CarDetailPage = () => {
 
                   <a 
                     href={`mailto:${listing.contact_email}`}
-                    className="flex items-center gap-3 p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+                    className="flex items-center gap-3 p-4 bg-[#111111] rounded-lg hover:bg-[#151515] transition-colors"
                   >
-                    <div className="bg-blue-600 text-white p-2 rounded-full">
+                    <div className="bg-[#FF7A00] text-white p-2 rounded-full">
                       <Mail className="w-5 h-5" />
                     </div>
                     <div>
