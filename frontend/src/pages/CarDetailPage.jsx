@@ -119,9 +119,9 @@ const CarDetailPage = () => {
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-6">
             {/* Image Gallery */}
-            <Card>
+            <Card className="bg-[#111111] border-gray-800">
               <CardContent className="p-0">
-                <div className="relative h-96 bg-gray-200">
+                <div className="relative h-96 bg-black">
                   {listing.images && listing.images.length > 0 ? (
                     <>
                       <img
