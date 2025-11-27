@@ -90,13 +90,13 @@ const HomePage = () => {
       </div>
 
       {/* Filter Tabs */}
-      <div className="bg-white shadow-sm border-b">
+      <div className="bg-black border-b border-gray-800">
         <div className="container mx-auto px-4">
           <div className="flex gap-4 py-4">
             <Button
               variant={filter === 'all' ? 'default' : 'outline'}
               onClick={() => setFilter('all')}
-              className={filter === 'all' ? 'bg-blue-600' : ''}
+              className={filter === 'all' ? 'bg-[#FF7A00] hover:bg-[#ff8c1a] text-white' : 'bg-black text-white border-gray-700 hover:bg-[#111111]'}
             >
               {currentLanguage === 'ka' && 'ყველა განცხადება'}
               {currentLanguage === 'en' && 'All Listings'}
