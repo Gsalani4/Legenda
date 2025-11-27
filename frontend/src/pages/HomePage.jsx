@@ -163,53 +163,53 @@ const HomePage = () => {
                   
                   {/* Listing Type Badge */}
                   <Badge 
-                    className={`absolute top-3 left-3 ${listing.listing_type === 'rental' ? 'bg-green-600' : 'bg-blue-600'}`}
+                    className="absolute top-3 left-3 bg-[#FF7A00] text-white"
                   >
                     {getListingTypeText(listing.listing_type)}
                   </Badge>
                   
                   {/* Views */}
-                  <div className="absolute bottom-3 right-3 bg-black/50 text-white px-2 py-1 rounded flex items-center gap-1 text-sm">
-                    <Eye className="w-4 h-4" />
+                  <div className="absolute bottom-3 right-3 bg-black/70 text-white px-2 py-1 rounded flex items-center gap-1 text-sm">
+                    <Eye className="w-4 h-4 text-[#FF7A00]" />
                     {listing.views}
                   </div>
                 </div>
 
                 <CardContent className="p-4">
                   {/* Title */}
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  <h3 className="text-xl font-bold text-white mb-2">
                     {listing.brand} {listing.model}
                   </h3>
                   
                   {/* Year */}
-                  <p className="text-gray-500 text-sm mb-3">{listing.year} {translateModelText(currentLanguage)}</p>
+                  <p className="text-gray-400 text-sm mb-3">{listing.year} {translateModelText(currentLanguage)}</p>
                   
                   {/* Features */}
                   <div className="grid grid-cols-2 gap-2 mb-4">
-                    <div className="flex items-center gap-2 text-sm text-gray-600">
-                      <Gauge className="w-4 h-4" />
+                    <div className="flex items-center gap-2 text-sm text-gray-300">
+                      <Gauge className="w-4 h-4 text-[#FF7A00]" />
                       {listing.mileage.toLocaleString()} km
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-gray-600">
-                      <Fuel className="w-4 h-4" />
+                    <div className="flex items-center gap-2 text-sm text-gray-300">
+                      <Fuel className="w-4 h-4 text-[#FF7A00]" />
                       {translateFuelType(listing.fuel_type, currentLanguage)}
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-gray-600">
-                      <Settings className="w-4 h-4" />
+                    <div className="flex items-center gap-2 text-sm text-gray-300">
+                      <Settings className="w-4 h-4 text-[#FF7A00]" />
                       {translateTransmission(listing.transmission, currentLanguage)}
                     </div>
                   </div>
                   
                   {/* Price */}
-                  <div className="border-t pt-3">
-                    <p className="text-2xl font-bold text-blue-600">
+                  <div className="border-t border-gray-800 pt-3">
+                    <p className="text-2xl font-bold text-white">
                       {getPriceText(listing)}
                     </p>
                   </div>
                 </CardContent>
 
-                <CardFooter className="bg-gray-50 p-4">
-                  <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                <CardFooter className="bg-black border-t border-gray-800 p-4">
+                  <Button className="w-full bg-[#FF7A00] hover:bg-[#ff8c1a] text-white">
                     {currentLanguage === 'ka' && 'დეტალები'}
                     {currentLanguage === 'en' && 'View Details'}
                     {currentLanguage === 'ru' && 'Подробнее'}
