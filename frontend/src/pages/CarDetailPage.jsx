@@ -182,15 +182,15 @@ const CarDetailPage = () => {
             </Card>
 
             {/* Details */}
-            <Card>
+            <Card className="bg-[#111111] border-gray-800">
               <CardHeader>
                 <div className="flex justify-between items-start">
                   <div>
-                    <CardTitle className="text-3xl">{listing.brand} {listing.model}</CardTitle>
-                    <p className="text-gray-500 mt-2">{listing.year} {translateModelText(currentLanguage)}</p>
+                    <CardTitle className="text-3xl text-white">{listing.brand} {listing.model}</CardTitle>
+                    <p className="text-gray-400 mt-2">{listing.year} {translateModelText(currentLanguage)}</p>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-500">
-                    <Eye className="w-4 h-4" />
+                  <div className="flex items-center gap-2 text-gray-400">
+                    <Eye className="w-4 h-4 text-[#FF7A00]" />
                     <span>
                       {listing.views} {currentLanguage === 'ka' && 'ნახვა'}
                       {currentLanguage === 'en' && 'views'}
