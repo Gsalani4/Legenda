@@ -103,7 +103,7 @@ const CarDetailPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#0B0B0B]">
       <div className="container mx-auto px-4 py-8">
         {/* Back Button */}
         <Button variant="ghost" onClick={() => navigate('/')} className="mb-6">
