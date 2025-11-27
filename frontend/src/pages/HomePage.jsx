@@ -118,7 +118,7 @@ const HomePage = () => {
             <Button
               variant={filter === 'sale' ? 'default' : 'outline'}
               onClick={() => setFilter('sale')}
-              className={filter === 'sale' ? 'bg-blue-600' : ''}
+              className={filter === 'sale' ? 'bg-[#FF7A00] hover:bg-[#ff8c1a] text-white' : 'bg-black text-white border-gray-700 hover:bg-[#111111]'}
             >
               {currentLanguage === 'ka' && 'იყიდება'}
               {currentLanguage === 'en' && 'For Sale'}
