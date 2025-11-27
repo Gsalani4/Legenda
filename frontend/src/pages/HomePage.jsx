@@ -146,9 +146,9 @@ const HomePage = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {listings.map(listing => (
-              <Card key={listing.id} className="overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer" onClick={() => window.location.href = `/car/${listing.id}`}>
+              <Card key={listing.id} className="overflow-hidden bg-[#111111] border-gray-800 hover:border-[#FF7A00] transition-all duration-300 cursor-pointer" onClick={() => window.location.href = `/car/${listing.id}`}>
                 {/* Image */}
-                <div className="relative h-48 bg-gray-200">
+                <div className="relative h-48 bg-black">
                   {listing.images && listing.images[0] ? (
                     <img
                       src={listing.images[0]}
