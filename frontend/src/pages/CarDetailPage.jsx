@@ -315,12 +315,12 @@ const CarDetailPage = () => {
                     {currentLanguage === 'tr' && 'Fiyat'}
                     {currentLanguage === 'az' && 'Qiymət'}
                   </p>
-                  <p className="text-4xl font-bold text-[#FF7A00]">{getPriceText()}</p>
+                  <p className="text-4xl font-bold text-white">{getPriceText()}</p>
                 </div>
 
                 {/* Contact Info */}
-                <div className="border-t pt-6 space-y-4">
-                  <h3 className="font-semibold text-lg">
+                <div className="border-t border-gray-800 pt-6 space-y-4">
+                  <h3 className="font-semibold text-lg text-white">
                     {currentLanguage === 'ka' && 'საკონტაქტო ინფორმაცია'}
                     {currentLanguage === 'en' && 'Contact Information'}
                     {currentLanguage === 'ru' && 'Контактная информация'}
