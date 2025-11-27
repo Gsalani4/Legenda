@@ -106,7 +106,7 @@ const CarDetailPage = () => {
     <div className="min-h-screen bg-[#0B0B0B]">
       <div className="container mx-auto px-4 py-8">
         {/* Back Button */}
-        <Button variant="ghost" onClick={() => navigate('/')} className="mb-6">
+        <Button variant="ghost" onClick={() => navigate('/')} className="mb-6 text-white hover:text-[#FF7A00] hover:bg-[#111111]">
           <ArrowLeft className="w-4 h-4 mr-2" />
           {currentLanguage === 'ka' && 'უკან'}
           {currentLanguage === 'en' && 'Back'}
