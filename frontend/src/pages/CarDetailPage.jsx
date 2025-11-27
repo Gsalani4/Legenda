@@ -157,7 +157,7 @@ const CarDetailPage = () => {
                     </div>
                   )}
                   
-                  <Badge className={`absolute top-4 left-4 ${listing.listing_type === 'rental' ? 'bg-green-600' : 'bg-blue-600'}`}>
+                  <Badge className="absolute top-4 left-4 bg-[#FF7A00] text-white">
                     {getListingTypeText(listing.listing_type)}
                   </Badge>
                 </div>
