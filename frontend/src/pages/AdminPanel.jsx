@@ -112,14 +112,7 @@ const AdminPanel = () => {
     setPassword('');
   };
 
-  const loadListings = async () => {
-    try {
-      const response = await axios.get(`${API_URL}/listings?status=active`);
-      setListings(response.data.listings || []);
-    } catch (error) {
-      console.error('Error loading listings:', error);
-    }
-  };
+  // (duplicate removed) loadListings
 
   const handleSubmit = async (e) => {
     e.preventDefault();
