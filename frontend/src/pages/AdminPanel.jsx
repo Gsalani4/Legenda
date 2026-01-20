@@ -328,7 +328,7 @@ const AdminPanel = () => {
                           ₾{listing.price}{listing.listing_type === 'rental' ? '/gün' : ''}
                         </p>
                         
-                        <div className="flex items-center gap-4 text-sm text-gray-600 mb-4">
+                        <div className="flex items-center gap-4 text-sm text-gray-400 mb-4">
                           <span>{listing.fuel_type}</span>
                           <span>•</span>
                           <span>{listing.transmission}</span>
