@@ -311,7 +311,7 @@ const AdminPanel = () => {
                             <h3 className="text-xl font-bold">{listing.brand} {listing.model}</h3>
                             <p className="text-gray-500">{listing.year} • {listing.mileage.toLocaleString()} km</p>
                           </div>
-                          <Badge className={listing.listing_type === 'rental' ? 'bg-green-600' : 'bg-blue-600'}>
+                          <Badge className={listing.listing_type === 'rental' ? 'bg-green-600' : 'bg-[#FF7A00]'}>
                             {listing.listing_type === 'rental' ? 'Kiralık' : 'Satılık'}
                           </Badge>
                         </div>
@@ -501,7 +501,7 @@ const AdminPanel = () => {
                 </div>
 
                 <div className="flex gap-2">
-                  <Button type="submit" className="bg-blue-600 hover:bg-blue-700">
+                  <Button type="submit" className="bg-[#FF7A00] hover:bg-[#ff8c1a]">
                     {editingListing ? 'Güncelle' : 'Oluştur'}
                   </Button>
                   <Button type="button" variant="outline" onClick={resetForm}>

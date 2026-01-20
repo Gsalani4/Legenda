@@ -66,10 +66,10 @@ const AdminSettingsPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="bg-blue-600 text-white py-4">
+    <div className="min-h-screen bg-[#0B0B0B] text-white">
+      <div className="bg-black border-b border-gray-800 text-white py-4">
         <div className="container mx-auto px-4 flex items-center gap-4">
-          <Button variant="ghost" onClick={() => navigate('/admin')} className="text-white hover:bg-blue-700">
+          <Button variant="ghost" onClick={() => navigate('/admin')} className="text-white hover:bg-[#111111]">
             <ArrowLeft className="w-4 h-4" />
           </Button>
           <h1 className="text-2xl font-bold">Site Ayarları</h1>
@@ -193,7 +193,7 @@ const AdminSettingsPage = () => {
           </Card>
 
           <div className="flex gap-2">
-            <Button type="submit" className="bg-blue-600 hover:bg-blue-700" disabled={saving}>
+            <Button type="submit" className="bg-[#FF7A00] hover:bg-[#ff8c1a]" disabled={saving}>
               <Save className="w-4 h-4 mr-2" />
               {saving ? 'Kaydediliyor...' : 'Kaydet'}
             </Button>
