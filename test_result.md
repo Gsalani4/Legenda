@@ -190,3 +190,5 @@ agent_communication:
     message: "Implemented header fixes in Header.jsx and updated translations.js with header.admin label across languages. Please test UI flows: homepage load, scroll sticky header, navigation to /car/:id, navigation to /admin, and confirm header size and layout."
   - agent: "testing"
     message: "✅ STICKY HEADER TESTING COMPLETE: All major functionality working correctly. Header layout fixed with proper structure (contact bar + company name/tagline + navigation). Sticky behavior functional on all pages. Navigation links working. Car detail page accessible. Minor content overlap issue detected - main content needs top padding for sticky header. 'Made with Emergent' watermark confirmed as DOM element. Ready for main agent to summarize and finish."
+  - agent: "testing"
+    message: "❌ RE-TEST RESULTS: Watermark removal successful on all pages. Header sticky behavior working correctly. CRITICAL ISSUE: 500px content overlap - main content hidden under sticky header. App.js main element needs pt-[116px] or similar top padding to fix overlap. This is blocking proper content visibility."
