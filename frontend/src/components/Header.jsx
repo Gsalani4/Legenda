@@ -11,7 +11,7 @@ const Header = () => {
     <header className="bg-black sticky top-0 z-50 shadow-2xl">
       {/* Top Contact Bar */}
       <div className="bg-black border-b border-gray-800">
-        <div className="container mx-auto px-4 py-2">
+        <div className="container mx-auto px-4 py-1">
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 text-sm">
             {/* Sol taraf - Çalışma saatleri ve Adres */}
             <div className="flex items-center gap-6">
@@ -37,13 +37,13 @@ const Header = () => {
       </div>
       
       {/* Main Logo Section - Center */}
-      <div className="bg-black py-2">
+      <div className="bg-black py-1">
         <div className="container mx-auto px-4">
           <a href="/" className="flex flex-col items-center justify-center leading-none">
-            <div className="text-[26px] md:text-[30px] font-bold tracking-wide text-white">
+            <div className="text-[24px] md:text-[28px] font-bold tracking-wide text-white">
               {t.header.companyName}
             </div>
-            <div className="mt-1 text-xs md:text-sm text-gray-400">
+            <div className="mt-0.5 text-xs text-gray-400">
               {t.header.tagline}
             </div>
           </a>
@@ -53,7 +53,7 @@ const Header = () => {
       {/* Navigation Menu */}
       <div className="bg-black border-t border-gray-800">
         <div className="container mx-auto px-4">
-          <nav className="flex items-center justify-center gap-8 py-2">
+          <nav className="flex items-center justify-center gap-8 py-1">
             <a href="/" className="text-white hover:text-[#FF7A00] transition-colors font-medium text-sm md:text-base uppercase tracking-wide">
               {t.header.home}
             </a>
