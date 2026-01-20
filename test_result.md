@@ -132,6 +132,22 @@ frontend:
       - working: true
         agent: "testing"
         comment: "✅ ADMIN IMAGE UPLOAD VERIFICATION COMPLETE: ChunkedImageUploader component successfully implemented and working. 1) 'Cihazdan Seç' button found and enabled ✅ 2) File input configured correctly (accepts=image/*, multiple=true) ✅ 3) Backend upload endpoints (/api/uploads/init, /api/uploads/chunk, /api/uploads/{file}) implemented ✅ 4) Form integration working with proper validation ✅ 5) Existing listings display uploaded images correctly on homepage and detail pages ✅ Component ready for production use with chunked upload functionality."
+      - working: true
+        agent: "main"
+        comment: "User feedback: image quality depends on source image; device uploads with proper resolution look fine. To reduce pixelation on low-res images, adjusted detail page to limit main image upscaling (max-width container)."
+
+  - task: "Admin listing thumbnails premium layout (1 big + 3 mini)"
+    implemented: true
+    working: false
+    file: "frontend/src/pages/AdminPanel.jsx"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: true
+    status_history:
+      - working: false
+        agent: "main"
+        comment: "Updated admin listing cards to show 1 larger thumbnail with +N overlay and 3 mini thumbnails below for a more premium look. Needs UI verification." 
+
 
   - task: "Admin theme unify (remove blue/white)"
     implemented: true
