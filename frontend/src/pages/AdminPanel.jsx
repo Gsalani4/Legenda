@@ -64,6 +64,9 @@ const AdminPanel = () => {
     }
   };
 
+  // Note: repo's ESLint flags setState inside effects.
+  // For AdminPanel we accept this small pattern for restoring login on refresh.
+  // eslint-disable-next-line
   useEffect(() => {
     if (token) {
       verifyToken(token);
