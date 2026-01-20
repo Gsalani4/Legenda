@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Fix sticky header UI regression (oversized header + banner-like logo image) and re-verify site pages"
+user_problem_statement: "Rebrand MGZAVROBANI -> LEGENDACAR + reduce hero title size + remove header/listings gap + quick UI regression check"
 
 backend:
   - task: "Backend APIs (legacy tests)"
@@ -118,6 +118,18 @@ backend:
         comment: "Legacy backend API suite previously passed. Not re-tested in this iteration."
 
 frontend:
+  - task: "Rebrand + spacing adjustments"
+    implemented: true
+    working: false
+    file: "frontend/src/translations.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: false
+        agent: "main"
+        comment: "Replaced MGZAVROBANI -> LEGENDACAR in translations + updated HomePage hero title size/spacings + updated default contact email/social handles to legendacar. Also adjusted main spacing to remove gap between header and listings. Needs UI re-test on home/admin/detail."
+
   - task: "Sticky header layout fix"
     implemented: true
     working: true
@@ -184,19 +196,22 @@ frontend:
 metadata:
   created_by: "main_agent"
   version: "1.0"
-  test_sequence: 2
+  test_sequence: 3
   run_ui: true
 
 test_plan:
   current_focus:
-    - "Content overlap fix for sticky header"
+    - "Rebrand + spacing adjustments"
+    - "Quick UI regression check"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
 
 agent_communication:
   - agent: "main"
-    message: "Implemented header fixes in Header.jsx and updated translations.js with header.admin label across languages. Please test UI flows: homepage load, scroll sticky header, navigation to /car/:id, navigation to /admin, and confirm header size and layout."
+    message: "Rebrand + spacing update: MGZAVROBANI -> LEGENDACAR across translations/UI, reduced HomePage hero title size and hero padding, updated default contact email/social handles to legendacar, and removed extra gap between header and listings. Please re-test UI flows (home scroll, admin, car detail) and confirm watermark remains hidden." 
+  - agent: "main"
+    message: "(Previous) Implemented header fixes in Header.jsx and updated translations.js with header.admin label across languages. Please test UI flows: homepage load, scroll sticky header, navigation to /car/:id, navigation to /admin, and confirm header size and layout."
   - agent: "testing"
     message: "✅ STICKY HEADER TESTING COMPLETE: All major functionality working correctly. Header layout fixed with proper structure (contact bar + company name/tagline + navigation). Sticky behavior functional on all pages. Navigation links working. Car detail page accessible. Minor content overlap issue detected - main content needs top padding for sticky header. 'Made with Emergent' watermark confirmed as DOM element. Ready for main agent to summarize and finish."
   - agent: "testing"
