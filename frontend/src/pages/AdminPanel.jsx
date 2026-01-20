@@ -289,6 +289,9 @@ const AdminPanel = () => {
             <div className="flex justify-between items-center">
               <h2 className="text-2xl font-bold">İlanlar ({listings.length})</h2>
               <div className="flex gap-2">
+                <Button onClick={() => window.location.href = '/admin/pending'} variant="outline" className="bg-black text-white border-gray-700 hover:bg-[#111111]">
+                  Bekleyen İlanlar
+                </Button>
                 <Button onClick={() => window.location.href = '/admin/settings'} variant="outline" className="bg-black text-white border-gray-700 hover:bg-[#111111]">
                   <Settings className="w-4 h-4 mr-2" />
                   Site Ayarları
