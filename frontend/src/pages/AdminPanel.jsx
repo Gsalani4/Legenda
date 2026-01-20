@@ -48,6 +48,7 @@ const AdminPanel = () => {
         headers: { Authorization: `Bearer ${savedToken}` }
       });
       setIsLoggedIn(true);
+      await loadListings();
     } catch (error) {
       localStorage.removeItem('admin_token');
       setToken(null);
