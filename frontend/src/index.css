@@ -82,7 +82,14 @@ code {
     }
 }
 
-/* Hide Sonner watermark */
+/* Hide Emergent watermark/badge (injected by platform scripts) */
+#emergent-badge,
+a[href*="emergent.sh" i],
+a[href*="app.emergent" i] {
+    display: none !important;
+}
+
+/* Hide Sonner watermark (toast icon/footer) */
 [data-sonner-toast] [data-icon] {
     display: none !important;
 }
