@@ -302,7 +302,7 @@ const AdminPanel = () => {
 
             <div className="grid gap-4">
               {listings.map(listing => (
-                <Card key={listing.id}>
+                <Card key={listing.id} className="bg-[#111111] border-gray-800 text-white">
                   <CardContent className="p-6">
                     <div className="flex gap-6">
                       <div className="w-32 h-32 bg-gray-200 rounded-lg overflow-hidden flex-shrink-0">
