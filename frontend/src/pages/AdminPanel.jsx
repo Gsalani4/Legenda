@@ -67,13 +67,8 @@ const AdminPanel = () => {
   // (duplicate removed) loadListings
 
 
-    try {
-      const response = await axios.get(`${API_URL}/listings?status=active`);
-      setListings(response.data.listings || []);
-    } catch (error) {
-      console.error('Error loading listings:', error);
-    }
-  };
+  // (removed stray duplicate block)
+
 
   useEffect(() => {
     if (token) {
