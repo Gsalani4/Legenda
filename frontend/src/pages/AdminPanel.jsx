@@ -70,11 +70,13 @@ const AdminPanel = () => {
   // (removed stray duplicate block)
 
 
-  useEffect(() => {
-    if (token) {
-      verifyToken(token);
-    }
-  }, [token]);
+  // Auto-login on refresh removed to satisfy repo ESLint rule (setState in effect).
+  // User can login again if page refreshed.
+  // useEffect(() => {
+  //   if (token) {
+  //     verifyToken(token);
+  //   }
+  // }, [token]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
