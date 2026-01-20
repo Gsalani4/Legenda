@@ -353,7 +353,7 @@ const AdminPanel = () => {
             </div>
           </div>
         ) : (
-          <Card>
+          <Card className="bg-[#111111] border-gray-800 text-white">
             <CardHeader>
               <div className="flex justify-between items-center">
                 <CardTitle>{editingListing ? 'İlan Düzenle' : 'Yeni İlan Ekle'}</CardTitle>
