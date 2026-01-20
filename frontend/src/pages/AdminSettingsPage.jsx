@@ -88,6 +88,7 @@ const AdminSettingsPage = () => {
               <div className="space-y-2">
                 <Label>Telefon</Label>
                 <Input
+                  className="bg-black border-gray-700 text-white"
                   value={formData.contact.phone}
                   onChange={(e) => setFormData({
                     ...formData,
