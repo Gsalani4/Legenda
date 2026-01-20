@@ -1,17 +1,18 @@
 import React from 'react';
-import { Phone, Clock, MapPin, Menu } from 'lucide-react';
-import { Button } from './ui/button';
+import { Phone, Clock, MapPin } from 'lucide-react';
 import { useSettings } from '../context/SettingsContext';
+import { useLanguage } from '../context/LanguageContext';
 
 const Header = () => {
   const { settings } = useSettings();
-  
+  const { t } = useLanguage();
+
   return (
     <header className="bg-black sticky top-0 z-50 shadow-2xl">
       {/* Top Contact Bar */}
       <div className="bg-black border-b border-gray-800">
         <div className="container mx-auto px-4 py-2">
-          <div className="flex justify-between items-center text-sm">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 text-sm">
             {/* Sol taraf - Çalışma saatleri ve Adres */}
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-2">
@@ -36,16 +37,14 @@ const Header = () => {
       </div>
       
       {/* Main Logo Section - Center */}
-      <div className="bg-black py-6">
+      <div className="bg-black py-3">
         <div className="container mx-auto px-4">
-          <a href="/" className="flex flex-col items-center justify-center">
-            <img 
-              src="https://customer-assets.emergentagent.com/job_mgz-checkout/artifacts/gmb2tiz9_image.png" 
-              alt="MGZAVROBANI Logo" 
-              className="h-24 w-auto mb-3"
+          <a href="/" className="flex items-center justify-center">
+            <img
+              src="https://customer-assets.emergentagent.com/job_mgz-checkout/artifacts/gmb2tiz9_image.png"
+              alt="MGZAVROBANI"
+              className="h-12 md:h-14 w-auto"
             />
-            <h1 className="text-3xl font-bold text-white tracking-wide">MGZAVROBANI</h1>
-            <p className="text-sm text-gray-400 mt-1">Car Rental in Georgia</p>
           </a>
         </div>
       </div>
@@ -55,11 +54,11 @@ const Header = () => {
         <div className="container mx-auto px-4">
           <nav className="flex items-center justify-center gap-8 py-3">
             <a href="/" className="text-white hover:text-[#FF7A00] transition-colors font-medium text-base uppercase tracking-wide">
-              Ana Sayfa
+              {t.header.home}
             </a>
             <span className="text-gray-700">|</span>
             <a href="/admin" className="text-white hover:text-[#FF7A00] transition-colors font-medium text-base uppercase tracking-wide">
-              Admin
+              {t.header.admin}
             </a>
           </nav>
         </div>
