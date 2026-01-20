@@ -38,8 +38,9 @@ const AdminPanel = () => {
     contact_phone: '+995 500 88 30 88',
     contact_email: 'info@legendacar.ge'
   });
-  // URL based image add removed; use device upload instead
+  // URL-based image add removed; use device upload instead
   const [imageUrl, setImageUrl] = useState('');
+  // imageUrl is kept only for backward compatibility in state; not used in UI.
   const [featureInput, setFeatureInput] = useState('');
 
   useEffect(() => {
