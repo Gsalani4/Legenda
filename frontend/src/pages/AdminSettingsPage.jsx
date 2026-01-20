@@ -148,7 +148,7 @@ const AdminSettingsPage = () => {
           <Card className="bg-[#111111] border-gray-800 text-white">
             <CardHeader>
               <CardTitle>Sosyal Medya</CardTitle>
-              <CardDescription>Footer'da görünecek sosyal medya linkleri</CardDescription>
+              <CardDescription className="text-gray-400">Footer'da görünecek sosyal medya linkleri</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
