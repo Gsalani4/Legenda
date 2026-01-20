@@ -348,7 +348,7 @@ const AdminPanel = () => {
                             <Trash2 className="w-4 h-4 mr-1" />
                             Sil
                           </Button>
-                          <Button onClick={() => window.open(`/car/${listing.id}`, '_blank')} variant="ghost" size="sm">
+                          <Button onClick={() => window.open(`/car/${listing.id}`, '_blank')} variant="ghost" size="sm" className="text-white hover:bg-[#111111]">
                             <Eye className="w-4 h-4 mr-1" />
                             Görüntüle
                           </Button>
