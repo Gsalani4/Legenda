@@ -197,6 +197,7 @@ const AdminSettingsPage = () => {
           </Card>
 
           <div className="flex gap-2">
+            <style>{`.bg-[#111111] [data-description]{color:#9ca3af}`}</style>
             <Button type="submit" className="bg-[#FF7A00] hover:bg-[#ff8c1a]" disabled={saving}>
               <Save className="w-4 h-4 mr-2" />
               {saving ? 'Kaydediliyor...' : 'Kaydet'}
