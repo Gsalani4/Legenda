@@ -121,14 +121,16 @@ const CarDetailPage = () => {
             {/* Image Gallery */}
             <Card className="bg-[#111111] border-gray-800">
               <CardContent className="p-0">
-                <div className="relative h-96 bg-black">
+                <div className="relative h-96 bg-black flex items-center justify-center">
                   {listing.images && listing.images.length > 0 ? (
                     <>
-                      <img
-                        src={listing.images[currentImageIndex]}
-                        alt={`${listing.brand} ${listing.model}`}
-                        className="w-full h-full object-cover"
-                      />
+                      <div className="w-full h-full max-w-[960px]">
+                        <img
+                          src={listing.images[currentImageIndex]}
+                          alt={`${listing.brand} ${listing.model}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
                       
                       {listing.images.length > 1 && (
                         <>
@@ -171,7 +173,7 @@ const CarDetailPage = () => {
                         src={img}
                         alt={`Thumbnail ${idx + 1}`}
                         className={`w-20 h-20 object-cover rounded cursor-pointer border-2 ${
-                          idx === currentImageIndex ? 'border-blue-600' : 'border-transparent'
+                          idx === currentImageIndex ? 'border-[#FF7A00]' : 'border-transparent'
                         }`}
                         onClick={() => setCurrentImageIndex(idx)}
                       />

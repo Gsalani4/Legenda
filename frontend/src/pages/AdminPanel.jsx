@@ -305,11 +305,34 @@ const AdminPanel = () => {
                 <Card key={listing.id} className="bg-[#111111] border-gray-800 text-white">
                   <CardContent className="p-6">
                     <div className="flex gap-6">
-                      <div className="w-32 h-32 bg-black border border-gray-800 rounded-lg overflow-hidden flex-shrink-0">
-                        {listing.images && listing.images[0] ? (
-                          <img src={listing.images[0]} alt={listing.brand} className="w-full h-full object-cover" />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center text-gray-400">No Image</div>
+                      <div className="w-36">
+                        {/* Main thumbnail */}
+                        <div className="relative w-36 h-28 bg-black border border-gray-800 rounded-lg overflow-hidden">
+                          {listing.images && listing.images[0] ? (
+                            <img
+                              src={listing.images[0]}
+                              alt={listing.brand}
+                              className="w-full h-full object-cover"
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center text-gray-400 text-xs">No Image</div>
+                          )}
+                          {listing.images && listing.images.length > 1 && (
+                            <div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                              +{listing.images.length - 1}
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Mini thumbs */}
+                        {listing.images && listing.images.length > 1 && (
+                          <div className="mt-2 grid grid-cols-3 gap-2">
+                            {listing.images.slice(1, 4).map((img, idx) => (
+                              <div key={img + idx} className="w-11 h-11 bg-black border border-gray-800 rounded overflow-hidden">
+                                <img src={img} alt={`thumb-${idx + 2}`} className="w-full h-full object-cover" />
+                              </div>
+                            ))}
+                          </div>
                         )}
                       </div>
                       
