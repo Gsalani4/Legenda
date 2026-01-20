@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Admin: image upload from device (chunked) + admin theme unify + Home hero option A"
+user_problem_statement: "End-to-end test for new auth + roles + approvals workflow"
 
 backend:
   - task: "Backend APIs (legacy tests)"
