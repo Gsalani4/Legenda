@@ -340,7 +340,7 @@ const AdminPanel = () => {
                         </div>
                         
                         <div className="flex gap-2">
-                          <Button onClick={() => startEdit(listing)} variant="outline" size="sm">
+                          <Button onClick={() => startEdit(listing)} variant="outline" size="sm" className="bg-black text-white border-gray-700 hover:bg-[#111111]">
                             <Edit className="w-4 h-4 mr-1" />
                             Düzenle
                           </Button>
