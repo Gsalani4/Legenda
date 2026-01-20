@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Plus, Edit, Trash2, Eye, LogOut, X, Settings } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
@@ -42,7 +42,16 @@ const AdminPanel = () => {
   // URL-based image state removed (device upload only)
   const [featureInput, setFeatureInput] = useState('');
 
-  const verifyToken = async (savedToken) => {
+  const loadListings = useCallback(async () => {
+    try {
+      const response = await axios.get(`${API_URL}/listings?status=active`);
+      setListings(response.data.listings || []);
+    } catch (error) {
+      console.error('Error loading listings:', error);
+    }
+  }, []);
+
+  const verifyToken = useCallback(async (savedToken) => {
     try {
       await axios.get(`${API_URL}/admin/verify`, {
         headers: { Authorization: `Bearer ${savedToken}` }
@@ -53,9 +62,11 @@ const AdminPanel = () => {
       localStorage.removeItem('admin_token');
       setToken(null);
     }
-  };
+  }, [loadListings]);
 
-  const loadListings = async () => {
+  // (duplicate removed) loadListings
+
+
     try {
       const response = await axios.get(`${API_URL}/listings?status=active`);
       setListings(response.data.listings || []);
