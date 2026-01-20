@@ -102,133 +102,62 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Test the MGZAVROBANI car rental booking system backend APIs"
+user_problem_statement: "Fix sticky header UI regression (oversized header + banner-like logo image) and re-verify site pages"
 
 backend:
-  - task: "API Health Check"
+  - task: "Backend APIs (legacy tests)"
     implemented: true
     working: true
     file: "backend/server.py"
     stuck_count: 0
-    priority: "high"
+    priority: "low"
     needs_retesting: false
     status_history:
       - working: true
         agent: "testing"
-        comment: "API health endpoint responding correctly with MGZAVROBANI message and active status"
-
-  - task: "GET /api/vehicles endpoint"
-    implemented: true
-    working: true
-    file: "backend/routes/vehicles.py"
-    stuck_count: 0
-    priority: "high"
-    needs_retesting: false
-    status_history:
-      - working: true
-        agent: "testing"
-        comment: "Successfully returns 4 Georgian vehicles (Toyota Camry, Honda CR-V, Mercedes E-Class, Hyundai Tucson) with proper JSON structure including success:true field"
-
-  - task: "GET /api/addons with Georgian language support"
-    implemented: true
-    working: true
-    file: "backend/routes/addons.py"
-    stuck_count: 0
-    priority: "high"
-    needs_retesting: false
-    status_history:
-      - working: true
-        agent: "testing"
-        comment: "Successfully returns 6 addons in Georgian (lang=ka) with proper Georgian Unicode characters. All addons display Georgian text correctly"
-
-  - task: "GET /api/addons with English language support"
-    implemented: true
-    working: true
-    file: "backend/routes/addons.py"
-    stuck_count: 0
-    priority: "high"
-    needs_retesting: false
-    status_history:
-      - working: true
-        agent: "testing"
-        comment: "Successfully returns 6 addons in English (lang=en) including Super Protective Insurance, Loss Damage Waiver, Handicap Controls, GPS Navigation, Child Seat, Additional Driver"
-
-  - task: "GET /api/addons with Turkish language support"
-    implemented: true
-    working: true
-    file: "backend/routes/addons.py"
-    stuck_count: 0
-    priority: "high"
-    needs_retesting: false
-    status_history:
-      - working: true
-        agent: "testing"
-        comment: "Successfully returns 6 addons in Turkish (lang=tr) with proper Turkish translations including Süper Koruyucu Sigorta, Hasar Muafiyeti, Engelli Kontrolleri"
-
-  - task: "GET /api/locations with Georgian language support"
-    implemented: true
-    working: true
-    file: "backend/routes/locations.py"
-    stuck_count: 0
-    priority: "high"
-    needs_retesting: false
-    status_history:
-      - working: true
-        agent: "testing"
-        comment: "Successfully returns 4 locations in Georgian (lang=ka) with proper Georgian Unicode characters for all location names"
-
-  - task: "GET /api/locations with English language support"
-    implemented: true
-    working: true
-    file: "backend/routes/locations.py"
-    stuck_count: 0
-    priority: "high"
-    needs_retesting: false
-    status_history:
-      - working: true
-        agent: "testing"
-        comment: "Successfully returns 4 locations in English (lang=en): Tbilisi Airport, Tamaz Gamkrelidze 19 (Office), Batumi Airport, Kutaisi Airport"
-
-  - task: "POST /api/bookings - Create booking"
-    implemented: true
-    working: true
-    file: "backend/routes/bookings.py"
-    stuck_count: 0
-    priority: "high"
-    needs_retesting: false
-    status_history:
-      - working: true
-        agent: "testing"
-        comment: "Successfully creates booking with Georgian customer data (Giorgi Beridze), returns booking_id (BK-20251120-992), total price (412 GEL), and success message. Properly handles vehicle selection, addon selection (Insurance + GPS), and date calculations"
-
-  - task: "GET /api/bookings/{booking_id} - Retrieve booking"
-    implemented: true
-    working: true
-    file: "backend/routes/bookings.py"
-    stuck_count: 0
-    priority: "high"
-    needs_retesting: false
-    status_history:
-      - working: true
-        agent: "testing"
-        comment: "Successfully retrieves created booking by booking_id, returns complete booking details including customer info, vehicle, addons, and status (pending)"
+        comment: "Legacy backend API suite previously passed. Not re-tested in this iteration."
 
 frontend:
-  # No frontend testing performed as per instructions
+  - task: "Sticky header layout fix"
+    implemented: true
+    working: false
+    file: "frontend/src/components/Header.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: false
+        agent: "user"
+        comment: "Header broke/was too large; banner-like logo image showed in top header area." 
+      - working: false
+        agent: "main"
+        comment: "Updated Header.jsx: removed banner image + removed duplicate title in header; now uses translated text logo and tighter spacing. Needs full UI re-test (home, detail, admin) and sticky behavior verification."
+
+  - task: "Watermark (Made with Emergent) investigation"
+    implemented: false
+    working: "NA"
+    file: "frontend/src/index.css"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+      - working: "NA"
+        agent: "user"
+        comment: "Watermark visible in screenshots (may be tool artifact or DOM element)."
 
 metadata:
-  created_by: "testing_agent"
+  created_by: "main_agent"
   version: "1.0"
-  test_sequence: 1
-  run_ui: false
+  test_sequence: 2
+  run_ui: true
 
 test_plan:
   current_focus:
-    - "All backend API endpoints tested and working"
+    - "Sticky header layout fix"
   stuck_tasks: []
-  test_all: true
+  test_all: false
   test_priority: "high_first"
 
 agent_communication:
-  - agent: "testing"
-    message: "Comprehensive backend API testing completed successfully. All 9 critical endpoints are working correctly: API health check, vehicles listing, multilingual addons (Georgian/English/Turkish), multilingual locations (Georgian/English), booking creation with proper price calculation, and booking retrieval. The system properly handles Georgian Unicode characters, calculates pricing correctly (412 GEL for 4-day rental with insurance and GPS), and maintains data integrity. Backend is fully functional and ready for production use."
+  - agent: "main"
+    message: "Implemented header fixes in Header.jsx and updated translations.js with header.admin label across languages. Please test UI flows: homepage load, scroll sticky header, navigation to /car/:id, navigation to /admin, and confirm header size and layout."
