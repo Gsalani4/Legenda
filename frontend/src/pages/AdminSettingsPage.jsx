@@ -79,7 +79,7 @@ const AdminSettingsPage = () => {
       <div className="container mx-auto px-4 py-8">
         <form onSubmit={handleSubmit} className="max-w-3xl mx-auto space-y-6">
           {/* İletişim Bilgileri */}
-          <Card>
+          <Card className="bg-[#111111] border-gray-800 text-white">
             <CardHeader>
               <CardTitle>İletişim Bilgileri</CardTitle>
               <CardDescription>Üst banner ve footer'da görünecek iletişim bilgileri</CardDescription>
