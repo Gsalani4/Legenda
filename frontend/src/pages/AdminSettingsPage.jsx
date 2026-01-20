@@ -194,7 +194,7 @@ const AdminSettingsPage = () => {
                   placeholder="https://wa.me/..."
                   required
                 />
-                <p className="text-xs text-gray-500">Örnek: https://wa.me/995598123456</p>
+                <p className="text-xs text-gray-400">Örnek: https://wa.me/995598123456</p>
               </div>
             </CardContent>
           </Card>
