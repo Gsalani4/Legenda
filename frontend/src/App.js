@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import CarDetailPage from './pages/CarDetailPage';
+import AdminEntry from './pages/AdminEntry';
 import AdminPanel from './pages/AdminPanel';
 import AdminSettingsPage from './pages/AdminSettingsPage';
 import PendingListingsPage from './pages/PendingListingsPage';
