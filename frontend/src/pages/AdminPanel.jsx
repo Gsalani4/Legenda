@@ -64,12 +64,11 @@ const AdminPanel = () => {
     }
   };
 
-  // NOTE: ESLint rule in this repo warns about setState inside useEffect.
-  // The logic below is intentional and safe for our case.
-    useEffect(() => {
+  useEffect(() => {
     if (token) {
       verifyToken(token);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleLogin = async (e) => {
