@@ -39,8 +39,7 @@ const AdminPanel = () => {
     contact_email: 'info@legendacar.ge'
   });
   // URL-based image add removed; use device upload instead
-  const [imageUrl, setImageUrl] = useState('');
-  // imageUrl is kept only for backward compatibility in state; not used in UI.
+  // URL-based image state removed (device upload only)
   const [featureInput, setFeatureInput] = useState('');
 
   useEffect(() => {
