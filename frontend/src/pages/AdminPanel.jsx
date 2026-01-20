@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Textarea } from '../components/ui/textarea';
 import { Badge } from '../components/ui/badge';
 import { useToast } from '../hooks/use-toast';
+import ChunkedImageUploader from '../components/ChunkedImageUploader';
 import axios from 'axios';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL + '/api';
