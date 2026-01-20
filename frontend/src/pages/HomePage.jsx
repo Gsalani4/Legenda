@@ -69,10 +69,10 @@ const HomePage = () => {
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-[#FF7A00] to-[#ff8c1a] text-white py-16">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            MGZAVROBANI
+          <h1 className="text-2xl md:text-3xl font-bold mb-2 tracking-wide">
+            LEGENDACAR
           </h1>
-          <p className="text-xl md:text-2xl mb-2">
+          <p className="text-base md:text-lg mb-1">
             {currentLanguage === 'ka' && 'ავტომობილების დაქირავება და გაყიდვა საქართველოში'}
             {currentLanguage === 'en' && 'Car Rental and Sales in Georgia'}
             {currentLanguage === 'ru' && 'Аренда и продажа автомобилей в Грузии'}
