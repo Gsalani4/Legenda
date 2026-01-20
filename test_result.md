@@ -136,7 +136,7 @@ frontend:
         agent: "testing"
         comment: "✅ COMPREHENSIVE TESTING COMPLETED: Header layout fixed successfully. Structure: top contact bar (phone, hours, address) + centered company name/tagline + navigation links. Header height: 116px (reasonable). Sticky behavior working correctly on all pages. Navigation links functional (Home, Admin). Car detail page navigation working. No banner-like images in header. Minor: Content overlap detected (635px) - main content needs top padding to account for sticky header, but core functionality works perfectly."
 
-  - task: "Watermark (Made with Emergent) investigation"
+  - task: "Watermark (Made with Emergent) investigation & removal"
     implemented: true
     working: true
     file: "frontend/src/index.css"
@@ -149,7 +149,10 @@ frontend:
         comment: "Watermark visible in screenshots (may be tool artifact or DOM element)."
       - working: true
         agent: "testing"
-        comment: "✅ WATERMARK CONFIRMED: 'Made with Emergent' watermark detected in DOM at position x=1778.9375, y=1034. Appears to be part of the actual DOM structure, not a testing tool overlay. Watermark is present and visible on all pages."
+        comment: "✅ WATERMARK CONFIRMED: 'Made with Emergent' watermark is a DOM element (#emergent-badge), not a testing tool overlay."
+      - working: true
+        agent: "main"
+        comment: "Applied CSS hide rules in src/index.css to hide #emergent-badge / emergent links. Verified via screenshot that badge is no longer visible."
 
 metadata:
   created_by: "main_agent"
