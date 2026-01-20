@@ -246,6 +246,7 @@ const AdminPanel = () => {
               <div className="space-y-2">
                 <Label>Şifre</Label>
                 <Input
+                  className="bg-black border-gray-700 text-white"
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
