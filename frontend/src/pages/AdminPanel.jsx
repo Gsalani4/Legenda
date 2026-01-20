@@ -380,7 +380,7 @@ const AdminPanel = () => {
 
                   <div className="space-y-2">
                     <Label>Marka</Label>
-                    <Input value={formData.brand} onChange={(e) => setFormData({...formData, brand: e.target.value})} required />
+                    <Input className="bg-black border-gray-700 text-white" value={formData.brand} onChange={(e) => setFormData({...formData, brand: e.target.value})} required />
                   </div>
 
                   <div className="space-y-2">
