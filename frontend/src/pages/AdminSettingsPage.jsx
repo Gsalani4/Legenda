@@ -142,7 +142,7 @@ const AdminSettingsPage = () => {
           </Card>
 
           {/* Sosyal Medya */}
-          <Card>
+          <Card className="bg-[#111111] border-gray-800 text-white">
             <CardHeader>
               <CardTitle>Sosyal Medya</CardTitle>
               <CardDescription>Footer'da görünecek sosyal medya linkleri</CardDescription>
