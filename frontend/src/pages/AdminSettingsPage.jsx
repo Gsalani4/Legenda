@@ -107,7 +107,7 @@ const AdminSettingsPage = () => {
                     ...formData,
                     contact: { ...formData.contact, email: e.target.value }
                   })}
-                  placeholder="info@mgzavrobani.ge"
+                  placeholder="info@legendacar.ge"
                   required
                 />
               </div>

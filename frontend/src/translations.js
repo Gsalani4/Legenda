@@ -5,7 +5,7 @@ export const translations = {
       schedule: 'ორშ - შაბ 8.00 - 18.00',
       address: 'თამაზ გამყრელიძის 19',
       phone: '+995 500 88 30 88',
-      companyName: 'MGZAVROBANI',
+      companyName: 'LEGENDACAR',
       tagline: 'Car Rental in Georgia',
       home: 'მთავარი',
       vehicles: 'მანქანები',
@@ -55,7 +55,7 @@ export const translations = {
     footer: {
       language: 'ენა:',
       followUs: 'გამოგვყევით:',
-      copyright: '© 2024 MGZAVROBANI - ავტომობილების გაქირავება საქართველოში. ყველა უფლება დაცულია.'
+      copyright: '© 2024 LEGENDACAR - ავტომობილების გაქირავება საქართველოში. ყველა უფლება დაცულია.'
     },
     languages: {
       ka: 'ქართული',
@@ -71,7 +71,7 @@ export const translations = {
       schedule: 'Mon - Sat 8.00 - 18.00',
       address: 'Tamaz Gamkrelidze 19',
       phone: '+995 500 88 30 88',
-      companyName: 'MGZAVROBANI',
+      companyName: 'LEGENDACAR',
       tagline: 'Car Rental in Georgia',
       home: 'Home',
       vehicles: 'Vehicles',
@@ -121,7 +121,7 @@ export const translations = {
     footer: {
       language: 'Language:',
       followUs: 'Follow Us:',
-      copyright: '© 2024 MGZAVROBANI - Car Rental in Georgia. All rights reserved.'
+      copyright: '© 2024 LEGENDACAR - Car Rental in Georgia. All rights reserved.'
     },
     languages: {
       ka: 'Georgian',
@@ -137,7 +137,7 @@ export const translations = {
       schedule: 'Пн - Сб 8.00 - 18.00',
       address: 'Тамаз Гамкрелидзе 19',
       phone: '+995 500 88 30 88',
-      companyName: 'MGZAVROBANI',
+      companyName: 'LEGENDACAR',
       tagline: 'Аренда авто в Грузии',
       home: 'Главная',
       vehicles: 'Автомобили',
@@ -187,7 +187,7 @@ export const translations = {
     footer: {
       language: 'Язык:',
       followUs: 'Подписывайтесь:',
-      copyright: '© 2024 MGZAVROBANI - Аренда авто в Грузии. Все права защищены.'
+      copyright: '© 2024 LEGENDACAR - Аренда авто в Грузии. Все права защищены.'
     },
     languages: {
       ka: 'Грузинский',
@@ -203,7 +203,7 @@ export const translations = {
       schedule: 'Pzt - Cmt 8.00 - 18.00',
       address: 'Tamaz Gamkrelidze 19',
       phone: '+995 500 88 30 88',
-      companyName: 'MGZAVROBANI',
+      companyName: 'LEGENDACAR',
       tagline: 'Gürcistan\'da Araç Kiralama',
       home: 'Ana Sayfa',
       vehicles: 'Araçlar',
@@ -253,7 +253,7 @@ export const translations = {
     footer: {
       language: 'Dil:',
       followUs: 'Takip Edin:',
-      copyright: '© 2024 MGZAVROBANI - Gürcistan\'da Araç Kiralama. Tüm hakları saklıdır.'
+      copyright: '© 2024 LEGENDACAR - Gürcistan\'da Araç Kiralama. Tüm hakları saklıdır.'
     },
     languages: {
       ka: 'Gürcüce',
@@ -269,7 +269,7 @@ export const translations = {
       schedule: 'Baz.e - Şə 8.00 - 18.00',
       address: 'Tamaz Qamkrelidze 19',
       phone: '+995 500 88 30 88',
-      companyName: 'MGZAVROBANI',
+      companyName: 'LEGENDACAR',
       tagline: 'Gürcüstanda Avtomobil İcarəsi',
       home: 'Ana Səhifə',
       vehicles: 'Avtomobillər',
@@ -319,7 +319,7 @@ export const translations = {
     footer: {
       language: 'Dil:',
       followUs: 'Bizi İzləyin:',
-      copyright: '© 2024 MGZAVROBANI - Gürcüstanda Avtomobil İcarəsi. Bütün hüquqlar qorunur.'
+      copyright: '© 2024 LEGENDACAR - Gürcüstanda Avtomobil İcarəsi. Bütün hüquqlar qorunur.'
     },
     languages: {
       ka: 'Gürcü',

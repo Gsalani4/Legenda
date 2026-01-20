@@ -35,7 +35,7 @@ const AdminPanel = () => {
     description: '',
     features: [],
     contact_phone: '+995 500 88 30 88',
-    contact_email: 'info@mgzavrobani.ge'
+    contact_email: 'info@legendacar.ge'
   });
   const [imageUrl, setImageUrl] = useState('');
   const [featureInput, setFeatureInput] = useState('');
@@ -194,7 +194,7 @@ const AdminPanel = () => {
       description: '',
       features: [],
       contact_phone: '+995 500 88 30 88',
-      contact_email: 'info@mgzavrobani.ge'
+      contact_email: 'info@legendacar.ge'
     });
     setEditingListing(null);
     setShowForm(false);
