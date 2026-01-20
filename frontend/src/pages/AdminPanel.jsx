@@ -74,7 +74,6 @@ const AdminPanel = () => {
     }
   }, []);
 
-  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => {
     if (isLoggedIn) {
       loadListings();
