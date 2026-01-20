@@ -18,7 +18,7 @@ function App() {
         <div className="App min-h-screen flex flex-col">
           <BrowserRouter>
             <Header />
-            <main className="flex-1">
+            <main className="flex-1 pt-[160px] sm:pt-[116px]">
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/car/:id" element={<CarDetailPage />} />
