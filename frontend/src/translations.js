@@ -11,7 +11,8 @@ export const translations = {
       vehicles: 'მანქანები',
       services: 'სერვისები',
       contact: 'კონტაქტი',
-      booking: 'ჯავშანი'
+      booking: 'ჯავშანი',
+      admin: 'ადმინი'
     },
     checkout: {
       breadcrumb: 'მთავარი',
@@ -76,7 +77,8 @@ export const translations = {
       vehicles: 'Vehicles',
       services: 'Services',
       contact: 'Contact',
-      booking: 'Booking'
+      booking: 'Booking',
+      admin: 'Admin'
     },
     checkout: {
       breadcrumb: 'Home',
@@ -141,7 +143,8 @@ export const translations = {
       vehicles: 'Автомобили',
       services: 'Услуги',
       contact: 'Контакты',
-      booking: 'Бронирование'
+      booking: 'Бронирование',
+      admin: 'Админ'
     },
     checkout: {
       breadcrumb: 'Главная',
@@ -206,7 +209,8 @@ export const translations = {
       vehicles: 'Araçlar',
       services: 'Hizmetler',
       contact: 'İletişim',
-      booking: 'Rezervasyon'
+      booking: 'Rezervasyon',
+      admin: 'Admin'
     },
     checkout: {
       breadcrumb: 'Ana Sayfa',
@@ -271,7 +275,8 @@ export const translations = {
       vehicles: 'Avtomobillər',
       services: 'Xidmətlər',
       contact: 'Əlaqə',
-      booking: 'Rezervasiya'
+      booking: 'Rezervasiya',
+      admin: 'Admin'
     },
     checkout: {
       breadcrumb: 'Ana Səhifə',
