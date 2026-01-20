@@ -317,7 +317,7 @@ const AdminPanel = () => {
                         <div className="flex justify-between items-start mb-2">
                           <div>
                             <h3 className="text-xl font-bold">{listing.brand} {listing.model}</h3>
-                            <p className="text-gray-500">{listing.year} • {listing.mileage.toLocaleString()} km</p>
+                            <p className="text-gray-400">{listing.year} • {listing.mileage.toLocaleString()} km</p>
                           </div>
                           <Badge className={listing.listing_type === 'rental' ? 'bg-green-600' : 'bg-[#FF7A00]'}>
                             {listing.listing_type === 'rental' ? 'Kiralık' : 'Satılık'}
