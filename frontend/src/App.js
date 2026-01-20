@@ -26,6 +26,8 @@ function App() {
                 <Route path="/car/:id" element={<CarDetailPage />} />
                 <Route path="/admin" element={<AdminPanel />} />
                 <Route path="/admin/settings" element={<AdminSettingsPage />} />
+                <Route path="/admin/pending" element={<PendingListingsPage />} />
+                <Route path="/user" element={<UserPanel />} />
               </Routes>
             </main>
             <Footer />
