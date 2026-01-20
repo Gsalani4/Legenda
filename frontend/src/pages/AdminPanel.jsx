@@ -305,7 +305,7 @@ const AdminPanel = () => {
                 <Card key={listing.id} className="bg-[#111111] border-gray-800 text-white">
                   <CardContent className="p-6">
                     <div className="flex gap-6">
-                      <div className="w-32 h-32 bg-gray-200 rounded-lg overflow-hidden flex-shrink-0">
+                      <div className="w-32 h-32 bg-black border border-gray-800 rounded-lg overflow-hidden flex-shrink-0">
                         {listing.images && listing.images[0] ? (
                           <img src={listing.images[0]} alt={listing.brand} className="w-full h-full object-cover" />
                         ) : (
