@@ -37,10 +37,10 @@ const Header = () => {
       </div>
       
       {/* Main Logo Section - Center */}
-      <div className="bg-black py-4">
+      <div className="bg-black py-2">
         <div className="container mx-auto px-4">
           <a href="/" className="flex flex-col items-center justify-center leading-none">
-            <div className="text-[28px] md:text-[34px] font-bold tracking-wide text-white">
+            <div className="text-[26px] md:text-[30px] font-bold tracking-wide text-white">
               {t.header.companyName}
             </div>
             <div className="mt-1 text-xs md:text-sm text-gray-400">
@@ -53,12 +53,12 @@ const Header = () => {
       {/* Navigation Menu */}
       <div className="bg-black border-t border-gray-800">
         <div className="container mx-auto px-4">
-          <nav className="flex items-center justify-center gap-8 py-3">
-            <a href="/" className="text-white hover:text-[#FF7A00] transition-colors font-medium text-base uppercase tracking-wide">
+          <nav className="flex items-center justify-center gap-8 py-2">
+            <a href="/" className="text-white hover:text-[#FF7A00] transition-colors font-medium text-sm md:text-base uppercase tracking-wide">
               {t.header.home}
             </a>
             <span className="text-gray-700">|</span>
-            <a href="/admin" className="text-white hover:text-[#FF7A00] transition-colors font-medium text-base uppercase tracking-wide">
+            <a href="/admin" className="text-white hover:text-[#FF7A00] transition-colors font-medium text-sm md:text-base uppercase tracking-wide">
               {t.header.admin}
             </a>
           </nav>
