@@ -204,20 +204,10 @@ const AdminPanel = () => {
     setFeatureInput('');
   };
 
-  const addImage = () => {
-    if (imageUrl && formData.images.length < 10) {
-      setFormData(prev => ({
-        ...prev,
-        images: [...prev.images, imageUrl]
-      }));
-      setImageUrl('');
-    }
-  };
-
-  const removeImage = (index) => {
+  const setImages = (images) => {
     setFormData(prev => ({
       ...prev,
-      images: prev.images.filter((_, i) => i !== index)
+      images
     }));
   };
 
