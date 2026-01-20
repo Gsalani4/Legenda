@@ -37,14 +37,15 @@ const Header = () => {
       </div>
       
       {/* Main Logo Section - Center */}
-      <div className="bg-black py-3">
+      <div className="bg-black py-4">
         <div className="container mx-auto px-4">
-          <a href="/" className="flex items-center justify-center">
-            <img
-              src="https://customer-assets.emergentagent.com/job_mgz-checkout/artifacts/gmb2tiz9_image.png"
-              alt="MGZAVROBANI"
-              className="h-12 md:h-14 w-auto"
-            />
+          <a href="/" className="flex flex-col items-center justify-center leading-none">
+            <div className="text-[28px] md:text-[34px] font-bold tracking-wide text-white">
+              {t.header.companyName}
+            </div>
+            <div className="mt-1 text-xs md:text-sm text-gray-400">
+              {t.header.tagline}
+            </div>
           </a>
         </div>
       </div>
