@@ -201,7 +201,7 @@ const AdminPanel = () => {
     });
     setEditingListing(null);
     setShowForm(false);
-    setImageUrl('');
+    // setImageUrl('');
     setFeatureInput('');
   };
 
