@@ -67,7 +67,7 @@ const HomePage = () => {
   return (
     <div className="min-h-screen bg-[#0B0B0B]">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-[#FF7A00] to-[#ff8c1a] text-white py-16">
+      <div className="bg-gradient-to-r from-[#FF7A00] to-[#ff8c1a] text-white py-10 md:py-12">
         <div className="container mx-auto px-4">
           <h1 className="text-2xl md:text-3xl font-bold mb-2 tracking-wide">
             LEGENDACAR
