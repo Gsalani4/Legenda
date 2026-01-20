@@ -206,9 +206,7 @@ metadata:
   run_ui: true
 
 test_plan:
-  current_focus:
-    - "Rebrand + spacing adjustments"
-    - "Quick UI regression check"
+  current_focus: []
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
