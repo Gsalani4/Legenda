@@ -448,36 +448,11 @@ const AdminPanel = () => {
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <Label>Resimler (Max 10) ({formData.images.length}/10)</Label>
-                  <div className="flex gap-2">
-                    <Input
-                      placeholder="Resim URL'si girin"
-                      value={imageUrl}
-                      onChange={(e) => setImageUrl(e.target.value)}
-                      disabled={formData.images.length >= 10}
-                    />
-                    <Button type="button" onClick={addImage} disabled={!imageUrl || formData.images.length >= 10}>
-                      <Plus className="w-4 h-4" />
-                    </Button>
-                  </div>
-                  {formData.images.length > 0 && (
-                    <div className="grid grid-cols-5 gap-2 mt-2">
-                      {formData.images.map((img, idx) => (
-                        <div key={idx} className="relative group">
-                          <img src={img} alt={`${idx + 1}`} className="w-full h-20 object-cover rounded" />
-                          <button
-                            type="button"
-                            onClick={() => removeImage(idx)}
-                            className="absolute top-1 right-1 bg-red-600 text-white p-1 rounded opacity-0 group-hover:opacity-100 transition-opacity"
-                          >
-                            <X className="w-3 h-3" />
-                          </button>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                <ChunkedImageUploader
+                  value={formData.images}
+                  onChange={setImages}
+                  disabled={false}
+                />
 
                 <div className="space-y-2">
                   <Label>Açıklama</Label>
