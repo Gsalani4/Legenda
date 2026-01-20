@@ -236,6 +236,7 @@ const AdminPanel = () => {
               <div className="space-y-2">
                 <Label>Kullanıcı Adı</Label>
                 <Input
+                  className="bg-black border-gray-700 text-white"
                   type="text"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
