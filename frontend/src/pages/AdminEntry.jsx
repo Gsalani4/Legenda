@@ -15,12 +15,14 @@ const AdminEntry = () => {
     return () => window.removeEventListener('storage', onStorage);
   }, []);
 
-  if (adminToken) return <AdminPanel />;
+  useEffect(() => {
+    if (userToken) {
+      window.location.href = '/user';
+    }
+  }, [userToken]);
 
-  if (userToken) {
-    window.location.href = '/user';
-    return null;
-  }
+  if (adminToken) return <AdminPanel />;
+  if (userToken) return null;
 
   return <AuthPage />;
 };
