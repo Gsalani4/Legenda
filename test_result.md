@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Rebrand MGZAVROBANI -> LEGENDACAR + reduce hero title size + remove header/listings gap + quick UI regression check"
+user_problem_statement: "Admin: image upload from device (chunked) + admin theme unify + Home hero option A"
 
 backend:
   - task: "Backend APIs (legacy tests)"
