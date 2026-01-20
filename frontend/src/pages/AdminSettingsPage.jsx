@@ -131,6 +131,7 @@ const AdminSettingsPage = () => {
               <div className="space-y-2">
                 <Label>Çalışma Saatleri</Label>
                 <Input
+                  className="bg-black border-gray-700 text-white"
                   value={formData.contact.working_hours}
                   onChange={(e) => setFormData({
                     ...formData,
