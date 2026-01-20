@@ -227,7 +227,7 @@ const AdminPanel = () => {
   if (!isLoggedIn) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#0B0B0B]">
-        <Card className="w-full max-w-md">
+        <Card className="w-full max-w-md bg-[#111111] border-gray-800 text-white">
           <CardHeader>
             <CardTitle className="text-2xl text-center">Admin Girişi</CardTitle>
           </CardHeader>
