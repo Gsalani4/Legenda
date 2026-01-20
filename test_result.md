@@ -118,6 +118,42 @@ backend:
         comment: "Legacy backend API suite previously passed. Not re-tested in this iteration."
 
 frontend:
+  - task: "Admin image upload (device -> chunked upload -> listing images URLs)"
+    implemented: true
+    working: false
+    file: "frontend/src/components/ChunkedImageUploader.jsx, backend/routes/uploads.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: false
+        agent: "main"
+        comment: "Added chunked upload endpoints (/api/uploads/init, /api/uploads/chunk, /api/uploads/{file}) and replaced URL image input in AdminPanel with ChunkedImageUploader. Needs e2e test to create listing with uploaded image and verify image renders on home and detail."
+
+  - task: "Admin theme unify (remove blue/white)"
+    implemented: true
+    working: false
+    file: "frontend/src/pages/AdminPanel.jsx, frontend/src/pages/AdminSettingsPage.jsx"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: true
+    status_history:
+      - working: false
+        agent: "main"
+        comment: "Replaced blue/gray admin styling with dark theme + orange accents; needs UI verification on /admin and /admin/settings."
+
+  - task: "Home hero redesign (Option A)"
+    implemented: true
+    working: false
+    file: "frontend/src/pages/HomePage.jsx"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: true
+    status_history:
+      - working: false
+        agent: "main"
+        comment: "Replaced orange gradient hero with black hero + small orange accent bar; needs UI verification for aesthetics." 
+
   - task: "Rebrand + spacing adjustments"
     implemented: true
     working: true
