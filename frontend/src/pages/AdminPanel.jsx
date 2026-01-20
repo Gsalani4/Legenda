@@ -78,18 +78,6 @@ const AdminPanel = () => {
   }, [isLoggedIn]);
 
   const handleLogin = async (e) => {
-    try {
-      await axios.get(`${API_URL}/admin/verify`, {
-        headers: { Authorization: `Bearer ${savedToken}` }
-      });
-      setIsLoggedIn(true);
-    } catch (error) {
-      localStorage.removeItem('admin_token');
-      setToken(null);
-    }
-  };
-
-  const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(`${API_URL}/admin/login`, {
