@@ -11,7 +11,7 @@ router = APIRouter()
 security = HTTPBearer()
 
 # JWT secret - production'da .env'den al
-JWT_SECRET = os.environ.get('JWT_SECRET', 'mgzavrobani-secret-key-change-in-production')
+JWT_SECRET = os.environ.get('JWT_SECRET', 'legendacar-secret-key-change-in-production')
 JWT_ALGORITHM = 'HS256'
 JWT_EXPIRATION_HOURS = 24
 

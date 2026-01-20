@@ -17,13 +17,13 @@ async def get_settings():
             default_settings = {
                 "contact": {
                     "phone": "+995 500 88 30 88",
-                    "email": "info@mgzavrobani.ge",
+                    "email": "info@legendacar.ge",
                     "address": "თამაზ გამყრელიძის 19",
                     "working_hours": "ორშ - შაბ 8.00 - 18.00"
                 },
                 "social_media": {
                     "facebook": "https://www.facebook.com/profile.php?id=61573020256578",
-                    "instagram": "https://www.instagram.com/mgzavrobani/",
+                    "instagram": "https://www.instagram.com/legendacar/",
                     "whatsapp": "https://wa.me/995598123456"
                 },
                 "updated_at": datetime.utcnow()

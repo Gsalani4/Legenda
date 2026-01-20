@@ -34,7 +34,7 @@ async def seed_sample_listings():
             "features": ["Klima", "Bluetooth", "Cruise Control", "Park Sensörü"],
             "status": "active",
             "contact_phone": "+995 500 88 30 88",
-            "contact_email": "info@mgzavrobani.ge",
+            "contact_email": "info@legendacar.ge",
             "views": 0,
             "created_at": datetime.utcnow(),
             "updated_at": datetime.utcnow()
@@ -58,7 +58,7 @@ async def seed_sample_listings():
             "features": ["7 Kişilik", "4WD", "Klima", "GPS", "Geri Görüş Kamerası"],
             "status": "active",
             "contact_phone": "+995 500 88 30 88",
-            "contact_email": "info@mgzavrobani.ge",
+            "contact_email": "info@legendacar.ge",
             "views": 0,
             "created_at": datetime.utcnow(),
             "updated_at": datetime.utcnow()
@@ -82,7 +82,7 @@ async def seed_sample_listings():
             "features": ["Deri Döşeme", "Hafıza Koltuğu", "Panoramik Tavan", "Distronic Plus", "LED Farlar"],
             "status": "active",
             "contact_phone": "+995 500 88 30 88",
-            "contact_email": "info@mgzavrobani.ge",
+            "contact_email": "info@legendacar.ge",
             "views": 0,
             "created_at": datetime.utcnow(),
             "updated_at": datetime.utcnow()
@@ -105,7 +105,7 @@ async def seed_sample_listings():
             "features": ["Hibrit", "Smart Cruise", "Lane Assist", "Wireless Charging", "360 Kamera"],
             "status": "active",
             "contact_phone": "+995 500 88 30 88",
-            "contact_email": "info@mgzavrobani.ge",
+            "contact_email": "info@legendacar.ge",
             "views": 0,
             "created_at": datetime.utcnow(),
             "updated_at": datetime.utcnow()

@@ -44,7 +44,7 @@ async def get_listings(
                 "features": listing.get("features", []),
                 "status": listing["status"],
                 "contact_phone": listing.get("contact_phone", "+995 500 88 30 88"),
-                "contact_email": listing.get("contact_email", "info@mgzavrobani.ge"),
+                "contact_email": listing.get("contact_email", "info@legendacar.ge"),
                 "views": listing.get("views", 0),
                 "created_at": listing["created_at"].isoformat()
             })
@@ -88,7 +88,7 @@ async def get_listing(listing_id: str):
                 "features": listing.get("features", []),
                 "status": listing["status"],
                 "contact_phone": listing.get("contact_phone", "+995 500 88 30 88"),
-                "contact_email": listing.get("contact_email", "info@mgzavrobani.ge"),
+                "contact_email": listing.get("contact_email", "info@legendacar.ge"),
                 "views": listing.get("views", 0) + 1,
                 "created_at": listing["created_at"].isoformat(),
                 "updated_at": listing.get("updated_at", listing["created_at"]).isoformat()

@@ -37,7 +37,7 @@ class CarListing(BaseModel):
     
     # İletişim (admin tarafından eklenir)
     contact_phone: str = "+995 500 88 30 88"
-    contact_email: str = "info@mgzavrobani.ge"
+    contact_email: str = "info@legendacar.ge"
     
     # Metadata
     created_at: datetime = Field(default_factory=datetime.utcnow)
@@ -63,7 +63,7 @@ class CarListingCreate(BaseModel):
     description: str
     features: List[str] = []
     contact_phone: str = "+995 500 88 30 88"
-    contact_email: str = "info@mgzavrobani.ge"
+    contact_email: str = "info@legendacar.ge"
 
 class CarListingUpdate(BaseModel):
     listing_type: Optional[str] = None

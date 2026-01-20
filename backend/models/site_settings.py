@@ -4,12 +4,12 @@ from datetime import datetime
 
 class SocialMedia(BaseModel):
     facebook: str = "https://www.facebook.com/profile.php?id=61573020256578"
-    instagram: str = "https://www.instagram.com/mgzavrobani/"
+    instagram: str = "https://www.instagram.com/legendacar/"
     whatsapp: str = "https://wa.me/995598123456"
 
 class ContactInfo(BaseModel):
     phone: str = "+995 500 88 30 88"
-    email: str = "info@mgzavrobani.ge"
+    email: str = "info@legendacar.ge"
     address: str = "თამაზ გამყრელიძის 19"
     working_hours: str = "ორშ - შაბ 8.00 - 18.00"
 
