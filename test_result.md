@@ -180,6 +180,9 @@ frontend:
       - working: true
         agent: "main"
         comment: "✅ FIXED: AdminEntry (/admin) now routes to AuthPage when no token, and AdminPanel now treats existing admin_token as logged-in. Admin login via AuthPage successfully reaches admin panel."
+      - working: true
+        agent: "testing"
+        comment: "✅ CRITICAL E2E TESTS PASSED: Comprehensive testing completed successfully. 1) /admin shows AuthPage when no tokens ✅ 2) Admin Sign In via AuthPage with LegendTaxi/Gr!7pA9z#Lm2Qx opens admin panel ✅ 3) Admin panel shows 'Bekleyen İlanlar' button and navigates to /admin/pending ✅ 4) /admin/pending lists pending listings (found 5 listings) with approve/reject buttons working correctly ✅ 5) User Sign Up/Sign In works and redirects to /user ✅ Approval functionality tested: listing count decreased from 5 to 4 after approval, confirming backend integration is working properly."
 
   - task: "Listing approval and homepage visibility"
     implemented: true
