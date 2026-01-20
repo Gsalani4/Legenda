@@ -57,6 +57,26 @@ export const translations = {
       followUs: 'გამოგვყევით:',
       copyright: '© 2024 LEGENDACAR - ავტომობილების გაქირავება საქართველოში. ყველა უფლება დაცულია.'
     },
+    auth: {
+      signInTitle: 'Sign In',
+      signIn: 'Sign In',
+      signUp: 'Sign Up',
+      user: 'User',
+      admin: 'Admin',
+      emailOrPhone: 'ელფოსტა ან ტელეფონი',
+      username: 'მომხმარებელი',
+      password: 'პაროლი',
+      confirmPassword: 'გაიმეორეთ პაროლი',
+      firstName: 'სახელი',
+      lastName: 'გვარი',
+      phone: 'ტელეფონი',
+      emailOptional: 'ელფოსტა (არასავალდებულო)',
+      passwordsMatch: 'პაროლები ემთხვევა',
+      passwordMismatch: 'პაროლები არ ემთხვევა',
+      invalidCredentials: 'არასწორი მონაცემები',
+      registerFailed: 'რეგისტრაცია ვერ მოხერხდა',
+      errorTitle: 'შეცდომა'
+    },
     languages: {
       ka: 'ქართული',
       en: 'English',
@@ -122,6 +142,26 @@ export const translations = {
       language: 'Language:',
       followUs: 'Follow Us:',
       copyright: '© 2024 LEGENDACAR - Car Rental in Georgia. All rights reserved.'
+    },
+    auth: {
+      signInTitle: 'Sign In',
+      signIn: 'Sign In',
+      signUp: 'Sign Up',
+      user: 'User',
+      admin: 'Admin',
+      emailOrPhone: 'Email or phone',
+      username: 'Username',
+      password: 'Password',
+      confirmPassword: 'Confirm password',
+      firstName: 'First name',
+      lastName: 'Last name',
+      phone: 'Phone',
+      emailOptional: 'Email (optional)',
+      passwordsMatch: 'Passwords match',
+      passwordMismatch: 'Passwords do not match',
+      invalidCredentials: 'Invalid credentials',
+      registerFailed: 'Registration failed',
+      errorTitle: 'Error'
     },
     languages: {
       ka: 'Georgian',
