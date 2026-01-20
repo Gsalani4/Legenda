@@ -9,6 +9,12 @@ import { getPendingListings, approveListing, rejectListing } from '../services/a
 const PendingListingsPage = () => {
   const { toast } = useToast();
   const [token] = useState(() => localStorage.getItem('admin_token'));
+
+  useEffect(() => {
+    if (!token) {
+      window.location.href = '/admin';
+    }
+  }, [token]);
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
 

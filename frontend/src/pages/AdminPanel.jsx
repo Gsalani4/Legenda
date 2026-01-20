@@ -15,8 +15,8 @@ const API_URL = process.env.REACT_APP_BACKEND_URL + '/api';
 
 const AdminPanel = () => {
   const { toast } = useToast();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState(() => localStorage.getItem('admin_token'));
+  const [isLoggedIn, setIsLoggedIn] = useState(() => !!localStorage.getItem('admin_token'));
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [listings, setListings] = useState([]);
@@ -77,6 +77,13 @@ const AdminPanel = () => {
   //     verifyToken(token);
   //   }
   // }, [token]);
+
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      loadListings();
+    }
+  }, [isLoggedIn, loadListings]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
