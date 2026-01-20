@@ -7,6 +7,8 @@ import HomePage from './pages/HomePage';
 import CarDetailPage from './pages/CarDetailPage';
 import AdminPanel from './pages/AdminPanel';
 import AdminSettingsPage from './pages/AdminSettingsPage';
+import PendingListingsPage from './pages/PendingListingsPage';
+import UserPanel from './pages/UserPanel';
 import { Toaster } from './components/ui/sonner';
 import { LanguageProvider } from './context/LanguageContext';
 import { SettingsProvider } from './context/SettingsContext';
