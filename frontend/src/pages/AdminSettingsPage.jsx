@@ -102,6 +102,7 @@ const AdminSettingsPage = () => {
               <div className="space-y-2">
                 <Label>E-posta</Label>
                 <Input
+                  className="bg-black border-gray-700 text-white"
                   type="email"
                   value={formData.contact.email}
                   onChange={(e) => setFormData({
