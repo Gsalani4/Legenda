@@ -68,8 +68,7 @@ const AdminPanel = () => {
     if (token) {
       verifyToken(token);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [token]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
