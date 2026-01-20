@@ -184,6 +184,7 @@ const AdminSettingsPage = () => {
               <div className="space-y-2">
                 <Label>WhatsApp URL</Label>
                 <Input
+                  className="bg-black border-gray-700 text-white"
                   type="url"
                   value={formData.social_media.whatsapp}
                   onChange={(e) => setFormData({
