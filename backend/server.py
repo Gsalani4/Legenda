@@ -10,6 +10,7 @@ from pathlib import Path
 from routes.car_listings import router as listings_router
 from routes.admin import router as admin_router
 from routes.site_settings import router as settings_router
+from routes.uploads import router as uploads_router
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -33,6 +34,7 @@ async def root():
 api_router.include_router(listings_router, tags=["listings"])
 api_router.include_router(admin_router, tags=["admin"])
 api_router.include_router(settings_router, tags=["settings"])
+api_router.include_router(uploads_router, tags=["uploads"])
 
 # Include API router in main app
 app.include_router(api_router)
