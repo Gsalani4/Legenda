@@ -66,20 +66,21 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen bg-[#0B0B0B]">
-      {/* Hero Section */}
-      <div className="bg-gradient-to-r from-[#FF7A00] to-[#ff8c1a] text-white py-10 md:py-12">
+      {/* Hero Section (Option A: dark + orange accent) */}
+      <div className="bg-black border-b border-gray-800 text-white py-8">
         <div className="container mx-auto px-4">
+          <div className="h-1 w-14 bg-[#FF7A00] mb-4" />
           <h1 className="text-2xl md:text-3xl font-bold mb-2 tracking-wide">
             LEGENDACAR
           </h1>
-          <p className="text-base md:text-lg mb-1">
+          <p className="text-base md:text-lg mb-1 text-gray-200">
             {currentLanguage === 'ka' && 'ავტომობილების დაქირავება და გაყიდვა საქართველოში'}
             {currentLanguage === 'en' && 'Car Rental and Sales in Georgia'}
             {currentLanguage === 'ru' && 'Аренда и продажа автомобилей в Грузии'}
             {currentLanguage === 'tr' && 'Gürcistan\'da Araç Kiralama ve Satış'}
             {currentLanguage === 'az' && 'Gürcüstanda Avtomobil İcarəsi və Satışı'}
           </p>
-          <p className="text-lg opacity-90">
+          <p className="text-sm md:text-base text-gray-300">
             {currentLanguage === 'ka' && 'საუკეთესო ფასებით ხარისხიანი ავტომობილები'}
             {currentLanguage === 'en' && 'Quality Vehicles at the Best Prices'}
             {currentLanguage === 'ru' && 'Качественные автомобили по лучшим ценам'}

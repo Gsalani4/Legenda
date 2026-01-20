@@ -20,6 +20,8 @@ const ChunkedImageUploader = ({ value, onChange, disabled }) => {
 
     setUploading(true);
     try {
+      const nextImages = [...images];
+
       for (const file of files) {
         const totalChunks = Math.ceil(file.size / CHUNK_SIZE);
         const init = await initUpload({ filename: file.name, totalChunks });
@@ -38,7 +40,8 @@ const ChunkedImageUploader = ({ value, onChange, disabled }) => {
           setProgress({ filename: file.name, current: i + 1, total: totalChunks });
 
           if (resp.done && resp.url) {
-            onChange([...(images), resp.url]);
+            nextImages.push(resp.url);
+            onChange([...nextImages]);
           }
         }
       }
