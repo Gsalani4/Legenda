@@ -153,6 +153,21 @@ frontend:
       - working: true
         agent: "main"
         comment: "Applied CSS hide rules in src/index.css to hide #emergent-badge / emergent links. Verified via screenshot that badge is no longer visible."
+      - working: true
+        agent: "testing"
+        comment: "✅ RE-TESTED: Watermark successfully hidden on all pages (homepage, admin, car detail). CSS rules in index.css working correctly - no #emergent-badge or emergent links visible anywhere."
+
+  - task: "Content overlap fix for sticky header"
+    implemented: false
+    working: false
+    file: "frontend/src/App.js"
+    stuck_count: 1
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: false
+        agent: "testing"
+        comment: "❌ CRITICAL CONTENT OVERLAP: Main content positioned at -384px while header bottom is at 116px, creating 500px overlap. Content is hidden under sticky header. App.js main element needs top padding/margin of ~116px to account for sticky header height."
 
 metadata:
   created_by: "main_agent"
