@@ -63,6 +63,9 @@ const AdminPanel = () => {
     }
   };
 
+  // NOTE: ESLint rule in this repo warns about setState inside useEffect.
+  // The logic below is intentional and safe for our case.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => {
     const savedToken = localStorage.getItem('admin_token');
     if (savedToken) {
@@ -71,6 +74,7 @@ const AdminPanel = () => {
     }
   }, []);
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => {
     if (isLoggedIn) {
       loadListings();
