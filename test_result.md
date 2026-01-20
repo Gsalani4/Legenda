@@ -120,9 +120,9 @@ backend:
 frontend:
   - task: "Sticky header layout fix"
     implemented: true
-    working: true
+    working: false
     file: "frontend/src/components/Header.jsx"
-    stuck_count: 0
+    stuck_count: 1
     priority: "high"
     needs_retesting: false
     status_history:
@@ -135,6 +135,9 @@ frontend:
       - working: true
         agent: "testing"
         comment: "✅ COMPREHENSIVE TESTING COMPLETED: Header layout fixed successfully. Structure: top contact bar (phone, hours, address) + centered company name/tagline + navigation links. Header height: 116px (reasonable). Sticky behavior working correctly on all pages. Navigation links functional (Home, Admin). Car detail page navigation working. No banner-like images in header. Minor: Content overlap detected (635px) - main content needs top padding to account for sticky header, but core functionality works perfectly."
+      - working: false
+        agent: "testing"
+        comment: "❌ RE-TESTED AFTER PADDING CHANGES: Header layout and sticky behavior working correctly (116px height, proper structure). However, CRITICAL content overlap issue persists - 500px overlap detected. Main content hidden under sticky header. This is now a blocking issue that prevents proper content visibility."
 
   - task: "Watermark (Made with Emergent) investigation & removal"
     implemented: true
