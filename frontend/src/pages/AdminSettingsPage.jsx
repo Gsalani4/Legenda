@@ -82,7 +82,7 @@ const AdminSettingsPage = () => {
           <Card className="bg-[#111111] border-gray-800 text-white">
             <CardHeader>
               <CardTitle>İletişim Bilgileri</CardTitle>
-              <CardDescription className="text-gray-400">Üst banner ve footer'da görünecek iletişim bilgileri</CardDescription>
+              <CardDescription className="text-gray-400">Üst banner ve footer&apos;da görünecek iletişim bilgileri</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
