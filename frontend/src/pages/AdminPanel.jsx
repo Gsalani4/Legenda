@@ -42,6 +42,27 @@ const AdminPanel = () => {
   // URL-based image state removed (device upload only)
   const [featureInput, setFeatureInput] = useState('');
 
+  const verifyToken = async (savedToken) => {
+    try {
+      await axios.get(`${API_URL}/admin/verify`, {
+        headers: { Authorization: `Bearer ${savedToken}` }
+      });
+      setIsLoggedIn(true);
+    } catch (error) {
+      localStorage.removeItem('admin_token');
+      setToken(null);
+    }
+  };
+
+  const loadListings = async () => {
+    try {
+      const response = await axios.get(`${API_URL}/listings?status=active`);
+      setListings(response.data.listings || []);
+    } catch (error) {
+      console.error('Error loading listings:', error);
+    }
+  };
+
   useEffect(() => {
     const savedToken = localStorage.getItem('admin_token');
     if (savedToken) {
@@ -56,7 +77,7 @@ const AdminPanel = () => {
     }
   }, [isLoggedIn]);
 
-  const verifyToken = async (savedToken) => {
+  const handleLogin = async (e) => {
     try {
       await axios.get(`${API_URL}/admin/verify`, {
         headers: { Authorization: `Bearer ${savedToken}` }
