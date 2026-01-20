@@ -16,7 +16,7 @@ const API_URL = process.env.REACT_APP_BACKEND_URL + '/api';
 const AdminPanel = () => {
   const { toast } = useToast();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(() => localStorage.getItem('admin_token'));
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [listings, setListings] = useState([]);
@@ -66,18 +66,10 @@ const AdminPanel = () => {
   // NOTE: ESLint rule in this repo warns about setState inside useEffect.
   // The logic below is intentional and safe for our case.
     useEffect(() => {
-    const savedToken = localStorage.getItem('admin_token');
-    if (savedToken) {
-      setToken(savedToken);
-      verifyToken(savedToken);
+    if (token) {
+      verifyToken(token);
     }
   }, []);
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      loadListings();
-    }
-  }, [isLoggedIn]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -92,6 +84,7 @@ const AdminPanel = () => {
         setToken(newToken);
         localStorage.setItem('admin_token', newToken);
         setIsLoggedIn(true);
+        await loadListings();
         toast({
           title: 'Başarılı!',
           description: 'Admin paneline hoş geldiniz.'
