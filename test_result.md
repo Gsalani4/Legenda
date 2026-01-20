@@ -335,8 +335,7 @@ metadata:
 test_plan:
   current_focus:
     - "Admin login and approval workflow"
-  stuck_tasks:
-    - "Admin login and approval workflow"
+  stuck_tasks: []
   test_all: false
   test_priority: "high_first"
 
