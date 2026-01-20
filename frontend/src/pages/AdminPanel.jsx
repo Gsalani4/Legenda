@@ -64,9 +64,6 @@ const AdminPanel = () => {
     }
   };
 
-  // Note: repo's ESLint flags setState inside effects.
-  // For AdminPanel we accept this small pattern for restoring login on refresh.
-  // eslint-disable-next-line
   useEffect(() => {
     if (token) {
       verifyToken(token);
@@ -229,7 +226,7 @@ const AdminPanel = () => {
 
   if (!isLoggedIn) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="min-h-screen flex items-center justify-center bg-[#0B0B0B]">
         <Card className="w-full max-w-md">
           <CardHeader>
             <CardTitle className="text-2xl text-center">Admin Girişi</CardTitle>
@@ -254,7 +251,7 @@ const AdminPanel = () => {
                   required
                 />
               </div>
-              <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700">
+              <Button type="submit" className="w-full bg-[#FF7A00] hover:bg-[#ff8c1a]">
                 Giriş Yap
               </Button>
             </form>
@@ -266,17 +263,17 @@ const AdminPanel = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="bg-blue-600 text-white py-4">
+      <div className="bg-black border-b border-gray-800 text-white py-4">
         <div className="container mx-auto px-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold">Admin Paneli</h1>
-          <Button variant="ghost" onClick={handleLogout} className="text-white hover:bg-blue-700">
+          <Button variant="ghost" onClick={handleLogout} className="text-white hover:bg-[#111111]">
             <LogOut className="w-4 h-4 mr-2" />
             Çıkış Yap
           </Button>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 text-white">
         {!showForm ? (
           <div className="space-y-6">
             <div className="flex justify-between items-center">
@@ -286,7 +283,7 @@ const AdminPanel = () => {
                   <Settings className="w-4 h-4 mr-2" />
                   Site Ayarları
                 </Button>
-                <Button onClick={() => setShowForm(true)} className="bg-blue-600 hover:bg-blue-700">
+                <Button onClick={() => setShowForm(true)} className="bg-[#FF7A00] hover:bg-[#ff8c1a]">
                   <Plus className="w-4 h-4 mr-2" />
                   Yeni İlan Ekle
                 </Button>
@@ -317,7 +314,7 @@ const AdminPanel = () => {
                           </Badge>
                         </div>
                         
-                        <p className="text-2xl font-bold text-blue-600 mb-3">
+                        <p className="text-2xl font-bold text-[#FF7A00] mb-3">
                           ₾{listing.price}{listing.listing_type === 'rental' ? '/gün' : ''}
                         </p>
                         
