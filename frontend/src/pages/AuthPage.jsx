@@ -13,13 +13,10 @@ const AuthPage = () => {
   const { t } = useLanguage();
 
   const [tab, setTab] = useState('signin');
-  const [signInMode, setSignInMode] = useState('user'); // user | admin
-
-  const [adminUsername, setAdminUsername] = useState('');
-  const [adminPassword, setAdminPassword] = useState('');
-
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
+
+  const [signingIn, setSigningIn] = useState(false);
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -30,31 +27,36 @@ const AuthPage = () => {
 
   const passwordsMatch = useMemo(() => pw1 && pw2 && pw1 === pw2, [pw1, pw2]);
 
-  const handleAdminSignIn = async (e) => {
+  const handleSignIn = async (e) => {
     e.preventDefault();
+    setSigningIn(true);
     try {
-      const res = await adminLogin({ username: adminUsername, password: adminPassword });
-      if (res.success) {
-        localStorage.setItem('admin_token', res.access_token);
-        localStorage.removeItem('user_token');
-        window.location.href = '/admin';
-      }
-    } catch {
-      toast({ title: t.auth.errorTitle, description: t.auth.invalidCredentials, variant: 'destructive' });
-    }
-  };
-
-  const handleUserSignIn = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await userLogin({ identifier, password });
-      if (res.success) {
-        localStorage.setItem('user_token', res.access_token);
+      // 1) Try user login first (email or phone)
+      const userRes = await userLogin({ identifier, password });
+      if (userRes?.success) {
+        localStorage.setItem('user_token', userRes.access_token);
         localStorage.removeItem('admin_token');
         window.location.href = '/user';
+        return;
       }
-    } catch {
+    } catch (e1) {
+      // ignore and fallback to admin
+    }
+
+    try {
+      // 2) Fallback to admin login (username)
+      const adminRes = await adminLogin({ username: identifier, password });
+      if (adminRes?.success) {
+        localStorage.setItem('admin_token', adminRes.access_token);
+        localStorage.removeItem('user_token');
+        window.location.href = '/admin';
+        return;
+      }
       toast({ title: t.auth.errorTitle, description: t.auth.invalidCredentials, variant: 'destructive' });
+    } catch (e2) {
+      toast({ title: t.auth.errorTitle, description: t.auth.invalidCredentials, variant: 'destructive' });
+    } finally {
+      setSigningIn(false);
     }
   };
 
@@ -95,50 +97,30 @@ const AuthPage = () => {
             </TabsList>
 
             <TabsContent value="signin" className="mt-4">
-              <div className="flex gap-2 mb-4">
-                <Button
-                  type="button"
-                  variant={signInMode === 'user' ? 'default' : 'outline'}
-                  className={signInMode === 'user' ? 'bg-[#FF7A00] hover:bg-[#ff8c1a]' : 'bg-black text-white border-gray-700 hover:bg-[#111111]'}
-                  onClick={() => setSignInMode('user')}
-                >
-                  {t.auth.user}
+              <form onSubmit={handleSignIn} className="space-y-4">
+                <div className="space-y-2">
+                  <Label>{t.auth.identifier}</Label>
+                  <Input
+                    className="bg-black border-gray-700 text-white"
+                    value={identifier}
+                    onChange={(e) => setIdentifier(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label>{t.auth.password}</Label>
+                  <Input
+                    className="bg-black border-gray-700 text-white"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                </div>
+                <Button type="submit" className="w-full bg-[#FF7A00] hover:bg-[#ff8c1a]" disabled={signingIn}>
+                  {t.auth.signIn}
                 </Button>
-                <Button
-                  type="button"
-                  variant={signInMode === 'admin' ? 'default' : 'outline'}
-                  className={signInMode === 'admin' ? 'bg-[#FF7A00] hover:bg-[#ff8c1a]' : 'bg-black text-white border-gray-700 hover:bg-[#111111]'}
-                  onClick={() => setSignInMode('admin')}
-                >
-                  {t.auth.admin}
-                </Button>
-              </div>
-
-              {signInMode === 'admin' ? (
-                <form onSubmit={handleAdminSignIn} className="space-y-4">
-                  <div className="space-y-2">
-                    <Label>{t.auth.username}</Label>
-                    <Input className="bg-black border-gray-700 text-white" value={adminUsername} onChange={(e) => setAdminUsername(e.target.value)} required />
-                  </div>
-                  <div className="space-y-2">
-                    <Label>{t.auth.password}</Label>
-                    <Input className="bg-black border-gray-700 text-white" type="password" value={adminPassword} onChange={(e) => setAdminPassword(e.target.value)} required />
-                  </div>
-                  <Button type="submit" className="w-full bg-[#FF7A00] hover:bg-[#ff8c1a]">{t.auth.signIn}</Button>
-                </form>
-              ) : (
-                <form onSubmit={handleUserSignIn} className="space-y-4">
-                  <div className="space-y-2">
-                    <Label>{t.auth.emailOrPhone}</Label>
-                    <Input className="bg-black border-gray-700 text-white" value={identifier} onChange={(e) => setIdentifier(e.target.value)} required />
-                  </div>
-                  <div className="space-y-2">
-                    <Label>{t.auth.password}</Label>
-                    <Input className="bg-black border-gray-700 text-white" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-                  </div>
-                  <Button type="submit" className="w-full bg-[#FF7A00] hover:bg-[#ff8c1a]">{t.auth.signIn}</Button>
-                </form>
-              )}
+              </form>
             </TabsContent>
 
             <TabsContent value="signup" className="mt-4">
