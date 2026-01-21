@@ -59,7 +59,11 @@ const Header = () => {
             </a>
             <span className="text-gray-700">|</span>
             <a href="/admin" className="text-white hover:text-[#FF7A00] transition-colors font-medium text-sm md:text-base uppercase tracking-wide">
-              {t.header.admin}
+              {t.auth.signIn}
+            </a>
+            <span className="text-gray-700">|</span>
+            <a href="/admin?tab=signup" className="text-white hover:text-[#FF7A00] transition-colors font-medium text-sm md:text-base uppercase tracking-wide">
+              {t.auth.signUp}
             </a>
           </nav>
         </div>
