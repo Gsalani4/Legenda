@@ -330,6 +330,12 @@ const CarDetailPage = () => {
                     {currentLanguage === 'az' && 'Əlaqə Məlumatları'}
                   </h3>
                   
+                  {listing.owner?.first_name && (
+                    <div className="text-xs text-gray-400">
+                      İlan Sahibi: {listing.owner.first_name} {listing.owner.last_name}
+                    </div>
+                  )}
+                  
                   <a 
                     href={`tel:${listing.contact_phone}`}
                     className="flex items-center gap-3 p-4 bg-[#111111] rounded-lg hover:bg-[#151515] transition-colors"
