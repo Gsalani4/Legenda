@@ -299,6 +299,9 @@ const AdminPanel = () => {
                 <Button onClick={() => window.location.href = '/admin/pending'} variant="outline" className="bg-black text-white border-gray-700 hover:bg-[#111111]">
                   Bekleyen İlanlar
                 </Button>
+                <Button onClick={() => window.location.href = '/admin/users'} variant="outline" className="bg-black text-white border-gray-700 hover:bg-[#111111]">
+                  Kullanıcılar
+                </Button>
                 <Button onClick={() => window.location.href = '/admin/settings'} variant="outline" className="bg-black text-white border-gray-700 hover:bg-[#111111]">
                   <Settings className="w-4 h-4 mr-2" />
                   Site Ayarları

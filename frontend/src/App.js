@@ -9,6 +9,7 @@ import AdminEntry from './pages/AdminEntry';
 import AdminPanel from './pages/AdminPanel';
 import AdminSettingsPage from './pages/AdminSettingsPage';
 import PendingListingsPage from './pages/PendingListingsPage';
+import AdminUsersPage from './pages/AdminUsersPage';
 import UserPanel from './pages/UserPanel';
 import { Toaster } from './components/ui/sonner';
 import { LanguageProvider } from './context/LanguageContext';
@@ -28,6 +29,7 @@ function App() {
                 <Route path="/admin" element={<AdminEntry />} />
                 <Route path="/admin/settings" element={<AdminSettingsPage />} />
                 <Route path="/admin/pending" element={<PendingListingsPage />} />
+                <Route path="/admin/users" element={<AdminUsersPage />} />
                 <Route path="/user" element={<UserPanel />} />
               </Routes>
             </main>
