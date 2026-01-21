@@ -12,7 +12,12 @@ const AuthPage = () => {
   const { toast } = useToast();
   const { t } = useLanguage();
 
-  const [tab, setTab] = useState('signin');
+  const getInitialTab = () => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('tab') === 'signup' ? 'signup' : 'signin';
+  };
+
+  const [tab, setTab] = useState(getInitialTab());
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
 
