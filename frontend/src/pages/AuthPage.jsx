@@ -92,7 +92,7 @@ const AuthPage = () => {
     <div className="min-h-screen bg-[#0B0B0B] flex items-center justify-center px-4">
       <Card className="w-full max-w-md bg-[#111111] border-gray-800 text-white">
         <CardHeader>
-          <CardTitle className="text-2xl text-center">{t.auth.signInTitle}</CardTitle>
+          <CardTitle className="text-2xl text-center">{tab === 'signup' ? t.auth.signUp : t.auth.signIn}</CardTitle>
         </CardHeader>
         <CardContent>
           <Tabs value={tab} onValueChange={setTab} className="w-full">

@@ -58,9 +58,9 @@ export const translations = {
       copyright: '© 2024 LEGENDACAR - ავტომობილების გაქირავება საქართველოში. ყველა უფლება დაცულია.'
     },
     auth: {
-      signInTitle: 'Sign In',
-      signIn: 'Sign In',
-      signUp: 'Sign Up',
+      signInTitle: 'შესვლა',
+      signIn: 'შესვლა',
+      signUp: 'რეგისტრაცია',
       identifier: 'ელფოსტა / ტელეფონი / მომხმარებელი',
       password: 'პაროლი',
       confirmPassword: 'გაიმეორეთ პაროლი',
@@ -307,8 +307,8 @@ export const translations = {
       copyright: '© 2024 LEGENDACAR - Gürcistan\'da Araç Kiralama. Tüm hakları saklıdır.'
     },
     auth: {
-      signInTitle: 'Sign In',
-      signIn: 'Sign In',
+      signInTitle: 'Giriş Yap',
+      signIn: 'Giriş Yap',
       signUp: 'Kayıt Ol',
       identifier: 'E-posta / telefon / kullanıcı adı',
       password: 'Şifre',
