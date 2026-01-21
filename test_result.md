@@ -346,7 +346,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Admin login and approval workflow"
+    - "UI simplification regression testing"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
