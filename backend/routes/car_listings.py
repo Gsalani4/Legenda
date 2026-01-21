@@ -59,6 +59,16 @@ async def get_listing(listing_id: str):
     try:
         db = get_database()
         listing = await db.car_listings.find_one({"_id": ObjectId(listing_id)})
+
+        owner = None
+        owner_id = listing.get("owner_user_id") if listing else None
+        if owner_id:
+            user = await db.users.find_one({"id": owner_id}, {"_id": 0, "password_hash": 0})
+            if user:
+                owner = {
+                    "first_name": user.get("first_name"),
+                    "last_name": user.get("last_name"),
+                }
         
         if not listing:
             raise HTTPException(status_code=404, detail="Listing not found")
@@ -91,7 +101,8 @@ async def get_listing(listing_id: str):
                 "contact_email": listing.get("contact_email", "info@legendacar.ge"),
                 "views": listing.get("views", 0) + 1,
                 "created_at": listing["created_at"].isoformat(),
-                "updated_at": listing.get("updated_at", listing["created_at"]).isoformat()
+                "updated_at": listing.get("updated_at", listing["created_at"]).isoformat(),
+                "owner": owner
             }
         }
     except HTTPException:
