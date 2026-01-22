@@ -380,12 +380,14 @@ frontend:
 metadata:
   created_by: "main_agent"
   version: "1.0"
-  test_sequence: 5
+  test_sequence: 6
   run_ui: true
 
 test_plan:
   current_focus:
-    - "UI simplification regression testing"
+    - "Admin users page functionality"
+    - "Car detail page owner label"
+    - "Auth flows verification"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
