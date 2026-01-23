@@ -64,7 +64,7 @@ const PendingListingsPage = () => {
               <ArrowLeft className="w-4 h-4 mr-2" />
               {t.common.back}
             </Button>
-            <h1 className="text-2xl font-bold">Bekleyen İlanlar</h1>
+            <h1 className="text-2xl font-bold">{t.admin.pendingListings}</h1>
           </div>
           <Badge className="bg-yellow-600 text-black">{listings.length}</Badge>
         </div>
