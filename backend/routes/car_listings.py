@@ -20,8 +20,16 @@ async def get_listings(
         
         if listing_type:
             query["listing_type"] = listing_type
+
+        # Public listing rules: default active and not expired
         if status:
             query["status"] = status
+        if status == "active":
+            query["$or"] = [
+                {"expires_at": {"$exists": False}},
+                {"expires_at": None},
+                {"expires_at": {"$gt": datetime.utcnow()}},
+            ]
             
         listings = await db.car_listings.find(query).sort("created_at", -1).limit(limit).to_list(limit)
         
