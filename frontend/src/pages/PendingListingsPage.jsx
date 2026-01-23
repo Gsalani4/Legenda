@@ -47,7 +47,7 @@ const PendingListingsPage = () => {
 
   const doReject = async (id) => {
     await rejectListing(token, id);
-    toast({ title: 'Reddedildi', description: 'İlan reddedildi.' });
+    toast({ title: t.common.success, description: t.admin.pendingRejected });
     await load();
   };
 
