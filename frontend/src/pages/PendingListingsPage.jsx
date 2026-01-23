@@ -28,7 +28,7 @@ const PendingListingsPage = () => {
       const res = await getPendingListings(token);
       setListings(res.listings || []);
     } catch (e) {
-      toast({ title: 'Hata', description: 'Bekleyen ilanlar alınamadı.', variant: 'destructive' });
+      toast({ title: t.common.error, description: t.admin.pendingLoadError, variant: 'destructive' });
     } finally {
       setLoading(false);
     }
