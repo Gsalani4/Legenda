@@ -46,13 +46,22 @@ async def get_pending_listings(username: str = Depends(verify_admin_token)):
 
 
 @router.post('/admin/listings/{listing_id}/approve', response_model=dict)
-async def approve_listing(listing_id: str, username: str = Depends(verify_admin_token)):
-    """Admin: approve a pending listing."""
+async def approve_listing(listing_id: str, payload: dict = None, username: str = Depends(verify_admin_token)):
+    """Admin: approve a pending listing and set expiry days (default 1 day)."""
     try:
         db = get_database()
+
+        days = 1
+        if isinstance(payload, dict) and payload.get('days') is not None:
+            days = int(payload.get('days'))
+        if days not in {1, 5, 7, 10, 15, 20, 30}:
+            raise HTTPException(status_code=400, detail="Invalid days")
+
+        expires_at = datetime.utcnow() + timedelta(days=days)
+
         result = await db.car_listings.update_one(
             {"_id": ObjectId(listing_id)},
-            {"$set": {"status": "active", "approved_at": datetime.utcnow(), "approved_by": username, "updated_at": datetime.utcnow()}},
+            {"$set": {"status": "active", "approved_at": datetime.utcnow(), "approved_by": username, "expires_at": expires_at, "updated_at": datetime.utcnow()}},
         )
         if result.matched_count == 0:
             raise HTTPException(status_code=404, detail="Listing not found")
