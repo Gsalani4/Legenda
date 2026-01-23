@@ -39,9 +39,9 @@ const PendingListingsPage = () => {
     // eslint-disable-next-line
   }, []);
 
-  const doApprove = async (id) => {
-    await approveListing(token, id);
-    toast({ title: 'Onaylandı', description: 'İlan yayına alındı.' });
+  const doApprove = async (id, days) => {
+    await approveListing(token, id, days);
+    toast({ title: t.common.success, description: t.admin.pendingApproved });
     await load();
   };
 
