@@ -72,9 +72,9 @@ const PendingListingsPage = () => {
 
       <div className="container mx-auto px-4 py-8">
         {loading ? (
-          <div className="text-gray-400">Yükleniyor...</div>
+          <div className="text-gray-400">{t.common.loading}</div>
         ) : listings.length === 0 ? (
-          <div className="text-gray-400">Bekleyen ilan yok.</div>
+          <div className="text-gray-400">{t.admin.noPending}</div>
         ) : (
           <div className="grid gap-4">
             {listings.map((l) => (
