@@ -95,18 +95,18 @@ async def get_user_listings(user_id: str, username: str = Depends(verify_admin_t
         listings = await db.car_listings.find({"owner_user_id": user_id}).sort("created_at", -1).limit(500).to_list(500)
 
         out = []
-        for l in listings:
-            expires_at = l.get('expires_at')
+        for listing in listings:
+            expires_at = listing.get('expires_at')
             if hasattr(expires_at, 'isoformat'):
                 expires_at = expires_at.isoformat()
             out.append({
-                "id": str(l["_id"]),
-                "brand": l.get('brand'),
-                "model": l.get('model'),
-                "year": l.get('year'),
-                "price": l.get('price'),
-                "status": l.get('status'),
-                "created_at": l.get('created_at').isoformat() if hasattr(l.get('created_at'), 'isoformat') else l.get('created_at'),
+                "id": str(listing["_id"]),
+                "brand": listing.get('brand'),
+                "model": listing.get('model'),
+                "year": listing.get('year'),
+                "price": listing.get('price'),
+                "status": listing.get('status'),
+                "created_at": listing.get('created_at').isoformat() if hasattr(listing.get('created_at'), 'isoformat') else listing.get('created_at'),
                 "expires_at": expires_at,
             })
 
