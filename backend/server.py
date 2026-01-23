@@ -15,6 +15,7 @@ from routes.auth import router as auth_router
 from routes.user_listings import router as user_listings_router
 from routes.admin_pending import router as admin_pending_router
 from routes.admin_users import router as admin_users_router
+from routes.admin_user_detail import router as admin_user_detail_router
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -43,6 +44,7 @@ api_router.include_router(auth_router, tags=["auth"])
 api_router.include_router(user_listings_router, tags=["user"])
 api_router.include_router(admin_pending_router, tags=["admin-approvals"])
 api_router.include_router(admin_users_router, tags=["admin-users"])
+api_router.include_router(admin_user_detail_router, tags=["admin-user-detail"])
 
 # Include API router in main app
 app.include_router(api_router)
