@@ -67,7 +67,13 @@ const AdminUsersPage = () => {
               <Card key={u.id} className="bg-[#111111] border-gray-800 text-white">
                 <CardHeader className="pb-3">
                   <CardTitle className="flex items-center justify-between">
-                    <span>{u.first_name} {u.last_name}</span>
+                    <button
+                      type="button"
+                      className="text-left hover:text-[#FF7A00] transition-colors"
+                      onClick={() => (window.location.href = `/admin/users/${u.id}`)}
+                    >
+                      {u.first_name} {u.last_name}
+                    </button>
                     <Badge className="bg-black border border-gray-700 text-white">{u.listing_count} ilan</Badge>
                   </CardTitle>
                 </CardHeader>
