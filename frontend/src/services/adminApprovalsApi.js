@@ -9,8 +9,8 @@ export const getPendingListings = async (token) => {
   return res.data;
 };
 
-export const approveListing = async (token, id) => {
-  const res = await axios.post(`${API_URL}/admin/listings/${id}/approve`, null, {
+export const approveListing = async (token, id, days) => {
+  const res = await axios.post(`${API_URL}/admin/listings/${id}/approve`, { days }, {
     headers: { Authorization: `Bearer ${token}` }
   });
   return res.data;

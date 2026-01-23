@@ -4,10 +4,13 @@ import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card'
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 import { useToast } from '../hooks/use-toast';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
+import { useLanguage } from '../context/LanguageContext';
 import { getPendingListings, approveListing, rejectListing } from '../services/adminApprovalsApi';
 
 const PendingListingsPage = () => {
   const { toast } = useToast();
+  const { t } = useLanguage();
   const [token] = useState(() => localStorage.getItem('admin_token'));
 
   useEffect(() => {
