@@ -62,7 +62,7 @@ const PendingListingsPage = () => {
               onClick={() => (window.location.href = '/admin')}
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Geri
+              {t.common.back}
             </Button>
             <h1 className="text-2xl font-bold">Bekleyen İlanlar</h1>
           </div>
