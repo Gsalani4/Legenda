@@ -57,9 +57,9 @@ const AuthPage = () => {
         window.location.href = '/admin';
         return;
       }
-      toast({ title: t.auth.errorTitle, description: t.auth.invalidCredentials, variant: 'destructive' });
+      toast({ title: t.common.error, description: t.auth.invalidCredentials, variant: 'destructive' });
     } catch (e2) {
-      toast({ title: t.auth.errorTitle, description: t.auth.invalidCredentials, variant: 'destructive' });
+      toast({ title: t.common.error, description: t.auth.invalidCredentials, variant: 'destructive' });
     } finally {
       setSigningIn(false);
     }
