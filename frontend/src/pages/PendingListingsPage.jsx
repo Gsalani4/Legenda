@@ -94,14 +94,25 @@ const PendingListingsPage = () => {
                       <div className="mt-2 line-clamp-2 text-gray-400">{l.description}</div>
                     </div>
 
-                    <div className="flex gap-2">
-                      <Button className="bg-green-600 hover:bg-green-700" onClick={() => doApprove(l.id)}>
+                    <div className="flex items-center gap-2">
+                      <Select defaultValue="1" onValueChange={(val) => (l.__days = val)}>
+                        <SelectTrigger className="w-[110px] bg-black border-gray-700 text-white">
+                          <SelectValue placeholder={t.admin.durationDays} />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {[1, 5, 7, 10, 15, 20, 30].map((d) => (
+                            <SelectItem key={d} value={String(d)}>{d} {t.common.days}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+
+                      <Button className="bg-green-600 hover:bg-green-700" onClick={() => doApprove(l.id, Number(l.__days || 1))}>
                         <Check className="w-4 h-4 mr-2" />
-                        Onayla
+                        {t.admin.approve}
                       </Button>
                       <Button variant="destructive" onClick={() => doReject(l.id)}>
                         <X className="w-4 h-4 mr-2" />
-                        Reddet
+                        {t.admin.reject}
                       </Button>
                     </div>
                   </div>
