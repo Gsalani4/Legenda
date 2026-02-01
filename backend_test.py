@@ -984,47 +984,47 @@ class BackendTester:
             print("✅ ALL ADMIN TESTS PASSED")
             return True
 
-    def run_admin_listings_tests_only(self):
-        """Run only the admin listings tests"""
+    def run_vip_and_filters_tests_only(self):
+        """Run only the VIP and advanced filters tests"""
         print("=" * 60)
-        print("LEGENDACAR Admin Listings API Tests")
+        print("LEGENDACAR VIP + Advanced Filters API Tests")
         print("=" * 60)
         print(f"Testing backend at: {self.base_url}")
         print()
         
-        # Run admin listings tests in sequence
-        admin_listings_tests = [
+        # Run VIP and filters tests in sequence
+        vip_filter_tests = [
             self.test_admin_login,
-            self.test_admin_listings_active,
-            self.test_admin_listings_archived,
-            self.test_admin_listings_search,
-            self.test_admin_listing_status_archive,
-            self.test_admin_listing_status_activate,
-            self.test_auto_archive_expiry_check
+            self.test_admin_listings_active,  # To get a listing_id
+            self.test_vip_enable,
+            self.test_get_vip_listings,
+            self.test_vip_disable,
+            self.test_public_listings_vip_fields,
+            self.test_advanced_filters
         ]
         
         passed = 0
-        total = len(admin_listings_tests)
+        total = len(vip_filter_tests)
         
-        for test in admin_listings_tests:
+        for test in vip_filter_tests:
             if test():
                 passed += 1
         
         print("=" * 60)
-        print(f"ADMIN LISTINGS TEST SUMMARY: {passed}/{total} tests passed")
+        print(f"VIP + FILTERS TEST SUMMARY: {passed}/{total} tests passed")
         print("=" * 60)
         
-        # Return success if all admin listings tests pass
-        admin_failures = []
+        # Return success if all VIP and filter tests pass
+        vip_failures = []
         for result in self.test_results:
             if not result["success"]:
-                admin_failures.append(result["test"])
+                vip_failures.append(result["test"])
         
-        if admin_failures:
-            print(f"❌ ADMIN LISTINGS TEST FAILURES: {', '.join(admin_failures)}")
+        if vip_failures:
+            print(f"❌ VIP + FILTERS TEST FAILURES: {', '.join(vip_failures)}")
             return False
         else:
-            print("✅ ALL ADMIN LISTINGS TESTS PASSED")
+            print("✅ ALL VIP + FILTERS TESTS PASSED")
             return True
 
 def main():
