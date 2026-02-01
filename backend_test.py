@@ -1367,6 +1367,8 @@ def main():
             success = tester.run_vip_and_filters_tests_only()
         elif sys.argv[1] == "regression":
             success = tester.run_listings_regression_tests_only()
+        elif sys.argv[1] == "settings_banner":
+            success = tester.run_site_settings_banner_tests_only()
         else:
             success = tester.run_all_tests()
     else:
