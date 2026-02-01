@@ -151,7 +151,7 @@ const UserPanel = () => {
   if (!token) {
     return (
       <div className="min-h-screen bg-[#0B0B0B] text-white flex items-center justify-center">
-        <div className="text-gray-300">Lütfen giriş yapın.</div>
+        <div className="text-gray-300">{t.auth.signIn}</div>
       </div>
     );
   }
