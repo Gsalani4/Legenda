@@ -5,9 +5,11 @@ import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 import { getUsers } from '../services/adminUsersApi';
 import { useToast } from '../hooks/use-toast';
+import { useLanguage } from '../context/LanguageContext';
 
 const AdminUsersPage = () => {
   const { toast } = useToast();
+  const { t } = useLanguage();
   const [token] = useState(() => localStorage.getItem('admin_token'));
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -19,7 +21,7 @@ const AdminUsersPage = () => {
       const res = await getUsers(token);
       setUsers(res.users || []);
     } catch (e) {
-      toast({ title: 'Hata', description: 'Kullanıcılar alınamadı.', variant: 'destructive' });
+      toast({ title: t.common.error, description: t.common.operationFailed, variant: 'destructive' });
     } finally {
       setLoading(false);
     }
@@ -45,11 +47,11 @@ const AdminUsersPage = () => {
               onClick={() => (window.location.href = '/admin')}
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Geri
+              {t.common.back}
             </Button>
             <h1 className="text-2xl font-bold flex items-center gap-2">
               <Users className="w-5 h-5 text-[#FF7A00]" />
-              Kullanıcılar
+              {t.adminUsers.title}
             </h1>
           </div>
           <Badge className="bg-[#FF7A00] text-black">{users.length}</Badge>
@@ -58,9 +60,9 @@ const AdminUsersPage = () => {
 
       <div className="container mx-auto px-4 py-8">
         {loading ? (
-          <div className="text-gray-400">Yükleniyor...</div>
+          <div className="text-gray-400">{t.common.loading}</div>
         ) : users.length === 0 ? (
-          <div className="text-gray-400">Kullanıcı bulunamadı.</div>
+          <div className="text-gray-400">-</div>
         ) : (
           <div className="grid gap-4">
             {users.map((u) => (
@@ -74,13 +76,15 @@ const AdminUsersPage = () => {
                     >
                       {u.first_name} {u.last_name}
                     </button>
-                    <Badge className="bg-black border border-gray-700 text-white">{u.listing_count} ilan</Badge>
+                    <Badge className="bg-black border border-gray-700 text-white">
+                      {u.listing_count} {t.adminUsers.listings}
+                    </Badge>
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-gray-300 space-y-1">
-                  <div><span className="text-gray-400">Telefon:</span> {u.phone}</div>
-                  {u.email && <div><span className="text-gray-400">E-posta:</span> {u.email}</div>}
-                  <div><span className="text-gray-400">Kayıt:</span> {u.created_at ? new Date(u.created_at).toLocaleString() : '-'}</div>
+                  <div><span className="text-gray-400">{t.adminUsers.phone}:</span> {u.phone}</div>
+                  {u.email && <div><span className="text-gray-400">{t.adminUsers.email}:</span> {u.email}</div>}
+                  <div><span className="text-gray-400">{t.adminUsers.registered}:</span> {u.created_at ? new Date(u.created_at).toLocaleString() : '-'}</div>
                 </CardContent>
               </Card>
             ))}
