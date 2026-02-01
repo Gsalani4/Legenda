@@ -1,3 +1,6 @@
+// NOTE: This file provides UI translations for the 5 supported languages.
+// Keep the shape consistent across languages to avoid runtime undefined errors.
+
 export const translations = {
   ka: {
     // Georgian
@@ -36,7 +39,7 @@ export const translations = {
       paymentMethod: 'გადახდის მეთოდი',
       creditCard: 'საბანკო ბარათი',
       creditCardDesc: 'ონლაინ გადახდა ბარათით',
-      cash: 'ნაღდი ანგარიშსწორება',
+      cash: 'ნაღდი ანგარიში',
       cashDesc: 'გადახდა ოფისში',
       bankTransfer: 'საბანკო გადარიცხვა',
       bankTransferDesc: 'გადახდა საბანკო ანგარიშზე',
@@ -80,17 +83,7 @@ export const translations = {
       ru: 'Русский',
       tr: 'Türkçe',
       az: 'Azərbaycanca'
-    }
-  },
-  en: {
-    // English
-    header: {
-      schedule: 'Mon - Sat 8.00 - 18.00',
-      address: 'Tamaz Gamkrelidze 19',
-      phone: '+995 500 88 30 88',
-      companyName: 'LEGENDACAR',
-      tagline: 'Car Rental in Georgia',
-      home: 'Home',
+    },
     common: {
       success: 'წარმატება',
       error: 'შეცდომა',
@@ -118,18 +111,43 @@ export const translations = {
       pendingApproved: 'განცხადება დამტკიცდა და გამოქვეყნდა.',
       pendingRejected: 'განცხადება უარყოფილია.'
     },
-    user: {
-      panelTitle: 'მომხმარებლის პანელი',
-      myListings: 'ჩემი განცხადებები',
-      addListing: 'განცხადების დამატება',
-      newListing: 'ახალი განცხადება',
-      editListing: 'განცხადების რედაქტირება',
-      listingSubmitted: 'განცხადება გაგზავნილია დასამტკიცებლად.',
-      listingUpdatedPending: 'განცხადება განახლდა და ხელახლა გაგზავნილია დასამტკიცებლად.',
-      listingDeleted: 'განცხადება წაიშალა.',
-      listingDeleteFailed: 'წაშლა ვერ მოხერხდა.'
+    adminUsers: {
+      title: 'მომხმარებლები',
+      phone: 'ტელეფონი',
+      email: 'ელფოსტა',
+      registered: 'რეგისტრაცია',
+      listings: 'განცხადება'
     },
+    adminUserDetail: {
+      userInfo: 'მომხმარებლის ინფორმაცია',
+      userListings: 'მომხმარებლის განცხადებები',
+      save: 'შენახვა',
+      resetPassword: 'პაროლის განახლება (შემთხვევითი)',
+      newPassword: 'ახალი პაროლი',
+      expiry: 'ვადა',
+      status: 'სტატუსი',
+      noListings: 'განცხადება არ არის.',
+      loadFailed: 'მომხმარებლის დეტალების მიღება ვერ მოხერხდა.',
+      updated: 'მომხმარებლის ინფორმაცია განახლდა.',
+      passwordResetFailed: 'პაროლის შეცვლა ვერ მოხერხდა.',
+      archived: 'დაარქივდა',
+      deleted: 'წაიშალა',
+      archiveConfirm: 'განცხადება დაარქივდეს?',
+      deleteConfirm: 'განცხადება წაიშალოს?',
+      expiryUpdated: 'ვადა განახლდა',
+      statusUpdated: 'სტატუსი განახლდა'
+    }
+  },
 
+  en: {
+    // English
+    header: {
+      schedule: 'Mon - Sat 8.00 - 18.00',
+      address: 'Tamaz Gamkrelidze 19',
+      phone: '+995 500 88 30 88',
+      companyName: 'LEGENDACAR',
+      tagline: 'Car Rental in Georgia',
+      home: 'Home',
       vehicles: 'Vehicles',
       services: 'Services',
       contact: 'Contact',
@@ -221,45 +239,6 @@ export const translations = {
       archived: 'Archived'
     },
     admin: {
-    common: {
-      success: 'Успешно',
-      error: 'Ошибка',
-      loading: 'Загрузка...',
-      back: 'Назад',
-      days: 'дн.',
-      logout: 'Выйти',
-      edit: 'Редактировать',
-      delete: 'Удалить',
-      operationFailed: 'Операция не выполнена'
-    },
-    status: {
-      pending: 'Ожидает проверки',
-      active: 'Опубликовано',
-      rejected: 'Отклонено',
-      archived: 'Архив'
-    },
-    admin: {
-      pendingListings: 'Ожидающие объявления',
-      noPending: 'Нет ожидающих объявлений.',
-      approve: 'Одобрить',
-      reject: 'Отклонить',
-      durationDays: 'Срок',
-      pendingLoadError: 'Не удалось загрузить ожидающие объявления.',
-      pendingApproved: 'Объявление одобрено и опубликовано.',
-      pendingRejected: 'Объявление отклонено.'
-    },
-    user: {
-      panelTitle: 'Панель пользователя',
-      myListings: 'Мои объявления',
-      addListing: 'Добавить объявление',
-      newListing: 'Новое объявление',
-      editListing: 'Редактировать',
-      listingSubmitted: 'Объявление отправлено на проверку.',
-      listingUpdatedPending: 'Объявление обновлено и отправлено на проверку.',
-      listingDeleted: 'Объявление удалено.',
-      listingDeleteFailed: 'Не удалось удалить.'
-    },
-
       pendingListings: 'Pending listings',
       noPending: 'No pending listings.',
       approve: 'Approve',
@@ -269,19 +248,34 @@ export const translations = {
       pendingApproved: 'Listing approved and published.',
       pendingRejected: 'Listing rejected.'
     },
-    user: {
-      panelTitle: 'User Panel',
-      myListings: 'My listings',
-      addListing: 'Add listing',
-      newListing: 'New listing',
-      editListing: 'Edit listing',
-      listingSubmitted: 'Listing submitted for approval.',
-      listingUpdatedPending: 'Listing updated and resubmitted for approval.',
-      listingDeleted: 'Listing deleted.',
-      listingDeleteFailed: 'Could not delete listing.'
+    adminUsers: {
+      title: 'Users',
+      phone: 'Phone',
+      email: 'Email',
+      registered: 'Registered',
+      listings: 'listings'
     },
-
+    adminUserDetail: {
+      userInfo: 'User information',
+      userListings: "User's listings",
+      save: 'Save',
+      resetPassword: 'Reset password (random)',
+      newPassword: 'New password',
+      expiry: 'Expiry',
+      status: 'Status',
+      noListings: 'No listings.',
+      loadFailed: 'Could not load user details.',
+      updated: 'User updated.',
+      passwordResetFailed: 'Could not reset password.',
+      archived: 'Archived',
+      deleted: 'Deleted',
+      archiveConfirm: 'Archive this listing?',
+      deleteConfirm: 'Delete this listing?',
+      expiryUpdated: 'Expiry updated',
+      statusUpdated: 'Status updated'
+    }
   },
+
   ru: {
     // Russian
     header: {
@@ -291,45 +285,6 @@ export const translations = {
       companyName: 'LEGENDACAR',
       tagline: 'Аренда авто в Грузии',
       home: 'Главная',
-    common: {
-      success: 'Başarılı',
-      error: 'Hata',
-      loading: 'Yükleniyor...',
-      back: 'Geri',
-      days: 'gün',
-      logout: 'Çıkış',
-      edit: 'Düzenle',
-      delete: 'Sil',
-      operationFailed: 'İşlem başarısız'
-    },
-    status: {
-      pending: 'Onay bekliyor',
-      active: 'Yayında',
-      rejected: 'Reddedildi',
-      archived: 'Arşiv'
-    },
-    admin: {
-      pendingListings: 'Bekleyen İlanlar',
-      noPending: 'Bekleyen ilan yok.',
-      approve: 'Onayla',
-      reject: 'Reddet',
-      durationDays: 'Süre',
-      pendingLoadError: 'Bekleyen ilanlar alınamadı.',
-      pendingApproved: 'İlan onaylandı ve yayına alındı.',
-      pendingRejected: 'İlan reddedildi.'
-    },
-    user: {
-      panelTitle: 'Kullanıcı Paneli',
-      myListings: 'İlanlarım',
-      addListing: 'İlan Ekle',
-      newListing: 'Yeni İlan Ekle',
-      editListing: 'İlan Düzenle',
-      listingSubmitted: 'İlan onaya gönderildi.',
-      listingUpdatedPending: 'İlan güncellendi ve yeniden onaya gönderildi.',
-      listingDeleted: 'İlan silindi.',
-      listingDeleteFailed: 'Silinemedi.'
-    },
-
       vehicles: 'Автомобили',
       services: 'Услуги',
       contact: 'Контакты',
@@ -375,45 +330,6 @@ export const translations = {
       errorMessage: 'Пожалуйста, заполните все обязательные поля'
     },
     footer: {
-    common: {
-      success: 'Uğurlu',
-      error: 'Xəta',
-      loading: 'Yüklənir...',
-      back: 'Geri',
-      days: 'gün',
-      logout: 'Çıxış',
-      edit: 'Düzəliş et',
-      delete: 'Sil',
-      operationFailed: 'Əməliyyat alınmadı'
-    },
-    status: {
-      pending: 'Təsdiq gözləyir',
-      active: 'Yayında',
-      rejected: 'Rədd edildi',
-      archived: 'Arxiv'
-    },
-    admin: {
-      pendingListings: 'Gözləyən Elanlar',
-      noPending: 'Gözləyən elan yoxdur.',
-      approve: 'Təsdiqlə',
-      reject: 'Rədd et',
-      durationDays: 'Müddət',
-      pendingLoadError: 'Gözləyən elanlar yüklənmədi.',
-      pendingApproved: 'Elan təsdiqləndi və yayımlandı.',
-      pendingRejected: 'Elan rədd edildi.'
-    },
-    user: {
-      panelTitle: 'İstifadəçi Paneli',
-      myListings: 'Elanlarım',
-      addListing: 'Elan əlavə et',
-      newListing: 'Yeni elan',
-      editListing: 'Elanı düzəlt',
-      listingSubmitted: 'Elan təsdiq üçün göndərildi.',
-      listingUpdatedPending: 'Elan yeniləndi və yenidən təsdiq üçün göndərildi.',
-      listingDeleted: 'Elan silindi.',
-      listingDeleteFailed: 'Silinmədi.'
-    },
-
       language: 'Язык:',
       followUs: 'Подписывайтесь:',
       copyright: '© 2024 LEGENDACAR - Аренда авто в Грузии. Все права защищены.'
@@ -441,8 +357,62 @@ export const translations = {
       ru: 'Русский',
       tr: 'Турецкий',
       az: 'Азербайджанский'
+    },
+    common: {
+      success: 'Успешно',
+      error: 'Ошибка',
+      loading: 'Загрузка...',
+      back: 'Назад',
+      days: 'дн.',
+      logout: 'Выйти',
+      edit: 'Редактировать',
+      delete: 'Удалить',
+      operationFailed: 'Операция не выполнена'
+    },
+    status: {
+      pending: 'Ожидает проверки',
+      active: 'Опубликовано',
+      rejected: 'Отклонено',
+      archived: 'Архив'
+    },
+    admin: {
+      pendingListings: 'Ожидающие объявления',
+      noPending: 'Нет ожидающих объявлений.',
+      approve: 'Одобрить',
+      reject: 'Отклонить',
+      durationDays: 'Срок',
+      pendingLoadError: 'Не удалось загрузить ожидающие объявления.',
+      pendingApproved: 'Объявление одобрено и опубликовано.',
+      pendingRejected: 'Объявление отклонено.'
+    },
+    adminUsers: {
+      title: 'Пользователи',
+      phone: 'Телефон',
+      email: 'Email',
+      registered: 'Регистрация',
+      listings: 'объявл.'
+    },
+    adminUserDetail: {
+      userInfo: 'Информация о пользователе',
+      userListings: 'Объявления пользователя',
+      save: 'Сохранить',
+      resetPassword: 'Сбросить пароль (случайный)',
+      newPassword: 'Новый пароль',
+      expiry: 'Срок',
+      status: 'Статус',
+      noListings: 'Нет объявлений.',
+      loadFailed: 'Не удалось загрузить данные пользователя.',
+      updated: 'Данные пользователя обновлены.',
+      passwordResetFailed: 'Не удалось сбросить пароль.',
+      archived: 'В архиве',
+      deleted: 'Удалено',
+      archiveConfirm: 'Архивировать объявление?',
+      deleteConfirm: 'Удалить объявление?',
+      expiryUpdated: 'Срок обновлен',
+      statusUpdated: 'Статус обновлен'
     }
   },
+
   tr: {
     // Turkish
     header: {
@@ -450,7 +420,7 @@ export const translations = {
       address: 'Tamaz Gamkrelidze 19',
       phone: '+995 500 88 30 88',
       companyName: 'LEGENDACAR',
-      tagline: 'Gürcistan\'da Araç Kiralama',
+      tagline: "Gürcistan'da Araç Kiralama",
       home: 'Ana Sayfa',
       vehicles: 'Araçlar',
       services: 'Hizmetler',
@@ -499,7 +469,7 @@ export const translations = {
     footer: {
       language: 'Dil:',
       followUs: 'Takip Edin:',
-      copyright: '© 2024 LEGENDACAR - Gürcistan\'da Araç Kiralama. Tüm hakları saklıdır.'
+      copyright: "© 2024 LEGENDACAR - Gürcistan'da Araç Kiralama. Tüm hakları saklıdır."
     },
     auth: {
       signInTitle: 'Giriş Yap',
@@ -524,8 +494,62 @@ export const translations = {
       ru: 'Rusça',
       tr: 'Türkçe',
       az: 'Azerice'
+    },
+    common: {
+      success: 'Başarılı',
+      error: 'Hata',
+      loading: 'Yükleniyor...',
+      back: 'Geri',
+      days: 'gün',
+      logout: 'Çıkış',
+      edit: 'Düzenle',
+      delete: 'Sil',
+      operationFailed: 'İşlem başarısız'
+    },
+    status: {
+      pending: 'Onay bekliyor',
+      active: 'Yayında',
+      rejected: 'Reddedildi',
+      archived: 'Arşiv'
+    },
+    admin: {
+      pendingListings: 'Bekleyen İlanlar',
+      noPending: 'Bekleyen ilan yok.',
+      approve: 'Onayla',
+      reject: 'Reddet',
+      durationDays: 'Süre',
+      pendingLoadError: 'Bekleyen ilanlar alınamadı.',
+      pendingApproved: 'İlan onaylandı ve yayına alındı.',
+      pendingRejected: 'İlan reddedildi.'
+    },
+    adminUsers: {
+      title: 'Kullanıcılar',
+      phone: 'Telefon',
+      email: 'E-posta',
+      registered: 'Kayıt',
+      listings: 'ilan'
+    },
+    adminUserDetail: {
+      userInfo: 'Kullanıcı Bilgileri',
+      userListings: 'Kullanıcının İlanları',
+      save: 'Kaydet',
+      resetPassword: 'Şifre Sıfırla (Rastgele)',
+      newPassword: 'Yeni şifre',
+      expiry: 'Süre',
+      status: 'Durum',
+      noListings: 'İlan yok.',
+      loadFailed: 'Kullanıcı detayı alınamadı.',
+      updated: 'Kullanıcı bilgileri güncellendi.',
+      passwordResetFailed: 'Şifre değiştirilemedi.',
+      archived: 'Arşivlendi',
+      deleted: 'Silindi',
+      archiveConfirm: 'İlan arşive alınsın mı?',
+      deleteConfirm: 'İlan silinsin mi?',
+      expiryUpdated: 'Süre güncellendi',
+      statusUpdated: 'Durum güncellendi'
     }
   },
+
   az: {
     // Azerbaijani
     header: {
@@ -607,10 +631,64 @@ export const translations = {
       ru: 'Rus',
       tr: 'Türk',
       az: 'Azərbaycan'
+    },
+    common: {
+      success: 'Uğurlu',
+      error: 'Xəta',
+      loading: 'Yüklənir...',
+      back: 'Geri',
+      days: 'gün',
+      logout: 'Çıxış',
+      edit: 'Düzəliş et',
+      delete: 'Sil',
+      operationFailed: 'Əməliyyat alınmadı'
+    },
+    status: {
+      pending: 'Təsdiq gözləyir',
+      active: 'Yayında',
+      rejected: 'Rədd edildi',
+      archived: 'Arxiv'
+    },
+    admin: {
+      pendingListings: 'Gözləyən Elanlar',
+      noPending: 'Gözləyən elan yoxdur.',
+      approve: 'Təsdiqlə',
+      reject: 'Rədd et',
+      durationDays: 'Müddət',
+      pendingLoadError: 'Gözləyən elanlar yüklənmədi.',
+      pendingApproved: 'Elan təsdiqləndi və yayımlandı.',
+      pendingRejected: 'Elan rədd edildi.'
+    },
+    adminUsers: {
+      title: 'İstifadəçilər',
+      phone: 'Telefon',
+      email: 'E-poçt',
+      registered: 'Qeydiyyat',
+      listings: 'elan'
+    },
+    adminUserDetail: {
+      userInfo: 'İstifadəçi məlumatları',
+      userListings: 'İstifadəçinin elanları',
+      save: 'Yadda saxla',
+      resetPassword: 'Şifrəni sıfırla (təsadüfi)',
+      newPassword: 'Yeni şifrə',
+      expiry: 'Müddət',
+      status: 'Status',
+      noListings: 'Elan yoxdur.',
+      loadFailed: 'İstifadəçi məlumatları yüklənmədi.',
+      updated: 'İstifadəçi məlumatları yeniləndi.',
+      passwordResetFailed: 'Şifrə sıfırlanmadı.',
+      archived: 'Arxivləndi',
+      deleted: 'Silindi',
+      archiveConfirm: 'Elan arxivlənsin?',
+      deleteConfirm: 'Elan silinsin?',
+      expiryUpdated: 'Müddət yeniləndi',
+      statusUpdated: 'Status yeniləndi'
     }
   }
 };
 
+// Addons & locations are used by the legacy checkout page.
 export const addonTranslations = {
   ka: {
     1: { name: 'დაზღვევა (Insurance)', description: 'სრული დაცვის დაზღვევა' },
@@ -650,7 +728,7 @@ export const addonTranslations = {
     3: { name: 'Əlil Nəzarəti', description: 'Xüsusi idarəetmə sistemi' },
     4: { name: 'GPS Naviqasiya', description: 'Müasir GPS sistemi' },
     5: { name: 'Uşaq Oturacağı', description: 'Təhlükəsiz uşaq oturacağı' },
-    6: { name: 'Əlavə Sürücü', description: 'İkinci sürücü əlavə edin' }
+    6: { name: 'Əlavə Sürücü', description: 'İkinci sürücünü əlavə edin' }
   }
 };
 
