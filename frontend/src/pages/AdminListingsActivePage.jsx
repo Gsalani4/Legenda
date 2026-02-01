@@ -7,6 +7,7 @@ import { Badge } from '../components/ui/badge';
 import { useToast } from '../hooks/use-toast';
 import { useLanguage } from '../context/LanguageContext';
 import { getAdminListings, setAdminListingStatus } from '../services/adminListingsApi';
+import { setVipAdmin } from '../services/adminVipApi';
 
 const AdminListingsActivePage = () => {
   const { toast } = useToast();
