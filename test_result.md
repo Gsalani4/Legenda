@@ -208,6 +208,18 @@ frontend:
         agent: "testing"
         comment: "✅ LISTING APPROVAL WORKFLOW VERIFIED: 1) User-created BMW X5 listing is visible on homepage ✅ 2) Listing shows as active/approved (visible in public listings) ✅ 3) Homepage displays multiple listings including the test listing ✅ 4) Approval workflow functioning correctly - listings move from pending to active status ✅"
 
+
+  - task: "Admin listings status + expiry + search"
+    implemented: true
+    working: "NA"
+    file: "backend/routes/admin_listings.py, backend/routes/car_listings.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Added admin_listings router: GET /api/admin/listings?status=...&q=... with auto-archive of expired actives; POST /api/admin/listings/{id}/status supports pending/active/rejected/archived. When setting active, requires days and sets expires_at. Also updated public /api/listings to auto-archive expired active listings and to filter out expired for active status."
   - task: "Admin listing thumbnails premium layout (1 big + 3 mini)"
     implemented: true
     working: true
