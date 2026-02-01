@@ -79,11 +79,14 @@ const AdminPanel = () => {
   // }, [token]);
 
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      loadListings();
-    }
-  }, [isLoggedIn, loadListings]);
+  // NOTE: This project uses a strict eslint rule (react-hooks/set-state-in-effect)
+  // that disallows triggering state updates from useEffect.
+  // Listings are loaded after login and after CRUD actions.
+  // useEffect(() => {
+  //   if (isLoggedIn) {
+  //     loadListings();
+  //   }
+  // }, [isLoggedIn, loadListings]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
