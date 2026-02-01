@@ -125,6 +125,35 @@ const AdminListingsActivePage = () => {
                     <Button variant="outline" className="bg-black text-white border-gray-700 hover:bg-[#111111]" onClick={() => window.open(`/car/${l.id}`, '_blank')}>
                       View
                     </Button>
+
+                    <Select value={String(vipDays[l.id] || '')} onValueChange={(val) => setVipDays((p) => ({ ...p, [l.id]: val }))}>
+                      <SelectTrigger className="w-[120px] bg-black border-gray-700 text-white">
+                        <SelectValue placeholder="VIP days" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {ALLOWED_DAYS.map((d) => (
+                          <SelectItem key={d} value={String(d)}>{d} {t.common.days}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+
+                    <input
+                      className="h-10 w-[90px] rounded-md bg-black border border-gray-700 px-3 text-white text-sm"
+                      value={vipRank[l.id] ?? ''}
+                      onChange={(e) => setVipRank((p) => ({ ...p, [l.id]: e.target.value }))}
+                      placeholder="Rank"
+                    />
+
+                    <Button variant="outline" className="bg-black text-white border-gray-700 hover:bg-[#111111]" onClick={() => setVip(l.id)}>
+                      VIP
+                    </Button>
+
+                    {l.is_vip && (
+                      <Button variant="outline" className="bg-black text-white border-gray-700 hover:bg-[#111111]" onClick={() => clearVip(l.id)}>
+                        VIP Off
+                      </Button>
+                    )}
+
                     <Button variant="outline" className="bg-black text-white border-gray-700 hover:bg-[#111111]" onClick={() => archive(l.id)}>
                       Archive
                     </Button>
