@@ -13,6 +13,11 @@ class ContactInfo(BaseModel):
     address: str = "თამაზ გამყრელიძის 19"
     working_hours: str = "ორშ - შაბ 8.00 - 18.00"
 
+
+class BannerSettings(BaseModel):
+    desktop_image_url: str = ""
+    mobile_image_url: str = ""
+
 class SiteSettings(BaseModel):
     id: Optional[str] = Field(default=None, alias="_id")
     contact: ContactInfo = Field(default_factory=ContactInfo)
