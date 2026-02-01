@@ -136,8 +136,8 @@ async def create_listing(listing_data: CarListingCreate):
             "currency": "GEL",
             "status": "active",
             "views": 0,
-            "created_at": datetime.utcnow(),
-            "updated_at": datetime.utcnow()
+            "created_at": datetime.now(timezone.utc),
+            "updated_at": datetime.now(timezone.utc)
         }
         
         result = await db.car_listings.insert_one(listing)
