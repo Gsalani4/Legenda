@@ -832,6 +832,49 @@ class BackendTester:
             print("✅ ALL ADMIN TESTS PASSED")
             return True
 
+    def run_admin_listings_tests_only(self):
+        """Run only the admin listings tests"""
+        print("=" * 60)
+        print("LEGENDACAR Admin Listings API Tests")
+        print("=" * 60)
+        print(f"Testing backend at: {self.base_url}")
+        print()
+        
+        # Run admin listings tests in sequence
+        admin_listings_tests = [
+            self.test_admin_login,
+            self.test_admin_listings_active,
+            self.test_admin_listings_archived,
+            self.test_admin_listings_search,
+            self.test_admin_listing_status_archive,
+            self.test_admin_listing_status_activate,
+            self.test_auto_archive_expiry_check
+        ]
+        
+        passed = 0
+        total = len(admin_listings_tests)
+        
+        for test in admin_listings_tests:
+            if test():
+                passed += 1
+        
+        print("=" * 60)
+        print(f"ADMIN LISTINGS TEST SUMMARY: {passed}/{total} tests passed")
+        print("=" * 60)
+        
+        # Return success if all admin listings tests pass
+        admin_failures = []
+        for result in self.test_results:
+            if not result["success"]:
+                admin_failures.append(result["test"])
+        
+        if admin_failures:
+            print(f"❌ ADMIN LISTINGS TEST FAILURES: {', '.join(admin_failures)}")
+            return False
+        else:
+            print("✅ ALL ADMIN LISTINGS TESTS PASSED")
+            return True
+
 def main():
     """Main test execution"""
     tester = BackendTester()
