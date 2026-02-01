@@ -965,6 +965,132 @@ class BackendTester:
         except Exception as e:
             self.log_test("Listings regression (complex filters)", False, f"Request error: {str(e)}")
             return False
+
+    def test_get_settings_banner_fields(self):
+        """Test GET /api/settings - verify response includes settings.banner with desktop_image_url and mobile_image_url"""
+        try:
+            response = self.session.get(f"{self.base_url}/settings")
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("success") and "settings" in data:
+                    settings = data["settings"]
+                    if "banner" in settings:
+                        banner = settings["banner"]
+                        required_fields = ["desktop_image_url", "mobile_image_url"]
+                        missing_fields = [field for field in required_fields if field not in banner]
+                        
+                        if not missing_fields:
+                            self.log_test("GET /settings (banner fields)", True, 
+                                        f"Banner fields present: desktop_image_url='{banner['desktop_image_url']}', mobile_image_url='{banner['mobile_image_url']}'")
+                            return True
+                        else:
+                            self.log_test("GET /settings (banner fields)", False, 
+                                        f"Missing banner fields: {missing_fields}", data)
+                            return False
+                    else:
+                        self.log_test("GET /settings (banner fields)", False, "Banner section missing from settings", data)
+                        return False
+                else:
+                    self.log_test("GET /settings (banner fields)", False, "Invalid response format", data)
+                    return False
+            else:
+                self.log_test("GET /settings (banner fields)", False, f"HTTP {response.status_code}", response.text)
+                return False
+        except Exception as e:
+            self.log_test("GET /settings (banner fields)", False, f"Request error: {str(e)}")
+            return False
+
+    def test_update_settings_banner_fields(self):
+        """Test PUT /api/settings - update banner.desktop_image_url and banner.mobile_image_url"""
+        if not self.admin_token:
+            self.log_test("PUT /settings (banner update)", False, "No admin token available")
+            return False
+        
+        try:
+            headers = {"Authorization": f"Bearer {self.admin_token}", "Content-Type": "application/json"}
+            
+            # First, get current settings to preserve existing contact/social values
+            get_response = self.session.get(f"{self.base_url}/settings")
+            if get_response.status_code != 200:
+                self.log_test("PUT /settings (banner update)", False, "Could not get current settings")
+                return False
+            
+            current_settings = get_response.json()["settings"]
+            
+            # Update banner fields while keeping existing contact/social values
+            update_data = {
+                "contact": current_settings.get("contact", {
+                    "phone": "+995 500 88 30 88",
+                    "email": "info@legendacar.ge", 
+                    "address": "თამაზ გამყრელიძის 19",
+                    "working_hours": "ორშ - შაბ 8.00 - 18.00"
+                }),
+                "social_media": current_settings.get("social_media", {
+                    "facebook": "https://www.facebook.com/profile.php?id=61573020256578",
+                    "instagram": "https://www.instagram.com/legendacar/",
+                    "whatsapp": "https://wa.me/995598123456"
+                }),
+                "banner": {
+                    "desktop_image_url": "/api/uploads/test.jpg",
+                    "mobile_image_url": "/api/uploads/test2.jpg"
+                }
+            }
+            
+            response = self.session.put(f"{self.base_url}/settings", 
+                                      json=update_data, headers=headers)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("success"):
+                    self.log_test("PUT /settings (banner update)", True, 
+                                f"Banner fields updated successfully")
+                    return True
+                else:
+                    self.log_test("PUT /settings (banner update)", False, "Update failed", data)
+                    return False
+            else:
+                self.log_test("PUT /settings (banner update)", False, f"HTTP {response.status_code}", response.text)
+                return False
+        except Exception as e:
+            self.log_test("PUT /settings (banner update)", False, f"Request error: {str(e)}")
+            return False
+
+    def test_verify_settings_banner_update(self):
+        """Test GET /api/settings again - confirm banner fields were updated"""
+        try:
+            response = self.session.get(f"{self.base_url}/settings")
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("success") and "settings" in data:
+                    settings = data["settings"]
+                    if "banner" in settings:
+                        banner = settings["banner"]
+                        expected_desktop = "/api/uploads/test.jpg"
+                        expected_mobile = "/api/uploads/test2.jpg"
+                        
+                        if (banner.get("desktop_image_url") == expected_desktop and 
+                            banner.get("mobile_image_url") == expected_mobile):
+                            self.log_test("GET /settings (verify banner update)", True, 
+                                        f"Banner fields updated correctly: desktop='{banner['desktop_image_url']}', mobile='{banner['mobile_image_url']}'")
+                            return True
+                        else:
+                            self.log_test("GET /settings (verify banner update)", False, 
+                                        f"Banner fields not updated correctly. Expected desktop='{expected_desktop}', mobile='{expected_mobile}'. Got desktop='{banner.get('desktop_image_url')}', mobile='{banner.get('mobile_image_url')}'", data)
+                            return False
+                    else:
+                        self.log_test("GET /settings (verify banner update)", False, "Banner section missing from settings", data)
+                        return False
+                else:
+                    self.log_test("GET /settings (verify banner update)", False, "Invalid response format", data)
+                    return False
+            else:
+                self.log_test("GET /settings (verify banner update)", False, f"HTTP {response.status_code}", response.text)
+                return False
+        except Exception as e:
+            self.log_test("GET /settings (verify banner update)", False, f"Request error: {str(e)}")
+            return False
     
     def run_all_tests(self):
         """Run all backend API tests"""
