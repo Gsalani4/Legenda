@@ -98,7 +98,7 @@ const AdminUsersPage = () => {
           <div className="text-gray-400">-</div>
         ) : (
           <div className="grid gap-4">
-            {users.map((u) => (
+            {filteredUsers.map((u) => (
               <Card key={u.id} className="bg-[#111111] border-gray-800 text-white">
                 <CardHeader className="pb-3">
                   <CardTitle className="flex items-center justify-between">
