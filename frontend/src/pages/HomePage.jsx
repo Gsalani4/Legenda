@@ -17,16 +17,6 @@ const HomePage = () => {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all'); // 'all', 'rental', 'sale'
 
-  const [filters, setFilters] = useState({
-    min_price: '',
-    max_price: '',
-    min_year: '',
-    max_year: '',
-    min_mileage: '',
-    max_mileage: '',
-    fuel_type: '',
-    transmission: ''
-  });
   const [appliedFilters, setAppliedFilters] = useState(null);
 
   const [searchOpen, setSearchOpen] = useState(false);
