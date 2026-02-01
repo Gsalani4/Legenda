@@ -79,7 +79,7 @@ async def reject_listing(listing_id: str, username: str = Depends(verify_admin_t
         db = get_database()
         result = await db.car_listings.update_one(
             {"_id": ObjectId(listing_id)},
-            {"$set": {"status": "rejected", "rejected_at": datetime.utcnow(), "rejected_by": username, "updated_at": datetime.utcnow()}},
+            {"$set": {"status": "rejected", "rejected_at": datetime.now(timezone.utc), "rejected_by": username, "updated_at": datetime.now(timezone.utc)}},
         )
         if result.matched_count == 0:
             raise HTTPException(status_code=404, detail="Listing not found")
