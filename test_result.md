@@ -567,8 +567,7 @@ metadata:
   run_ui: true
 
 test_plan:
-  current_focus:
-    - "Top banner behavior and admin upload UI"
+  current_focus: []
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
