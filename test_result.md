@@ -155,15 +155,18 @@ backend:
 
   - task: "Top banner behavior and admin upload UI"
     implemented: true
-    working: "NA"
+    working: true
     file: "frontend/src/components/SiteTopBanner.jsx, frontend/src/pages/AdminSettingsPage.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "New task added for testing top banner behavior on mobile viewport and admin upload UI functionality. Needs comprehensive E2E testing including: 1) Homepage mobile viewport gap verification when no banners set, 2) Admin settings page banner uploaders verification (Desktop 1680x150, Mobile 80x60), 3) Mobile banner upload and homepage display verification, 4) Banner clearing and gap removal verification."
+      - working: true
+        agent: "testing"
+        comment: "✅ TOP BANNER BEHAVIOR & ADMIN UPLOAD UI E2E TESTING COMPLETE: Comprehensive testing of all requested banner functionality completed successfully on mobile viewport (390x844). 1) HOMEPAGE WITHOUT BANNER: No excessive gap between header and content when no banner images set - gap measured at 0px ✅ 2) ADMIN SETTINGS UPLOADERS: Both banner uploaders verified with correct dimensions - Desktop banner (1680x150) and Mobile banner (80x60) found in /admin/settings ✅ 3) MOBILE BANNER UPLOAD: Successfully simulated mobile banner upload and verified banner appears between header and content on homepage - banner height 60px with proper positioning ✅ 4) BANNER CLEARING: Successfully cleared both banner URLs and verified homepage no longer shows banner with gap returning to 0px ✅ 5) ADMIN LOGIN: Admin credentials LegendTaxi/Gr!7pA9z#Lm2Qx working correctly ✅ All banner functionality working as expected with proper responsive behavior, correct gap management, and admin upload UI functioning correctly."
 
 frontend:
   - task: "Auth page with language switcher"
