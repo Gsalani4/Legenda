@@ -61,7 +61,7 @@ async def approve_listing(listing_id: str, payload: dict = None, username: str =
 
         result = await db.car_listings.update_one(
             {"_id": ObjectId(listing_id)},
-            {"$set": {"status": "active", "approved_at": datetime.utcnow(), "approved_by": username, "expires_at": expires_at, "updated_at": datetime.utcnow()}},
+            {"$set": {"status": "active", "approved_at": datetime.now(timezone.utc), "approved_by": username, "expires_at": expires_at, "updated_at": datetime.now(timezone.utc)}},
         )
         if result.matched_count == 0:
             raise HTTPException(status_code=404, detail="Listing not found")
