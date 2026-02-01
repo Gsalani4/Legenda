@@ -218,7 +218,7 @@ const UserPanel = () => {
           <Card className="bg-[#111111] border-gray-800 text-white">
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle>{editingListing ? 'İlan Düzenle' : 'Yeni İlan Ekle'}</CardTitle>
+                <CardTitle>{editingListing ? t.user.editListing : t.user.newListing}</CardTitle>
                 <Button variant="ghost" onClick={resetForm} className="text-white hover:bg-[#111111]">
                   X
                 </Button>
