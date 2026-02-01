@@ -58,7 +58,23 @@ const HomePage = () => {
       const br = b.vip_rank ?? 999999;
       return ar - br;
     });
-  const normalListings = listings.filter((l) => !l.is_vip);
+
+  const cardMatchesSuggestion = (listing) => {
+    if (!appliedFilters) return true;
+    const { type, value } = appliedFilters;
+    if (type === 'fuel_type') return String(listing.fuel_type || '').toLowerCase() === String(value).toLowerCase();
+    if (type === 'transmission') return String(listing.transmission || '').toLowerCase() === String(value).toLowerCase();
+    if (type === 'year') return Number(listing.year) === Number(value);
+    if (type === 'max_price') return Number(listing.price) <= Number(value);
+    if (type === 'text') {
+      const hay = `${listing.brand || ''} ${listing.model || ''} ${listing.description || ''}`.toLowerCase();
+      return hay.includes(String(value).toLowerCase());
+    }
+    return true;
+  };
+
+  const normalListings = listings.filter((l) => !l.is_vip && cardMatchesSuggestion(l));
+  const filteredVipListings = vipListings.filter((l) => cardMatchesSuggestion(l));
 
   const getListingTypeText = (type) => {
     const texts = {
