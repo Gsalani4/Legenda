@@ -3,7 +3,7 @@ from typing import Optional, List
 from database import get_database
 from models.car_listing import CarListing, CarListingCreate, CarListingUpdate
 from bson import ObjectId
-from datetime import datetime
+from datetime import datetime, timezone
 
 router = APIRouter()
 
@@ -21,6 +21,13 @@ async def get_listings(
         if listing_type:
             query["listing_type"] = listing_type
 
+        # Auto-archive expired active listings
+        now = datetime.now(timezone.utc)
+        await db.car_listings.update_many(
+            {"status": "active", "expires_at": {"$ne": None, "$lte": now}},
+            {"$set": {"status": "archived", "archived_at": now, "archived_by": "system", "updated_at": now}},
+        )
+
         # Public listing rules: default active and not expired
         if status:
             query["status"] = status
@@ -28,7 +35,7 @@ async def get_listings(
             query["$or"] = [
                 {"expires_at": {"$exists": False}},
                 {"expires_at": None},
-                {"expires_at": {"$gt": datetime.utcnow()}},
+                {"expires_at": {"$gt": now}},
             ]
             
         listings = await db.car_listings.find(query).sort("created_at", -1).limit(limit).to_list(limit)
