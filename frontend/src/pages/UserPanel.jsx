@@ -119,7 +119,7 @@ const UserPanel = () => {
     try {
       if (editingListing) {
         await updateMyListing(token, editingListing.id, formData);
-        toast({ title: 'Başarılı!', description: 'İlan güncellendi ve yeniden onaya gönderildi.' });
+        toast({ title: t.common.success, description: t.user.listingUpdatedPending });
       } else {
         await createMyListing(token, formData);
         toast({ title: 'Başarılı!', description: 'İlan onaya gönderildi.' });
