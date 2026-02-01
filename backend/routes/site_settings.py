@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from database import get_database
-from models.site_settings import SiteSettings, SiteSettingsUpdate, ContactInfo, SocialMedia
+from models.site_settings import SiteSettings, SiteSettingsUpdate, ContactInfo, SocialMedia, BannerSettings
 from datetime import datetime
 
 router = APIRouter()
