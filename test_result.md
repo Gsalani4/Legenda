@@ -141,6 +141,18 @@ backend:
         agent: "testing"
         comment: "✅ BACKEND LISTINGS REGRESSION TESTING COMPLETE: Quick backend regression verification of /api/listings endpoint with new filters completed successfully. All 3 requested test scenarios passed without errors: 1) GET /api/listings?status=active&limit=5 returns 200 status with success=true and 5 listings ✅ 2) GET /api/listings?status=active&brand=Toyota&limit=5 returns 200 status with 1 Toyota listing correctly filtered ✅ 3) GET /api/listings?status=active&brand=Toyota&model=Camry&min_year=2000&max_year=2030&fuel_type=Benzin&limit=5 returns 200 status with 1 listing matching all complex filter criteria ✅ No 500 errors detected. All filter parameters (status, brand, model, year range, fuel_type, limit) are properly processed by the backend endpoint. Filter validation working correctly - Toyota brand filter returned 1 Toyota vehicle, complex filters returned 1 listing matching all criteria (Toyota Camry, year 2000-2030, Benzin fuel type). Backend listings endpoint regression test successful."
 
+  - task: "Site settings banner fields"
+    implemented: true
+    working: true
+    file: "backend/routes/site_settings.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ SITE SETTINGS BANNER FIELDS TESTING COMPLETE: Comprehensive testing of site settings banner functionality completed successfully. All 4 test scenarios passed without errors: 1) GET /api/settings returns proper response with settings.banner containing desktop_image_url and mobile_image_url fields (initially empty strings) ✅ 2) Admin login POST /api/admin/login with LegendTaxi/Gr!7pA9z#Lm2Qx credentials successful and token obtained ✅ 3) PUT /api/settings with Authorization header successfully updates banner.desktop_image_url to '/api/uploads/test.jpg' and banner.mobile_image_url to '/api/uploads/test2.jpg' while preserving existing contact/social values ✅ 4) GET /api/settings verification confirms banner fields were updated correctly with expected values ✅ No schema/validation issues detected. All banner field operations working correctly with proper authentication and data persistence."
+
 frontend:
   - task: "Auth page with language switcher"
     implemented: true
