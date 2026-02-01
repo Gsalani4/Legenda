@@ -20,6 +20,7 @@ const PendingListingsPage = () => {
   }, [token]);
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [daysById, setDaysById] = useState({});
 
   const load = async () => {
     if (!token) return;
@@ -95,18 +96,23 @@ const PendingListingsPage = () => {
                     </div>
 
                     <div className="flex items-center gap-2">
-                      <Select defaultValue="1" onValueChange={(val) => (l.__days = val)}>
+                      <Select
+                        value={daysById[l.id] || '1'}
+                        onValueChange={(val) => setDaysById((prev) => ({ ...prev, [l.id]: val }))}
+                      >
                         <SelectTrigger className="w-[110px] bg-black border-gray-700 text-white">
                           <SelectValue placeholder={t.admin.durationDays} />
                         </SelectTrigger>
                         <SelectContent>
                           {[1, 5, 7, 10, 15, 20, 30].map((d) => (
-                            <SelectItem key={d} value={String(d)}>{d} {t.common.days}</SelectItem>
+                            <SelectItem key={d} value={String(d)}>
+                              {d} {t.common.days}
+                            </SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
 
-                      <Button className="bg-green-600 hover:bg-green-700" onClick={() => doApprove(l.id, Number(l.__days || 1))}>
+                      <Button className="bg-green-600 hover:bg-green-700" onClick={() => doApprove(l.id, Number(daysById[l.id] || 1))}>
                         <Check className="w-4 h-4 mr-2" />
                         {t.admin.approve}
                       </Button>
