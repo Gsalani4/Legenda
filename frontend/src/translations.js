@@ -202,7 +202,7 @@ export const translations = {
       ru: 'Russian',
       tr: 'Turkish',
       az: 'Azerbaijani'
-    }
+    },
     common: {
       success: 'Success',
       error: 'Error',
