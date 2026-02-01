@@ -58,6 +58,24 @@ const AdminListingsActivePage = () => {
     load(query);
   };
 
+  const setVip = async (id) => {
+    const days = Number(vipDays[id] || 0);
+    const rank = vipRank[id] === '' || vipRank[id] == null ? null : Number(vipRank[id]);
+    if (!ALLOWED_DAYS.includes(days)) {
+      toast({ title: t.common.error, description: t.adminUserDetail.expiry, variant: 'destructive' });
+      return;
+    }
+    await setVipAdmin(token, id, { enable: true, days, rank });
+    toast({ title: t.common.success, description: 'VIP' });
+    load(query);
+  };
+
+  const clearVip = async (id) => {
+    await setVipAdmin(token, id, { enable: false });
+    toast({ title: t.common.success, description: 'VIP removed' });
+    load(query);
+  };
+
   return (
     <div className="min-h-screen bg-[#0B0B0B] text-white">
       <div className="bg-black border-b border-gray-800 py-4">
