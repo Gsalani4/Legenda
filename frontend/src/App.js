@@ -34,6 +34,8 @@ function App() {
                 <Route path="/admin/pending" element={<PendingListingsPage />} />
                 <Route path="/admin/users" element={<AdminUsersPage />} />
                 <Route path="/admin/users/:id" element={<AdminUserDetailPage />} />
+                <Route path="/admin/listings/active" element={<AdminListingsActivePage />} />
+                <Route path="/admin/listings/archived" element={<AdminListingsArchivedPage />} />
                 <Route path="/user" element={<UserPanel />} />
               </Routes>
             </main>
