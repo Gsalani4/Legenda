@@ -565,7 +565,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Site settings banner fields"
+    - "Top banner behavior and admin upload UI"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
