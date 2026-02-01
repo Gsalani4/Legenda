@@ -11,7 +11,15 @@ router = APIRouter()
 async def get_listings(
     listing_type: Optional[str] = Query(None),
     status: Optional[str] = Query("active"),
-    limit: int = Query(100, le=100)
+    limit: int = Query(100, le=100),
+    min_price: Optional[float] = Query(None),
+    max_price: Optional[float] = Query(None),
+    min_year: Optional[int] = Query(None),
+    max_year: Optional[int] = Query(None),
+    min_mileage: Optional[int] = Query(None),
+    max_mileage: Optional[int] = Query(None),
+    fuel_type: Optional[str] = Query(None),
+    transmission: Optional[str] = Query(None),
 ):
     """Get all car listings with optional filters"""
     try:
