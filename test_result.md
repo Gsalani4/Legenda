@@ -233,6 +233,9 @@ frontend:
     status_history:
       - working: false
         agent: "main"
+      - working: true
+        agent: "testing"
+        comment: "✅ VERIFIED: GET /api/admin/listings (status=active/archived) works, search q works, status updates (archived then active with days) work, and public /api/listings responds 200 with auto-archive path."
         comment: "Updated admin listing cards to show 1 larger thumbnail with +N overlay and 3 mini thumbnails below for a more premium look. Needs UI verification."
       - working: true
         agent: "testing"
