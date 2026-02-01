@@ -11,6 +11,8 @@ import AdminSettingsPage from './pages/AdminSettingsPage';
 import PendingListingsPage from './pages/PendingListingsPage';
 import AdminUsersPage from './pages/AdminUsersPage';
 import AdminUserDetailPage from './pages/AdminUserDetailPage';
+import AdminListingsActivePage from './pages/AdminListingsActivePage';
+import AdminListingsArchivedPage from './pages/AdminListingsArchivedPage';
 import UserPanel from './pages/UserPanel';
 import { Toaster } from './components/ui/sonner';
 import { LanguageProvider } from './context/LanguageContext';
