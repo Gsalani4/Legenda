@@ -111,6 +111,17 @@ export const translations = {
       pendingApproved: 'განცხადება დამტკიცდა და გამოქვეყნდა.',
       pendingRejected: 'განცხადება უარყოფილია.'
     },
+    user: {
+      panelTitle: 'მომხმარებლის პანელი',
+      myListings: 'ჩემი განცხადებები',
+      addListing: 'განცხადების დამატება',
+      newListing: 'ახალი განცხადება',
+      editListing: 'განცხადების რედაქტირება',
+      listingSubmitted: 'განცხადება გაგზავნილია დასამტკიცებლად.',
+      listingUpdatedPending: 'განცხადება განახლდა და ხელახლა გაგზავნილია დასამტკიცებლად.',
+      listingDeleted: 'განცხადება წაიშალა.',
+      listingDeleteFailed: 'წაშლა ვერ მოხერხდა.'
+    },
     adminUsers: {
       title: 'მომხმარებლები',
       phone: 'ტელეფონი',
@@ -247,6 +258,17 @@ export const translations = {
       pendingLoadError: 'Could not load pending listings.',
       pendingApproved: 'Listing approved and published.',
       pendingRejected: 'Listing rejected.'
+    },
+    user: {
+      panelTitle: 'User Panel',
+      myListings: 'My listings',
+      addListing: 'Add listing',
+      newListing: 'New listing',
+      editListing: 'Edit listing',
+      listingSubmitted: 'Listing submitted for approval.',
+      listingUpdatedPending: 'Listing updated and resubmitted for approval.',
+      listingDeleted: 'Listing deleted.',
+      listingDeleteFailed: 'Could not delete listing.'
     },
     adminUsers: {
       title: 'Users',
@@ -385,6 +407,17 @@ export const translations = {
       pendingApproved: 'Объявление одобрено и опубликовано.',
       pendingRejected: 'Объявление отклонено.'
     },
+    user: {
+      panelTitle: 'Панель пользователя',
+      myListings: 'Мои объявления',
+      addListing: 'Добавить объявление',
+      newListing: 'Новое объявление',
+      editListing: 'Редактировать',
+      listingSubmitted: 'Объявление отправлено на проверку.',
+      listingUpdatedPending: 'Объявление обновлено и отправлено на проверку.',
+      listingDeleted: 'Объявление удалено.',
+      listingDeleteFailed: 'Не удалось удалить.'
+    },
     adminUsers: {
       title: 'Пользователи',
       phone: 'Телефон',
@@ -522,6 +555,17 @@ export const translations = {
       pendingApproved: 'İlan onaylandı ve yayına alındı.',
       pendingRejected: 'İlan reddedildi.'
     },
+    user: {
+      panelTitle: 'Kullanıcı Paneli',
+      myListings: 'İlanlarım',
+      addListing: 'İlan Ekle',
+      newListing: 'Yeni İlan Ekle',
+      editListing: 'İlan Düzenle',
+      listingSubmitted: 'İlan onaya gönderildi.',
+      listingUpdatedPending: 'İlan güncellendi ve yeniden onaya gönderildi.',
+      listingDeleted: 'İlan silindi.',
+      listingDeleteFailed: 'Silinemedi.'
+    },
     adminUsers: {
       title: 'Kullanıcılar',
       phone: 'Telefon',
@@ -658,6 +702,17 @@ export const translations = {
       pendingLoadError: 'Gözləyən elanlar yüklənmədi.',
       pendingApproved: 'Elan təsdiqləndi və yayımlandı.',
       pendingRejected: 'Elan rədd edildi.'
+    },
+    user: {
+      panelTitle: 'İstifadəçi Paneli',
+      myListings: 'Elanlarım',
+      addListing: 'Elan əlavə et',
+      newListing: 'Yeni elan',
+      editListing: 'Elanı düzəlt',
+      listingSubmitted: 'Elan təsdiq üçün göndərildi.',
+      listingUpdatedPending: 'Elan yeniləndi və yenidən təsdiq üçün göndərildi.',
+      listingDeleted: 'Elan silindi.',
+      listingDeleteFailed: 'Silinmədi.'
     },
     adminUsers: {
       title: 'İstifadəçilər',
