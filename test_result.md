@@ -508,9 +508,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "VIP/Premium listings + admin rank"
-    - "SEO meta tags on car detail"
-    - "Advanced filters (price/year/km/fuel/transmission)"
+    - "VIP banner removal + modal search regression test"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
