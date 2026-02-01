@@ -155,10 +155,10 @@ async def set_listing_expiry(listing_id: str, payload: dict, username: str = Dep
             raise HTTPException(status_code=400, detail="Invalid days")
 
         db = get_database()
-        expires_at = datetime.utcnow() + timedelta(days=days)
+        expires_at = datetime.now(timezone.utc) + timedelta(days=days)
         res = await db.car_listings.update_one(
             {"_id": ObjectId(listing_id)},
-            {"$set": {"expires_at": expires_at, "updated_at": datetime.utcnow()}},
+            {"$set": {"expires_at": expires_at, "updated_at": datetime.now(timezone.utc)}},
         )
         if res.matched_count == 0:
             raise HTTPException(status_code=404, detail="Listing not found")
