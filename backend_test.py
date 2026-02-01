@@ -656,7 +656,13 @@ class BackendTester:
 def main():
     """Main test execution"""
     tester = BackendTester()
-    success = tester.run_all_tests()
+    
+    # Check if we should run only admin tests
+    if len(sys.argv) > 1 and sys.argv[1] == "admin":
+        success = tester.run_admin_user_detail_tests_only()
+    else:
+        success = tester.run_all_tests()
+    
     sys.exit(0 if success else 1)
 
 if __name__ == "__main__":
