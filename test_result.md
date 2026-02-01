@@ -416,7 +416,7 @@ frontend:
     priority: "high"
     needs_retesting: false
     status_history:
-      - working: "NA"
+      - working: true
         agent: "main"
         comment: "Added /admin/listings/active and /admin/listings/archived pages (search via button submit). AdminPanel now links to them. Added search bar to /admin/users (button submit, not live). AdminUserDetailPage now allows setting listing status (pending/rejected/archived) and to activate listing via expiry-days select which calls status=active with days."
       - working: true
