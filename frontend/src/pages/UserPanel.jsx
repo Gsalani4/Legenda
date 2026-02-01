@@ -172,7 +172,7 @@ const UserPanel = () => {
         {!showForm ? (
           <div className="space-y-6">
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-semibold">İlanlarım ({listings.length})</h2>
+              <h2 className="text-xl font-semibold">{t.user.myListings} ({listings.length})</h2>
               <Button onClick={() => setShowForm(true)} className="bg-[#FF7A00] hover:bg-[#ff8c1a]">
                 <Plus className="w-4 h-4 mr-2" />
                 İlan Ekle
