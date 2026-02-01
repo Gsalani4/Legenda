@@ -165,124 +165,107 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* Search + Filters (Modal) */}
+      {/* Filters Bar */}
       <div className="bg-black border-b border-gray-800">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between gap-3">
+        <div className="container mx-auto px-4 py-4">
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              const text = searchText.trim().toLowerCase();
-              if (!text) {
-                setSearchSuggestion(null);
-                return;
-              }
-
-              // Try to map the keyword to existing card fields.
-              const fuelValues = ['benzin', 'dizel', 'elektrik', 'hibrit'];
-              const transValues = ['otomatik', 'manuel'];
-
-              if (fuelValues.includes(text)) {
-                setSearchSuggestion({ type: 'fuel_type', value: text.charAt(0).toUpperCase() + text.slice(1) });
-                return;
-              }
-              if (transValues.includes(text)) {
-                setSearchSuggestion({ type: 'transmission', value: text.charAt(0).toUpperCase() + text.slice(1) });
-                return;
-              }
-              const num = Number(text.replace(/[^0-9]/g, ''));
-              if (!Number.isNaN(num) && num > 0) {
-                // Heuristic: 4 digits => year; otherwise treat as max price.
-                if (String(num).length === 4) {
-                  setSearchSuggestion({ type: 'year', value: num });
-                  return;
-                }
-                setSearchSuggestion({ type: 'max_price', value: num });
-                return;
-              }
-
-              // default: brand/model free search suggestion
-              setSearchSuggestion({ type: 'text', value: text });
+              const payload = {
+                brand: filterForm.brand,
+                model: filterForm.model,
+                min_year: filterForm.min_year,
+                max_year: filterForm.max_year,
+                fuel_type: filterForm.fuel_type
+              };
+              setAppliedFilters(payload);
+              loadListings(payload);
             }}
-            className="flex items-center gap-2 w-full max-w-xl"
+            className="flex flex-col lg:flex-row lg:items-end gap-3"
           >
-            <Input
-              className="bg-[#111111] border-gray-700 text-white"
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-              placeholder="Ara: marka / model / yıl / benzin / otomatik"
-            />
-            <Button type="submit" className="bg-[#FF7A00] hover:bg-[#ff8c1a]">
-              <Search className="w-4 h-4 mr-2" />
-              Ara
-            </Button>
-          </form>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 w-full">
+              <div className="space-y-2">
+                <div className="text-sm text-gray-300">Marka</div>
+                <Select value={filterForm.brand} onValueChange={(val) => setFilterForm({ ...filterForm, brand: val, model: '' })}>
+                  <SelectTrigger className="bg-[#111111] border-gray-700 text-white">
+                    <SelectValue placeholder="Marka" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {BRANDS.map((b) => (
+                      <SelectItem key={b} value={b}>{b}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
 
-          <Dialog open={searchOpen} onOpenChange={setSearchOpen}>
-            <DialogTrigger asChild>
-              <Button variant="outline" className="bg-black text-white border-gray-700 hover:bg-[#111111]">
-                <SlidersHorizontal className="w-4 h-4 mr-2" />
-                Filtre
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="bg-[#111111] border-gray-800 text-white">
-              <DialogHeader>
-                <DialogTitle>Filtreler</DialogTitle>
-              </DialogHeader>
+              <div className="space-y-2">
+                <div className="text-sm text-gray-300">Model</div>
+                <Select value={filterForm.model} onValueChange={(val) => setFilterForm({ ...filterForm, model: val })}>
+                  <SelectTrigger className="bg-[#111111] border-gray-700 text-white">
+                    <SelectValue placeholder="Model" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {(filterForm.brand ? (BRANDS_MODELS[filterForm.brand] || []) : []).map((m) => (
+                      <SelectItem key={m} value={m}>{m}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
 
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  // For now, we only use client-side suggestion selection; advanced API filters were removed from UI.
-                  setSearchOpen(false);
+              <div className="space-y-2">
+                <div className="text-sm text-gray-300">Yıl (min)</div>
+                <input
+                  className="h-10 rounded-md bg-[#111111] border border-gray-700 px-3 text-white text-sm"
+                  value={filterForm.min_year}
+                  onChange={(e) => setFilterForm({ ...filterForm, min_year: e.target.value })}
+                  placeholder="2010"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <div className="text-sm text-gray-300">Yıl (max)</div>
+                <input
+                  className="h-10 rounded-md bg-[#111111] border border-gray-700 px-3 text-white text-sm"
+                  value={filterForm.max_year}
+                  onChange={(e) => setFilterForm({ ...filterForm, max_year: e.target.value })}
+                  placeholder="2024"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <div className="text-sm text-gray-300">Yakıt</div>
+                <Select value={filterForm.fuel_type} onValueChange={(val) => setFilterForm({ ...filterForm, fuel_type: val })}>
+                  <SelectTrigger className="bg-[#111111] border-gray-700 text-white">
+                    <SelectValue placeholder="Yakıt" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Benzin">Benzin</SelectItem>
+                    <SelectItem value="Dizel">Dizel</SelectItem>
+                    <SelectItem value="Elektrik">Elektrik</SelectItem>
+                    <SelectItem value="Hibrit">Hibrit</SelectItem>
+                    <SelectItem value="Plug-in Hybrid">Plug-in Hybrid</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
+            <div className="flex gap-2">
+              <Button type="submit" className="bg-[#FF7A00] hover:bg-[#ff8c1a]">Uygula</Button>
+              <Button
+                type="button"
+                variant="outline"
+                className="bg-black text-white border-gray-700 hover:bg-[#111111]"
+                onClick={() => {
+                  const cleared = { brand: '', model: '', min_year: '', max_year: '', fuel_type: '' };
+                  setFilterForm(cleared);
+                  setAppliedFilters(null);
+                  loadListings(null);
                 }}
-                className="space-y-4"
               >
-                <div className="text-sm text-gray-300">
-                  Yazdığınız kelime bir alanla eşleşirse aşağıdan tek tıkla seçebilirsiniz.
-                </div>
-
-                {searchSuggestion ? (
-                  <div className="p-3 bg-black border border-gray-800 rounded">
-                    <div className="text-xs text-gray-400 mb-2">Önerilen seçim</div>
-                    <div className="flex items-center justify-between gap-2">
-                      <div className="text-sm">
-                        <span className="text-gray-400">{searchSuggestion.type}</span>: {String(searchSuggestion.value)}
-                      </div>
-                      <Button
-                        type="button"
-                        className="bg-[#FF7A00] hover:bg-[#ff8c1a]"
-                        onClick={() => {
-                          // Apply suggestion by filtering cards client-side.
-                          setAppliedFilters(searchSuggestion);
-                          setSearchOpen(false);
-                        }}
-                      >
-                        Seç
-                      </Button>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="text-sm text-gray-400">Henüz öneri yok.</div>
-                )}
-
-                <div className="flex justify-end gap-2">
-                  <Button
-                    type="button"
-                    variant="outline"
-                    className="bg-black text-white border-gray-700 hover:bg-[#111111]"
-                    onClick={() => {
-                      setAppliedFilters(null);
-                      setSearchSuggestion(null);
-                      setSearchText('');
-                      setSearchOpen(false);
-                    }}
-                  >
-                    Temizle
-                  </Button>
-                </div>
-              </form>
-            </DialogContent>
-          </Dialog>
+                Temizle
+              </Button>
+            </div>
+          </form>
         </div>
       </div>
 
