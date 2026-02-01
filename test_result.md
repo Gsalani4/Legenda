@@ -248,6 +248,18 @@ frontend:
         comment: "✅ LISTING APPROVAL WORKFLOW VERIFIED: 1) User-created BMW X5 listing is visible on homepage ✅ 2) Listing shows as active/approved (visible in public listings) ✅ 3) Homepage displays multiple listings including the test listing ✅ 4) Approval workflow functioning correctly - listings move from pending to active status ✅"
 
 
+
+  - task: "Site settings top banner images (desktop+mobile)"
+    implemented: true
+    working: true
+    file: "backend/models/site_settings.py, backend/routes/site_settings.py, frontend/src/components/SiteTopBanner.jsx, frontend/src/pages/AdminSettingsPage.jsx, frontend/src/context/SettingsContext.jsx, frontend/src/App.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ VERIFIED end-to-end: Admin can upload desktop+mobile banner images from /admin/settings, settings persisted in /api/settings, banner renders between header and page content, and if no images set the gap collapses to 0px. Mobile spacing issue resolved by removing global main padding and using conditional banner rendering."
   - task: "Admin listings status + expiry + search"
     implemented: true
     working: true
