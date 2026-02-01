@@ -50,13 +50,13 @@ const HomePage = () => {
     }
   }, [filter, appliedFilters]);
 
-  const vipListings = listings
-    .filter((l) => l.is_vip)
-    .sort((a, b) => {
-
   useEffect(() => {
     loadListings();
   }, [loadListings]);
+
+  const vipListings = listings
+    .filter((l) => l.is_vip)
+    .sort((a, b) => {
       const ar = a.vip_rank ?? 999999;
       const br = b.vip_rank ?? 999999;
       return ar - br;
