@@ -127,7 +127,7 @@ const UserPanel = () => {
       await load();
       resetForm();
     } catch (err) {
-      toast({ title: 'Hata', description: 'İşlem başarısız.', variant: 'destructive' });
+      toast({ title: t.common.error, description: t.common.operationFailed, variant: 'destructive' });
     }
   };
 
