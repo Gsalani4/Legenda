@@ -162,7 +162,7 @@ async def update_listing(listing_id: str, listing_data: CarListingUpdate):
         if not update_data:
             raise HTTPException(status_code=400, detail="No data to update")
         
-        update_data["updated_at"] = datetime.utcnow()
+        update_data["updated_at"] = datetime.now(timezone.utc)
         
         result = await db.car_listings.update_one(
             {"_id": ObjectId(listing_id)},
