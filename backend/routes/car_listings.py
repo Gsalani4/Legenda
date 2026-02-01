@@ -29,6 +29,34 @@ async def get_listings(
         if listing_type:
             query["listing_type"] = listing_type
 
+        # Advanced filters (optional)
+        if min_price is not None or max_price is not None:
+            query["price"] = {}
+            if min_price is not None:
+                query["price"]["$gte"] = float(min_price)
+            if max_price is not None:
+                query["price"]["$lte"] = float(max_price)
+
+        if min_year is not None or max_year is not None:
+            query["year"] = {}
+            if min_year is not None:
+                query["year"]["$gte"] = int(min_year)
+            if max_year is not None:
+                query["year"]["$lte"] = int(max_year)
+
+        if min_mileage is not None or max_mileage is not None:
+            query["mileage"] = {}
+            if min_mileage is not None:
+                query["mileage"]["$gte"] = int(min_mileage)
+            if max_mileage is not None:
+                query["mileage"]["$lte"] = int(max_mileage)
+
+        if fuel_type:
+            query["fuel_type"] = fuel_type
+
+        if transmission:
+            query["transmission"] = transmission
+
         # Auto-archive expired active listings
         now = datetime.now(timezone.utc)
         await db.car_listings.update_many(
