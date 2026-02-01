@@ -445,12 +445,9 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Listing status + expiry (admin)"
-    - "Admin active/archived listings pages"
-    - "Search on users + listings"
-      - working: true
-        agent: "testing"
-        comment: "✅ VERIFIED UI: /admin/listings/active loads, Search button filters; archive action works. /admin/listings/archived loads and Activate with days works. /admin/users loads and Search button filters. User detail page loads; (tested user had no listings so status controls not exercised in that run). No runtime errors."
+    - "VIP/Premium listings + admin rank"
+    - "SEO meta tags on car detail"
+    - "Advanced filters (price/year/km/fuel/transmission)"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
