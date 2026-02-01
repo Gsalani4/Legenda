@@ -231,6 +231,18 @@ frontend:
     priority: "medium"
     needs_retesting: false
     status_history:
+
+  - task: "VIP listings (rank + duration)"
+    implemented: true
+    working: "NA"
+    file: "backend/routes/admin_vip.py, backend/routes/admin_listings.py, backend/routes/car_listings.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Added VIP support: fields is_vip/vip_until/vip_rank stored on listings. Admin endpoint POST /api/admin/listings/{id}/vip (enable with days+rank, disable), and GET /api/admin/vip-listings ordered by vip_rank. Public and admin listing fetch auto-disable VIP when vip_until expired. Homepage now renders a gold VIP banner section and VIP badge on VIP cards. Admin active listings page includes VIP controls (days + rank + VIP on/off)."
       - working: false
         agent: "main"
       - working: true
