@@ -53,7 +53,7 @@ const AdminListingsArchivedPage = () => {
   const activate = async (id) => {
     const days = Number(activateDays[id] || 0);
     if (!ALLOWED_DAYS.includes(days)) {
-      toast({ title: t.common.error, description: 'Select days', variant: 'destructive' });
+      toast({ title: t.common.error, description: t.adminUserDetail.expiry, variant: 'destructive' });
       return;
     }
     await setAdminListingStatus(token, id, { status: 'active', days });
