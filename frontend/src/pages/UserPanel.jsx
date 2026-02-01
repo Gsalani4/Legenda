@@ -163,7 +163,7 @@ const UserPanel = () => {
           <h1 className="text-2xl font-bold">{t.user.panelTitle}</h1>
           <Button variant="ghost" onClick={logout} className="text-white hover:bg-[#111111]">
             <LogOut className="w-4 h-4 mr-2" />
-            Çıkış
+            {t.common.logout}
           </Button>
         </div>
       </div>
