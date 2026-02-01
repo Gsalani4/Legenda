@@ -135,7 +135,7 @@ const UserPanel = () => {
     if (!window.confirm('İlan silinsin mi?')) return;
     try {
       await deleteMyListing(token, id);
-      toast({ title: 'Silindi', description: 'İlan silindi.' });
+      toast({ title: t.common.success, description: t.user.listingDeleted });
       await load();
     } catch (e) {
       toast({ title: 'Hata', description: 'Silinemedi.', variant: 'destructive' });
