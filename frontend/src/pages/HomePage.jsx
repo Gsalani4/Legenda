@@ -3,6 +3,7 @@ import { Car, Fuel, Gauge, Settings, Phone, Mail, Eye } from 'lucide-react';
 import { Card, CardContent, CardFooter } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '../components/ui/dialog';
 import { useLanguage } from '../context/LanguageContext';
 import { translateFuelType, translateTransmission, translateModelText } from '../utils/translations';
 import axios from 'axios';
