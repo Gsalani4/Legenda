@@ -887,6 +887,84 @@ class BackendTester:
         except Exception as e:
             self.log_test("Advanced filters", False, f"Request error: {str(e)}")
             return False
+
+    def test_listings_regression_basic(self):
+        """Test GET /api/listings?status=active&limit=5 - basic regression test"""
+        try:
+            response = self.session.get(f"{self.base_url}/listings?status=active&limit=5")
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("success") and "listings" in data:
+                    listings = data["listings"]
+                    self.log_test("Listings regression (basic)", True, 
+                                f"Basic listings endpoint working, returned {len(listings)} listings")
+                    return True
+                else:
+                    self.log_test("Listings regression (basic)", False, "Invalid response format", data)
+                    return False
+            else:
+                self.log_test("Listings regression (basic)", False, f"HTTP {response.status_code}", response.text)
+                return False
+        except Exception as e:
+            self.log_test("Listings regression (basic)", False, f"Request error: {str(e)}")
+            return False
+
+    def test_listings_regression_brand_filter(self):
+        """Test GET /api/listings?status=active&brand=Toyota&limit=5 - brand filter regression test"""
+        try:
+            response = self.session.get(f"{self.base_url}/listings?status=active&brand=Toyota&limit=5")
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("success") and "listings" in data:
+                    listings = data["listings"]
+                    # Verify all returned listings are Toyota brand
+                    toyota_count = sum(1 for listing in listings if listing.get("brand") == "Toyota")
+                    self.log_test("Listings regression (brand filter)", True, 
+                                f"Brand filter working, returned {len(listings)} listings, {toyota_count} Toyota vehicles")
+                    return True
+                else:
+                    self.log_test("Listings regression (brand filter)", False, "Invalid response format", data)
+                    return False
+            else:
+                self.log_test("Listings regression (brand filter)", False, f"HTTP {response.status_code}", response.text)
+                return False
+        except Exception as e:
+            self.log_test("Listings regression (brand filter)", False, f"Request error: {str(e)}")
+            return False
+
+    def test_listings_regression_complex_filters(self):
+        """Test GET /api/listings?status=active&brand=Toyota&model=Camry&min_year=2000&max_year=2030&fuel_type=Benzin&limit=5 - complex filters regression test"""
+        try:
+            filter_params = "status=active&brand=Toyota&model=Camry&min_year=2000&max_year=2030&fuel_type=Benzin&limit=5"
+            response = self.session.get(f"{self.base_url}/listings?{filter_params}")
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("success") and "listings" in data:
+                    listings = data["listings"]
+                    # Verify filters are applied correctly
+                    valid_listings = 0
+                    for listing in listings:
+                        if (listing.get("brand") == "Toyota" and 
+                            listing.get("model") == "Camry" and
+                            2000 <= listing.get("year", 0) <= 2030 and
+                            listing.get("fuel_type") == "Benzin"):
+                            valid_listings += 1
+                    
+                    self.log_test("Listings regression (complex filters)", True, 
+                                f"Complex filters working, returned {len(listings)} listings, {valid_listings} matching all criteria")
+                    return True
+                else:
+                    self.log_test("Listings regression (complex filters)", False, "Invalid response format", data)
+                    return False
+            else:
+                self.log_test("Listings regression (complex filters)", False, f"HTTP {response.status_code}", response.text)
+                return False
+        except Exception as e:
+            self.log_test("Listings regression (complex filters)", False, f"Request error: {str(e)}")
+            return False
     
     def run_all_tests(self):
         """Run all backend API tests"""
