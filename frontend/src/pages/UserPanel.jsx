@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Textarea } from '../components/ui/textarea';
 import { Badge } from '../components/ui/badge';
 import { useToast } from '../hooks/use-toast';
+import { useLanguage } from '../context/LanguageContext';
 import ChunkedImageUploader from '../components/ChunkedImageUploader';
 import { getMyListings, createMyListing, updateMyListing, deleteMyListing } from '../services/userListingsApi';
 
