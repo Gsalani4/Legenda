@@ -31,11 +31,21 @@ const HomePage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter]);
 
-  const loadListings = async () => {
+  const loadListings = async (filtersOverride = null) => {
     try {
       setLoading(true);
       const paramsObj = {};
       if (filter !== 'all') paramsObj.listing_type = filter;
+
+      const f = filtersOverride || appliedFilters;
+      if (f) {
+        if (f.brand) paramsObj.brand = f.brand;
+        if (f.model) paramsObj.model = f.model;
+        if (f.min_year) paramsObj.min_year = f.min_year;
+        if (f.max_year) paramsObj.max_year = f.max_year;
+        if (f.fuel_type) paramsObj.fuel_type = f.fuel_type;
+      }
+
       const response = await axios.get(`${API_URL}/listings`, { params: paramsObj });
       setListings(response.data.listings || []);
     } catch (error) {
