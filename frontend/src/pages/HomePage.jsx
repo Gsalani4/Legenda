@@ -34,7 +34,8 @@ const HomePage = () => {
 
   useEffect(() => {
     loadListings();
-  }, [filter, appliedFilters]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filter]);
 
   const loadListings = async () => {
     try {
