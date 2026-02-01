@@ -28,7 +28,7 @@ const HomePage = () => {
 
   useEffect(() => {
     loadListings();
-  }, [filter]);
+  }, [loadListings]);
 
   const loadListings = useCallback(async (filtersOverride = null) => {
     try {
