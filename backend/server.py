@@ -48,6 +48,7 @@ api_router.include_router(admin_pending_router, tags=["admin-approvals"])
 api_router.include_router(admin_users_router, tags=["admin-users"])
 api_router.include_router(admin_user_detail_router, tags=["admin-user-detail"])
 api_router.include_router(admin_listings_router, tags=["admin-listings"])
+api_router.include_router(admin_vip_router, tags=["admin-vip"])
 
 # Include API router in main app
 app.include_router(api_router)
