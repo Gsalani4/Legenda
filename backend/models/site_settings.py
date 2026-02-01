@@ -31,3 +31,4 @@ class SiteSettings(BaseModel):
 class SiteSettingsUpdate(BaseModel):
     contact: Optional[ContactInfo] = None
     social_media: Optional[SocialMedia] = None
+    banner: Optional[BannerSettings] = None
