@@ -25,6 +25,10 @@ export const SettingsProvider = ({ children }) => {
       facebook: 'https://www.facebook.com/profile.php?id=61573020256578',
       instagram: 'https://www.instagram.com/legendacar/',
       whatsapp: 'https://wa.me/995598123456'
+    },
+    banner: {
+      desktop_image_url: '',
+      mobile_image_url: ''
     }
   });
   const [loading, setLoading] = useState(true);

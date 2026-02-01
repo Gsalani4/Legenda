@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
+import SiteTopBanner from './components/SiteTopBanner';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import CarDetailPage from './pages/CarDetailPage';
@@ -25,7 +26,8 @@ function App() {
         <div className="App min-h-screen flex flex-col">
           <BrowserRouter>
             <Header />
-            <main className="flex-1 pt-[160px] sm:pt-[116px]">
+            <SiteTopBanner />
+            <main className="flex-1">
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/car/:id" element={<CarDetailPage />} />
