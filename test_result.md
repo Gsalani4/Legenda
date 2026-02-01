@@ -468,6 +468,9 @@ frontend:
         comment: "Installed react-helmet-async, wrapped app with HelmetProvider, added Seo component, and added title/description/OG tags for /car/:id pages based on listing data (brand/model/year/description/first image)."
       - working: true
         agent: "testing"
+      - working: true
+        agent: "testing"
+        comment: "✅ BACKEND LISTINGS FILTERS REGRESSION VERIFIED: /api/listings works for status=active, brand filter, and combined brand+model+year range+fuel_type. No 500 errors."
         comment: "✅ AUTH FLOWS VERIFIED: All authentication flows confirmed working correctly. Admin login with LegendTaxi credentials successful. User registration form displays 6 required fields. Sign In form uses single identifier+password with NO Admin/User toggle, confirming UI simplification is properly implemented. Both admin and user authentication paths functioning as expected."
       - working: true
       - working: true
