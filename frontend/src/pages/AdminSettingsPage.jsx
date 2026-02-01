@@ -39,8 +39,11 @@ const AdminSettingsPage = () => {
       navigate('/admin');
       return;
     }
-    
-    setFormData(settings);
+
+    setFormData({
+      ...settings,
+      banner: settings.banner || { desktop_image_url: '', mobile_image_url: '' }
+    });
   }, [settings, navigate]);
 
   const handleSubmit = async (e) => {
