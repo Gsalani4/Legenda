@@ -258,6 +258,9 @@ frontend:
       - working: true
         agent: "testing"
         comment: "✅ VIP LISTINGS BACKEND TESTING COMPLETE: All VIP functionality tested and working perfectly. 1) Admin login with LegendTaxi/Gr!7pA9z#Lm2Qx credentials successful ✅ 2) GET /api/admin/listings?status=active&limit=5 returns proper response with 1 active listing ✅ 3) POST /api/admin/listings/{id}/vip with {enable:true, days:5, rank:1} successfully enables VIP ✅ 4) GET /api/admin/vip-listings returns VIP listings ordered by vip_rank with test listing included ✅ 5) POST /api/admin/listings/{id}/vip with {enable:false} successfully disables VIP ✅ 6) Public GET /api/listings?status=active&limit=10 confirms VIP fields (is_vip/vip_until/vip_rank) exist in response ✅ All VIP backend endpoints working correctly with proper authentication, VIP enable/disable functionality, and VIP listing retrieval ordered by rank."
+      - working: true
+        agent: "testing"
+        comment: "✅ VIP FRONTEND E2E TESTING COMPLETE: Comprehensive VIP functionality testing completed successfully. 1) Admin login with LegendTaxi/Gr!7pA9z#Lm2Qx credentials working ✅ 2) Admin VIP controls on /admin/listings/active working correctly - VIP days dropdown (5 days), rank input (1), and VIP button functional ✅ 3) VIP banner appears on homepage when VIP is enabled - shows 'VİP İlanlar' section with gold styling ✅ 4) VIP listings display with gold VİP badges and special styling (found 13 VIP badges, 3 gold elements) ✅ 5) VIP Off functionality working - clicking VIP Off removes VIP banner from homepage ✅ All VIP frontend functionality working as expected with proper admin controls and homepage display."
 
 
   - task: "Admin theme unify (remove blue/white)"
