@@ -448,6 +448,9 @@ test_plan:
     - "Listing status + expiry (admin)"
     - "Admin active/archived listings pages"
     - "Search on users + listings"
+      - working: true
+        agent: "testing"
+        comment: "✅ VERIFIED UI: /admin/listings/active loads, Search button filters; archive action works. /admin/listings/archived loads and Activate with days works. /admin/users loads and Search button filters. User detail page loads; (tested user had no listings so status controls not exercised in that run). No runtime errors."
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
