@@ -6,6 +6,7 @@ import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { useToast } from '../hooks/use-toast';
 import { useSettings } from '../context/SettingsContext';
+import SingleImageUploader from '../components/SingleImageUploader';
 import { useNavigate } from 'react-router-dom';
 
 const AdminSettingsPage = () => {
