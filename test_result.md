@@ -117,6 +117,18 @@ backend:
         agent: "testing"
         comment: "Legacy backend API suite previously passed. Not re-tested in this iteration."
 
+  - task: "Admin user detail endpoints"
+    implemented: true
+    working: true
+    file: "backend/routes/admin_user_detail.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ ADMIN USER DETAIL ENDPOINTS VERIFIED: Comprehensive testing of all admin user detail endpoints completed successfully. 1) Admin login with LegendTaxi/Gr!7pA9z#Lm2Qx credentials working ✅ 2) GET /api/admin/users returns 7 users with proper user data ✅ 3) GET /api/admin/users/{user_id} returns complete user details including required fields (id, first_name, last_name, phone) ✅ 4) PUT /api/admin/users/{user_id} successfully updates user data (tested with last_name modification and revert) ✅ 5) GET /api/admin/users/{user_id}/listings returns user listings array and allowed_expiry_days [1,5,7,10,15,20,30] ✅ 6) POST /api/admin/listings/{listing_id}/set-expiry with {days: 5} returns valid ISO datetime expires_at ✅ 7) POST /api/admin/listings/{listing_id}/archive successfully archives listing ✅ All 7 admin user detail API endpoints working correctly with proper authentication and data validation."
+
 frontend:
   - task: "Auth page with language switcher"
     implemented: true
