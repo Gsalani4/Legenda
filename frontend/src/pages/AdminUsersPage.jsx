@@ -58,7 +58,36 @@ const AdminUsersPage = () => {
               {t.adminUsers.title}
             </h1>
           </div>
-          <Badge className="bg-[#FF7A00] text-black">{users.length}</Badge>
+
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              const search = q.trim().toLowerCase();
+              if (!search) {
+                setFilteredUsers(users);
+                return;
+              }
+              setFilteredUsers(
+                users.filter((u) => {
+                  const hay = `${u.first_name || ''} ${u.last_name || ''} ${u.phone || ''} ${u.email || ''}`.toLowerCase();
+                  return hay.includes(search);
+                })
+              );
+            }}
+            className="flex items-center gap-2"
+          >
+            <input
+              className="h-10 w-[260px] rounded-md bg-[#111111] border border-gray-700 px-3 text-white text-sm"
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              placeholder="Search"
+            />
+            <Button type="submit" className="bg-[#FF7A00] hover:bg-[#ff8c1a]">
+              <Search className="w-4 h-4 mr-2" />
+              Search
+            </Button>
+            <Badge className="bg-[#FF7A00] text-black">{filteredUsers.length}</Badge>
+          </form>
         </div>
       </div>
 
