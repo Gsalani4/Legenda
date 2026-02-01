@@ -879,9 +879,14 @@ def main():
     """Main test execution"""
     tester = BackendTester()
     
-    # Check if we should run only admin tests
-    if len(sys.argv) > 1 and sys.argv[1] == "admin":
-        success = tester.run_admin_user_detail_tests_only()
+    # Check if we should run specific test suites
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "admin":
+            success = tester.run_admin_user_detail_tests_only()
+        elif sys.argv[1] == "admin_listings":
+            success = tester.run_admin_listings_tests_only()
+        else:
+            success = tester.run_all_tests()
     else:
         success = tester.run_all_tests()
     
