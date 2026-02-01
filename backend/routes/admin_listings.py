@@ -56,34 +56,34 @@ async def admin_listings(
         listings = await db.car_listings.find(query).sort("created_at", -1).limit(limit).to_list(limit)
 
         out = []
-        for l in listings:
-            expires_at = l.get("expires_at")
+        for listing in listings:
+            expires_at = listing.get("expires_at")
             if hasattr(expires_at, "isoformat"):
                 expires_at = expires_at.isoformat()
-            created_at = l.get("created_at")
+            created_at = listing.get("created_at")
             if hasattr(created_at, "isoformat"):
                 created_at = created_at.isoformat()
             out.append(
                 {
-                    "id": str(l["_id"]),
-                    "listing_type": l.get("listing_type"),
-                    "brand": l.get("brand"),
-                    "model": l.get("model"),
-                    "year": l.get("year"),
-                    "price": l.get("price"),
-                    "price_type": l.get("price_type"),
-                    "currency": l.get("currency", "GEL"),
-                    "mileage": l.get("mileage"),
-                    "fuel_type": l.get("fuel_type"),
-                    "transmission": l.get("transmission"),
-                    "images": l.get("images", []),
-                    "description": l.get("description"),
-                    "features": l.get("features", []),
-                    "status": l.get("status"),
-                    "owner_user_id": l.get("owner_user_id"),
-                    "contact_phone": l.get("contact_phone"),
-                    "contact_email": l.get("contact_email"),
-                    "views": l.get("views", 0),
+                    "id": str(listing["_id"]),
+                    "listing_type": listing.get("listing_type"),
+                    "brand": listing.get("brand"),
+                    "model": listing.get("model"),
+                    "year": listing.get("year"),
+                    "price": listing.get("price"),
+                    "price_type": listing.get("price_type"),
+                    "currency": listing.get("currency", "GEL"),
+                    "mileage": listing.get("mileage"),
+                    "fuel_type": listing.get("fuel_type"),
+                    "transmission": listing.get("transmission"),
+                    "images": listing.get("images", []),
+                    "description": listing.get("description"),
+                    "features": listing.get("features", []),
+                    "status": listing.get("status"),
+                    "owner_user_id": listing.get("owner_user_id"),
+                    "contact_phone": listing.get("contact_phone"),
+                    "contact_email": listing.get("contact_email"),
+                    "views": listing.get("views", 0),
                     "created_at": created_at,
                     "expires_at": expires_at,
                 }
