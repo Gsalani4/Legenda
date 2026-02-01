@@ -129,6 +129,18 @@ backend:
         agent: "testing"
         comment: "✅ ADMIN USER DETAIL ENDPOINTS VERIFIED: Comprehensive testing of all admin user detail endpoints completed successfully. 1) Admin login with LegendTaxi/Gr!7pA9z#Lm2Qx credentials working ✅ 2) GET /api/admin/users returns 7 users with proper user data ✅ 3) GET /api/admin/users/{user_id} returns complete user details including required fields (id, first_name, last_name, phone) ✅ 4) PUT /api/admin/users/{user_id} successfully updates user data (tested with last_name modification and revert) ✅ 5) GET /api/admin/users/{user_id}/listings returns user listings array and allowed_expiry_days [1,5,7,10,15,20,30] ✅ 6) POST /api/admin/listings/{listing_id}/set-expiry with {days: 5} returns valid ISO datetime expires_at ✅ 7) POST /api/admin/listings/{listing_id}/archive successfully archives listing ✅ All 7 admin user detail API endpoints working correctly with proper authentication and data validation."
 
+  - task: "Backend listings regression test (new filters)"
+    implemented: true
+    working: true
+    file: "backend/routes/car_listings.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ BACKEND LISTINGS REGRESSION TESTING COMPLETE: Quick backend regression verification of /api/listings endpoint with new filters completed successfully. All 3 requested test scenarios passed without errors: 1) GET /api/listings?status=active&limit=5 returns 200 status with success=true and 5 listings ✅ 2) GET /api/listings?status=active&brand=Toyota&limit=5 returns 200 status with 1 Toyota listing correctly filtered ✅ 3) GET /api/listings?status=active&brand=Toyota&model=Camry&min_year=2000&max_year=2030&fuel_type=Benzin&limit=5 returns 200 status with 1 listing matching all complex filter criteria ✅ No 500 errors detected. All filter parameters (status, brand, model, year range, fuel_type, limit) are properly processed by the backend endpoint. Filter validation working correctly - Toyota brand filter returned 1 Toyota vehicle, complex filters returned 1 listing matching all criteria (Toyota Camry, year 2000-2030, Benzin fuel type). Backend listings endpoint regression test successful."
+
 frontend:
   - task: "Auth page with language switcher"
     implemented: true
