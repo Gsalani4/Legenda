@@ -26,6 +26,10 @@ async def get_settings():
                     "instagram": "https://www.instagram.com/legendacar/",
                     "whatsapp": "https://wa.me/995598123456"
                 },
+                "banner": {
+                    "desktop_image_url": "",
+                    "mobile_image_url": ""
+                },
                 "updated_at": datetime.utcnow()
             }
             await db.site_settings.insert_one(default_settings)
