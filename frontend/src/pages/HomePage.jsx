@@ -298,10 +298,10 @@ const HomePage = () => {
 
 
       {/* VIP Listings */}
-      {vipListings.length > 0 && (
+      {filteredVipListings.length > 0 && (
         <div className="container mx-auto px-4 pt-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {vipListings.map((listing) => (
+            {filteredVipListings.map((listing) => (
               <Card key={`vip-${listing.id}`} className="overflow-hidden bg-[#111111] border-[#D4AF37]/50 hover:border-[#D4AF37] transition-all duration-300 cursor-pointer" onClick={() => window.location.href = `/car/${listing.id}`}>
                 <div className="relative h-48 bg-black">
                   {listing.images && listing.images[0] ? (
