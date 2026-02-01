@@ -191,8 +191,8 @@ const UserPanel = () => {
                           <div className="text-lg font-bold">{l.brand} {l.model}</div>
                           <div className="text-sm text-gray-400">{l.year} • {l.mileage.toLocaleString()} km</div>
                           <div className="mt-2">
-                            <Badge className={l.status === 'active' ? 'bg-green-600' : l.status === 'pending' ? 'bg-yellow-600' : 'bg-red-600'}>
-                              {l.status}
+                            <Badge className={l.status === 'active' ? 'bg-green-600' : l.status === 'pending' ? 'bg-yellow-600' : l.status === 'archived' ? 'bg-gray-600' : 'bg-red-600'}>
+                              {t.status[l.status] || l.status}
                             </Badge>
                           </div>
                         </div>
