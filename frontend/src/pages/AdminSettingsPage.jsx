@@ -197,40 +197,6 @@ const AdminSettingsPage = () => {
                     social_media: { ...formData.social_media, whatsapp: e.target.value }
                   })}
                   placeholder="https://wa.me/..."
-
-          {/* Üst Banner */}
-          <Card className="bg-[#111111] border-gray-800 text-white">
-            <CardHeader>
-              <CardTitle>Üst Banner</CardTitle>
-              <CardDescription className="text-gray-400">
-                Header ile içerik arasındaki alana görsel koyabilirsiniz. Görsel yoksa alan tamamen kapanır.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="space-y-2">
-                <Label>Masaüstü Görseli (1680x150)</Label>
-                <SingleImageUploader
-                  value={formData.banner?.desktop_image_url}
-                  onChange={(url) => setFormData({
-                    ...formData,
-                    banner: { ...formData.banner, desktop_image_url: url }
-                  })}
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label>Mobil Görsel (80x60)</Label>
-                <SingleImageUploader
-                  value={formData.banner?.mobile_image_url}
-                  onChange={(url) => setFormData({
-                    ...formData,
-                    banner: { ...formData.banner, mobile_image_url: url }
-                  })}
-                />
-              </div>
-            </CardContent>
-          </Card>
-
                   required
                 />
                 <p className="text-xs text-gray-400">Örnek: https://wa.me/995598123456</p>
