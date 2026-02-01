@@ -22,6 +22,7 @@ class SiteSettings(BaseModel):
     id: Optional[str] = Field(default=None, alias="_id")
     contact: ContactInfo = Field(default_factory=ContactInfo)
     social_media: SocialMedia = Field(default_factory=SocialMedia)
+    banner: BannerSettings = Field(default_factory=BannerSettings)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
 
     class Config:
