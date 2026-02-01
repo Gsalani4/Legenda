@@ -222,6 +222,18 @@ const AdminUserDetailPage = () => {
                   </div>
 
                   <div className="flex items-center gap-2">
+                    <Select onValueChange={(val) => setStatus(l.id, val)}>
+                      <SelectTrigger className="w-[140px] bg-black border-gray-700 text-white">
+                        <SelectValue placeholder={t.adminUserDetail.status} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="pending">{t.status.pending}</SelectItem>
+                        <SelectItem value="active">{t.status.active}</SelectItem>
+                        <SelectItem value="rejected">{t.status.rejected}</SelectItem>
+                        <SelectItem value="archived">{t.status.archived}</SelectItem>
+                      </SelectContent>
+                    </Select>
+
                     <Select onValueChange={(val) => setExpiry(l.id, val)}>
                       <SelectTrigger className="w-[120px] bg-black border-gray-700 text-white">
                         <SelectValue placeholder={t.adminUserDetail.expiry} />
