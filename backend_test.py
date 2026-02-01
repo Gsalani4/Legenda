@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-MGZAVROBANI Car Rental Backend API Tests
-Tests all backend endpoints for the Georgian car rental booking system
+LEGENDACAR Backend API Tests
+Tests all backend endpoints including admin user detail functionality
 """
 
 import requests
