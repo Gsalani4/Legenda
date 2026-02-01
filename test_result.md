@@ -404,6 +404,18 @@ frontend:
         agent: "testing"
         comment: "✅ AUTH FLOWS VERIFIED: All authentication flows confirmed working correctly. Admin login with LegendTaxi credentials successful. User registration form displays 6 required fields. Sign In form uses single identifier+password with NO Admin/User toggle, confirming UI simplification is properly implemented. Both admin and user authentication paths functioning as expected."
 
+
+  - task: "Admin active/archived listings pages + user search"
+    implemented: true
+    working: "NA"
+    file: "frontend/src/pages/AdminListingsActivePage.jsx, frontend/src/pages/AdminListingsArchivedPage.jsx, frontend/src/pages/AdminUsersPage.jsx, frontend/src/pages/AdminUserDetailPage.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Added /admin/listings/active and /admin/listings/archived pages (search via button submit). AdminPanel now links to them. Added search bar to /admin/users (button submit, not live). AdminUserDetailPage now allows setting listing status (pending/rejected/archived) and to activate listing via expiry-days select which calls status=active with days."
   - task: "Admin users page navigation to detail"
     implemented: true
     working: true
