@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Car, Fuel, Gauge, Settings, Phone, Mail, Eye, SlidersHorizontal, Search } from 'lucide-react';
+import { Car, Fuel, Gauge, Settings, Phone, Mail, Eye } from 'lucide-react';
 import { Card, CardContent, CardFooter } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
