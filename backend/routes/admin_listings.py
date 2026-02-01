@@ -93,6 +93,9 @@ async def admin_listings(
                     "views": listing.get("views", 0),
                     "created_at": created_at,
                     "expires_at": expires_at,
+                    "is_vip": bool(listing.get("is_vip", False)),
+                    "vip_until": listing.get("vip_until").isoformat() if hasattr(listing.get("vip_until"), "isoformat") else None,
+                    "vip_rank": listing.get("vip_rank"),
                 }
             )
 
