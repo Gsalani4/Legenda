@@ -126,6 +126,10 @@ async def get_listing(listing_id: str):
                 "contact_email": listing.get("contact_email", "info@legendacar.ge"),
                 "views": listing.get("views", 0) + 1,
                 "created_at": listing["created_at"].isoformat(),
+                "expires_at": listing.get("expires_at").isoformat() if hasattr(listing.get("expires_at"), "isoformat") else None,
+                "is_vip": bool(listing.get("is_vip", False)),
+                "vip_until": listing.get("vip_until").isoformat() if hasattr(listing.get("vip_until"), "isoformat") else None,
+                "vip_rank": listing.get("vip_rank"),
                 "updated_at": listing.get("updated_at", listing["created_at"]).isoformat(),
                 "owner": owner
             }
