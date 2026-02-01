@@ -217,20 +217,10 @@ const HomePage = () => {
       </div>
 
 
-      {/* VIP Banner */}
+      {/* VIP Listings */}
       {vipListings.length > 0 && (
         <div className="container mx-auto px-4 pt-8">
-          <div className="bg-[#111111] border border-[#D4AF37]/40 rounded-lg p-4 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="px-3 py-1 rounded bg-[#D4AF37] text-black font-bold tracking-wide">
-                VİP
-              </div>
-              <div className="text-white font-semibold">VİP İlanlar</div>
-            </div>
-            <div className="text-sm text-gray-300">{vipListings.length}</div>
-          </div>
-
-          <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {vipListings.map((listing) => (
               <Card key={`vip-${listing.id}`} className="overflow-hidden bg-[#111111] border-[#D4AF37]/50 hover:border-[#D4AF37] transition-all duration-300 cursor-pointer" onClick={() => window.location.href = `/car/${listing.id}`}>
                 <div className="relative h-48 bg-black">
