@@ -523,7 +523,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "VIP banner removal + modal search regression test"
+    - "Homepage filter bar (brand->model, year range, fuel_type including Plug-in Hybrid)"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
