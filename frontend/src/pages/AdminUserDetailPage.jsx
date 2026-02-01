@@ -111,6 +111,12 @@ const AdminUserDetailPage = () => {
     await load();
   };
 
+  const setStatus = async (listingId, status, days) => {
+    await setAdminListingStatus(token, listingId, { status, days });
+    toast({ title: t.common.success, description: t.adminUserDetail.statusUpdated });
+    await load();
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-[#0B0B0B] text-gray-300 flex items-center justify-center">
