@@ -94,7 +94,7 @@ const AdminUsersPage = () => {
       <div className="container mx-auto px-4 py-8">
         {loading ? (
           <div className="text-gray-400">{t.common.loading}</div>
-        ) : users.length === 0 ? (
+        ) : filteredUsers.length === 0 ? (
           <div className="text-gray-400">-</div>
         ) : (
           <div className="grid gap-4">
