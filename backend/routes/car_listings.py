@@ -12,6 +12,8 @@ async def get_listings(
     listing_type: Optional[str] = Query(None),
     status: Optional[str] = Query("active"),
     limit: int = Query(100, le=100),
+    brand: Optional[str] = Query(None),
+    model: Optional[str] = Query(None),
     min_price: Optional[float] = Query(None),
     max_price: Optional[float] = Query(None),
     min_year: Optional[int] = Query(None),
@@ -28,6 +30,12 @@ async def get_listings(
         
         if listing_type:
             query["listing_type"] = listing_type
+
+        if brand:
+            query["brand"] = brand
+
+        if model:
+            query["model"] = model
 
         # Advanced filters (optional)
         if min_price is not None or max_price is not None:
