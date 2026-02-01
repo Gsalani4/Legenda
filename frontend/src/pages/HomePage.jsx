@@ -159,6 +159,65 @@ const HomePage = () => {
         </div>
       </div>
 
+      {/* Advanced Filters */}
+      <div className="bg-black border-b border-gray-800">
+        <div className="container mx-auto px-4 py-4">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              setAppliedFilters({
+                min_price: filters.min_price,
+                max_price: filters.max_price,
+                min_year: filters.min_year,
+                max_year: filters.max_year,
+                min_mileage: filters.min_mileage,
+                max_mileage: filters.max_mileage,
+                fuel_type: filters.fuel_type,
+                transmission: filters.transmission
+              });
+            }}
+            className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3"
+          >
+            <input className="h-10 rounded-md bg-[#111111] border border-gray-700 px-3 text-white text-sm" placeholder="Min ₾" value={filters.min_price} onChange={(e) => setFilters({ ...filters, min_price: e.target.value })} />
+            <input className="h-10 rounded-md bg-[#111111] border border-gray-700 px-3 text-white text-sm" placeholder="Max ₾" value={filters.max_price} onChange={(e) => setFilters({ ...filters, max_price: e.target.value })} />
+            <input className="h-10 rounded-md bg-[#111111] border border-gray-700 px-3 text-white text-sm" placeholder="Min year" value={filters.min_year} onChange={(e) => setFilters({ ...filters, min_year: e.target.value })} />
+            <input className="h-10 rounded-md bg-[#111111] border border-gray-700 px-3 text-white text-sm" placeholder="Max year" value={filters.max_year} onChange={(e) => setFilters({ ...filters, max_year: e.target.value })} />
+            <input className="h-10 rounded-md bg-[#111111] border border-gray-700 px-3 text-white text-sm" placeholder="Min km" value={filters.min_mileage} onChange={(e) => setFilters({ ...filters, min_mileage: e.target.value })} />
+            <input className="h-10 rounded-md bg-[#111111] border border-gray-700 px-3 text-white text-sm" placeholder="Max km" value={filters.max_mileage} onChange={(e) => setFilters({ ...filters, max_mileage: e.target.value })} />
+
+            <select className="h-10 rounded-md bg-[#111111] border border-gray-700 px-3 text-white text-sm" value={filters.fuel_type} onChange={(e) => setFilters({ ...filters, fuel_type: e.target.value })}>
+              <option value="">Fuel</option>
+              <option value="Benzin">Benzin</option>
+              <option value="Dizel">Dizel</option>
+              <option value="Elektrik">Elektrik</option>
+              <option value="Hibrit">Hibrit</option>
+            </select>
+
+            <select className="h-10 rounded-md bg-[#111111] border border-gray-700 px-3 text-white text-sm" value={filters.transmission} onChange={(e) => setFilters({ ...filters, transmission: e.target.value })}>
+              <option value="">Vites</option>
+              <option value="Otomatik">Otomatik</option>
+              <option value="Manuel">Manuel</option>
+            </select>
+
+            <div className="col-span-2 md:col-span-4 lg:col-span-8 flex gap-2">
+              <Button type="submit" className="bg-[#FF7A00] hover:bg-[#ff8c1a]">Uygula</Button>
+              <Button
+                type="button"
+                variant="outline"
+                className="bg-black text-white border-gray-700 hover:bg-[#111111]"
+                onClick={() => {
+                  setFilters({ min_price: '', max_price: '', min_year: '', max_year: '', min_mileage: '', max_mileage: '', fuel_type: '', transmission: '' });
+                  setAppliedFilters(null);
+                }}
+              >
+                Temizle
+              </Button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+
       {/* VIP Banner */}
       {vipListings.length > 0 && (
         <div className="container mx-auto px-4 pt-8">
