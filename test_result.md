@@ -503,6 +503,18 @@ frontend:
         agent: "testing"
         comment: "✅ VIP BANNER REMOVAL + MODAL SEARCH REGRESSION TEST COMPLETE: Comprehensive testing of homepage after VIP banner removal and new modal search functionality completed successfully. 1) VIP BANNER HEADER STRIP REMOVAL: No large VIP header box/banner found at top of page - successfully removed as requested ✅ 2) VIP BADGES ON CARDS: Found 20 VIP badges on individual listing cards - VIP badges remain on cards as expected ✅ 3) SEARCH WITH 'BENZIN': Search input accepts 'benzin' text and 'Ara' button works correctly ✅ 4) FILTER MODAL: 'Filtre' button opens modal successfully with proper suggestion functionality ✅ 5) SUGGESTION SYSTEM: 'benzin' search generates 'fuel_type: Benzin' suggestion in modal as expected ✅ 6) 'SEÇ' BUTTON: Successfully clicks 'Seç' button to apply filter - filters cards correctly ✅ 7) 'TEMİZLE' BUTTON: Successfully clicks 'Temizle' button to clear filters - search input cleared and list reset ✅ 8) NO RUNTIME ERRORS: No JavaScript errors or console errors detected during testing ✅ All regression test requirements met successfully - VIP banner header removed while preserving VIP badges on cards, and new modal search with benzin filtering working perfectly."
 
+  - task: "Homepage filter bar (brand->model, year range, fuel_type including Plug-in Hybrid)"
+    implemented: true
+    working: true
+    file: "frontend/src/pages/HomePage.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ HOMEPAGE FILTER BAR TESTING COMPLETE: Comprehensive testing of new homepage filter bar functionality completed successfully. 1) FILTER TABS: All three filter tabs (All/Kiralık/Satılık) are visible and functional - tab switching working correctly ✅ 2) BRAND DROPDOWN: Brand dropdown working perfectly - Toyota selection tested and confirmed ✅ 3) MODEL DROPDOWN POPULATION: Model dropdown correctly populates based on brand selection - Toyota models (Corolla, Camry) available after selecting Toyota brand ✅ 4) YEAR RANGE INPUTS: Min year (2010) and max year (2024) input fields working correctly - tested with 2015-2023 range ✅ 5) FUEL TYPE DROPDOWN: Fuel type dropdown working with all options including Plug-in Hybrid option available and selectable ✅ 6) APPLY BUTTON (UYGULA): Apply button triggers filter functionality without errors - no error messages detected ✅ 7) CLEAR BUTTON (TEMIZLE): Clear button successfully resets all filter fields to default state (Marka, Model, empty years, Yakıt) ✅ 8) VIP SECTION UNAFFECTED: VIP functionality remains intact and unaffected by filter operations ✅ All requested filter bar functionality working correctly with proper brand->model dependency, year range filtering, and comprehensive fuel type options including Plug-in Hybrid."
+
 metadata:
   created_by: "main_agent"
   version: "1.0"
