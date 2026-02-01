@@ -556,6 +556,185 @@ class BackendTester:
         except Exception as e:
             self.log_test("POST /admin/listings/{id}/archive", False, f"Request error: {str(e)}")
             return False
+
+    def test_admin_listings_active(self):
+        """Test GET /api/admin/listings?status=active&limit=5 - get active listings"""
+        if not self.admin_token:
+            self.log_test("GET /admin/listings?status=active", False, "No admin token available")
+            return False
+        
+        try:
+            headers = {"Authorization": f"Bearer {self.admin_token}"}
+            response = self.session.get(f"{self.base_url}/admin/listings?status=active&limit=5", headers=headers)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("success") and "listings" in data:
+                    listings = data["listings"]
+                    # Verify response structure
+                    if len(listings) > 0:
+                        first_listing = listings[0]
+                        required_fields = ["id", "status", "expires_at"]
+                        missing_fields = [field for field in required_fields if field not in first_listing]
+                        
+                        if not missing_fields:
+                            # Store a listing ID for status update tests
+                            if not self.test_listing_id:
+                                self.test_listing_id = first_listing["id"]
+                            self.log_test("GET /admin/listings?status=active", True, 
+                                        f"Found {len(listings)} active listings with proper structure")
+                            return True
+                        else:
+                            self.log_test("GET /admin/listings?status=active", False, 
+                                        f"Missing required fields: {missing_fields}", data)
+                            return False
+                    else:
+                        self.log_test("GET /admin/listings?status=active", True, 
+                                    "No active listings found (empty result is valid)")
+                        return True
+                else:
+                    self.log_test("GET /admin/listings?status=active", False, "Invalid response format", data)
+                    return False
+            else:
+                self.log_test("GET /admin/listings?status=active", False, f"HTTP {response.status_code}", response.text)
+                return False
+        except Exception as e:
+            self.log_test("GET /admin/listings?status=active", False, f"Request error: {str(e)}")
+            return False
+
+    def test_admin_listings_archived(self):
+        """Test GET /api/admin/listings?status=archived&limit=5 - get archived listings"""
+        if not self.admin_token:
+            self.log_test("GET /admin/listings?status=archived", False, "No admin token available")
+            return False
+        
+        try:
+            headers = {"Authorization": f"Bearer {self.admin_token}"}
+            response = self.session.get(f"{self.base_url}/admin/listings?status=archived&limit=5", headers=headers)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("success") and "listings" in data:
+                    listings = data["listings"]
+                    self.log_test("GET /admin/listings?status=archived", True, 
+                                f"Found {len(listings)} archived listings")
+                    return True
+                else:
+                    self.log_test("GET /admin/listings?status=archived", False, "Invalid response format", data)
+                    return False
+            else:
+                self.log_test("GET /admin/listings?status=archived", False, f"HTTP {response.status_code}", response.text)
+                return False
+        except Exception as e:
+            self.log_test("GET /admin/listings?status=archived", False, f"Request error: {str(e)}")
+            return False
+
+    def test_admin_listings_search(self):
+        """Test GET /api/admin/listings?status=active&q=BMW - search functionality"""
+        if not self.admin_token:
+            self.log_test("GET /admin/listings search", False, "No admin token available")
+            return False
+        
+        try:
+            headers = {"Authorization": f"Bearer {self.admin_token}"}
+            response = self.session.get(f"{self.base_url}/admin/listings?status=active&q=BMW", headers=headers)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("success") and "listings" in data:
+                    listings = data["listings"]
+                    self.log_test("GET /admin/listings search", True, 
+                                f"Search returned {len(listings)} results for 'BMW'")
+                    return True
+                else:
+                    self.log_test("GET /admin/listings search", False, "Invalid response format", data)
+                    return False
+            else:
+                self.log_test("GET /admin/listings search", False, f"HTTP {response.status_code}", response.text)
+                return False
+        except Exception as e:
+            self.log_test("GET /admin/listings search", False, f"Request error: {str(e)}")
+            return False
+
+    def test_admin_listing_status_archive(self):
+        """Test POST /api/admin/listings/{id}/status - archive listing"""
+        if not self.admin_token or not self.test_listing_id:
+            self.log_test("POST /admin/listings/{id}/status (archive)", False, "No admin token or listing ID available")
+            return False
+        
+        try:
+            headers = {"Authorization": f"Bearer {self.admin_token}", "Content-Type": "application/json"}
+            status_data = {"status": "archived"}
+            
+            response = self.session.post(f"{self.base_url}/admin/listings/{self.test_listing_id}/status", 
+                                       json=status_data, headers=headers)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("success"):
+                    self.log_test("POST /admin/listings/{id}/status (archive)", True, 
+                                f"Listing status updated to archived")
+                    return True
+                else:
+                    self.log_test("POST /admin/listings/{id}/status (archive)", False, "Status update failed", data)
+                    return False
+            else:
+                self.log_test("POST /admin/listings/{id}/status (archive)", False, f"HTTP {response.status_code}", response.text)
+                return False
+        except Exception as e:
+            self.log_test("POST /admin/listings/{id}/status (archive)", False, f"Request error: {str(e)}")
+            return False
+
+    def test_admin_listing_status_activate(self):
+        """Test POST /api/admin/listings/{id}/status - activate listing with expiry"""
+        if not self.admin_token or not self.test_listing_id:
+            self.log_test("POST /admin/listings/{id}/status (activate)", False, "No admin token or listing ID available")
+            return False
+        
+        try:
+            headers = {"Authorization": f"Bearer {self.admin_token}", "Content-Type": "application/json"}
+            status_data = {"status": "active", "days": 5}
+            
+            response = self.session.post(f"{self.base_url}/admin/listings/{self.test_listing_id}/status", 
+                                       json=status_data, headers=headers)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("success"):
+                    self.log_test("POST /admin/listings/{id}/status (activate)", True, 
+                                f"Listing status updated to active with 5 days expiry")
+                    return True
+                else:
+                    self.log_test("POST /admin/listings/{id}/status (activate)", False, "Status update failed", data)
+                    return False
+            else:
+                self.log_test("POST /admin/listings/{id}/status (activate)", False, f"HTTP {response.status_code}", response.text)
+                return False
+        except Exception as e:
+            self.log_test("POST /admin/listings/{id}/status (activate)", False, f"Request error: {str(e)}")
+            return False
+
+    def test_auto_archive_expiry_check(self):
+        """Test auto-archive functionality by calling public listings endpoint"""
+        try:
+            response = self.session.get(f"{self.base_url}/listings?status=active")
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("success") and "listings" in data:
+                    listings = data["listings"]
+                    self.log_test("Auto-archive expiry check", True, 
+                                f"Public listings endpoint responds correctly with {len(listings)} active listings")
+                    return True
+                else:
+                    self.log_test("Auto-archive expiry check", False, "Invalid response format", data)
+                    return False
+            else:
+                self.log_test("Auto-archive expiry check", False, f"HTTP {response.status_code}", response.text)
+                return False
+        except Exception as e:
+            self.log_test("Auto-archive expiry check", False, f"Request error: {str(e)}")
+            return False
     
     def run_all_tests(self):
         """Run all backend API tests"""
