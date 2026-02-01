@@ -91,6 +91,45 @@ export const translations = {
       companyName: 'LEGENDACAR',
       tagline: 'Car Rental in Georgia',
       home: 'Home',
+    common: {
+      success: 'წარმატება',
+      error: 'შეცდომა',
+      loading: 'იტვირთება...',
+      back: 'უკან',
+      days: 'დღე',
+      logout: 'გამოსვლა',
+      edit: 'რედაქტირება',
+      delete: 'წაშლა',
+      operationFailed: 'ოპერაცია ვერ შესრულდა'
+    },
+    status: {
+      pending: 'დადასტურებას ელოდება',
+      active: 'აქტიური',
+      rejected: 'უარყოფილია',
+      archived: 'არქივი'
+    },
+    admin: {
+      pendingListings: 'მოლოდინში მყოფი განცხადებები',
+      noPending: 'მოლოდინში განცხადება არ არის.',
+      approve: 'დამტკიცება',
+      reject: 'უარყოფა',
+      durationDays: 'ვადა',
+      pendingLoadError: 'მოლოდინში განცხადებების ჩატვირთვა ვერ მოხერხდა.',
+      pendingApproved: 'განცხადება დამტკიცდა და გამოქვეყნდა.',
+      pendingRejected: 'განცხადება უარყოფილია.'
+    },
+    user: {
+      panelTitle: 'მომხმარებლის პანელი',
+      myListings: 'ჩემი განცხადებები',
+      addListing: 'განცხადების დამატება',
+      newListing: 'ახალი განცხადება',
+      editListing: 'განცხადების რედაქტირება',
+      listingSubmitted: 'განცხადება გაგზავნილია დასამტკიცებლად.',
+      listingUpdatedPending: 'განცხადება განახლდა და ხელახლა გაგზავნილია დასამტკიცებლად.',
+      listingDeleted: 'განცხადება წაიშალა.',
+      listingDeleteFailed: 'წაშლა ვერ მოხერხდა.'
+    },
+
       vehicles: 'Vehicles',
       services: 'Services',
       contact: 'Contact',
@@ -164,6 +203,84 @@ export const translations = {
       tr: 'Turkish',
       az: 'Azerbaijani'
     }
+    common: {
+      success: 'Success',
+      error: 'Error',
+      loading: 'Loading...',
+      back: 'Back',
+      days: 'days',
+      logout: 'Logout',
+      edit: 'Edit',
+      delete: 'Delete',
+      operationFailed: 'Operation failed'
+    },
+    status: {
+      pending: 'Pending approval',
+      active: 'Live',
+      rejected: 'Rejected',
+      archived: 'Archived'
+    },
+    admin: {
+    common: {
+      success: 'Успешно',
+      error: 'Ошибка',
+      loading: 'Загрузка...',
+      back: 'Назад',
+      days: 'дн.',
+      logout: 'Выйти',
+      edit: 'Редактировать',
+      delete: 'Удалить',
+      operationFailed: 'Операция не выполнена'
+    },
+    status: {
+      pending: 'Ожидает проверки',
+      active: 'Опубликовано',
+      rejected: 'Отклонено',
+      archived: 'Архив'
+    },
+    admin: {
+      pendingListings: 'Ожидающие объявления',
+      noPending: 'Нет ожидающих объявлений.',
+      approve: 'Одобрить',
+      reject: 'Отклонить',
+      durationDays: 'Срок',
+      pendingLoadError: 'Не удалось загрузить ожидающие объявления.',
+      pendingApproved: 'Объявление одобрено и опубликовано.',
+      pendingRejected: 'Объявление отклонено.'
+    },
+    user: {
+      panelTitle: 'Панель пользователя',
+      myListings: 'Мои объявления',
+      addListing: 'Добавить объявление',
+      newListing: 'Новое объявление',
+      editListing: 'Редактировать',
+      listingSubmitted: 'Объявление отправлено на проверку.',
+      listingUpdatedPending: 'Объявление обновлено и отправлено на проверку.',
+      listingDeleted: 'Объявление удалено.',
+      listingDeleteFailed: 'Не удалось удалить.'
+    },
+
+      pendingListings: 'Pending listings',
+      noPending: 'No pending listings.',
+      approve: 'Approve',
+      reject: 'Reject',
+      durationDays: 'Duration',
+      pendingLoadError: 'Could not load pending listings.',
+      pendingApproved: 'Listing approved and published.',
+      pendingRejected: 'Listing rejected.'
+    },
+    user: {
+      panelTitle: 'User Panel',
+      myListings: 'My listings',
+      addListing: 'Add listing',
+      newListing: 'New listing',
+      editListing: 'Edit listing',
+      listingSubmitted: 'Listing submitted for approval.',
+      listingUpdatedPending: 'Listing updated and resubmitted for approval.',
+      listingDeleted: 'Listing deleted.',
+      listingDeleteFailed: 'Could not delete listing.'
+    },
+
   },
   ru: {
     // Russian
@@ -174,6 +291,45 @@ export const translations = {
       companyName: 'LEGENDACAR',
       tagline: 'Аренда авто в Грузии',
       home: 'Главная',
+    common: {
+      success: 'Başarılı',
+      error: 'Hata',
+      loading: 'Yükleniyor...',
+      back: 'Geri',
+      days: 'gün',
+      logout: 'Çıkış',
+      edit: 'Düzenle',
+      delete: 'Sil',
+      operationFailed: 'İşlem başarısız'
+    },
+    status: {
+      pending: 'Onay bekliyor',
+      active: 'Yayında',
+      rejected: 'Reddedildi',
+      archived: 'Arşiv'
+    },
+    admin: {
+      pendingListings: 'Bekleyen İlanlar',
+      noPending: 'Bekleyen ilan yok.',
+      approve: 'Onayla',
+      reject: 'Reddet',
+      durationDays: 'Süre',
+      pendingLoadError: 'Bekleyen ilanlar alınamadı.',
+      pendingApproved: 'İlan onaylandı ve yayına alındı.',
+      pendingRejected: 'İlan reddedildi.'
+    },
+    user: {
+      panelTitle: 'Kullanıcı Paneli',
+      myListings: 'İlanlarım',
+      addListing: 'İlan Ekle',
+      newListing: 'Yeni İlan Ekle',
+      editListing: 'İlan Düzenle',
+      listingSubmitted: 'İlan onaya gönderildi.',
+      listingUpdatedPending: 'İlan güncellendi ve yeniden onaya gönderildi.',
+      listingDeleted: 'İlan silindi.',
+      listingDeleteFailed: 'Silinemedi.'
+    },
+
       vehicles: 'Автомобили',
       services: 'Услуги',
       contact: 'Контакты',
@@ -219,6 +375,45 @@ export const translations = {
       errorMessage: 'Пожалуйста, заполните все обязательные поля'
     },
     footer: {
+    common: {
+      success: 'Uğurlu',
+      error: 'Xəta',
+      loading: 'Yüklənir...',
+      back: 'Geri',
+      days: 'gün',
+      logout: 'Çıxış',
+      edit: 'Düzəliş et',
+      delete: 'Sil',
+      operationFailed: 'Əməliyyat alınmadı'
+    },
+    status: {
+      pending: 'Təsdiq gözləyir',
+      active: 'Yayında',
+      rejected: 'Rədd edildi',
+      archived: 'Arxiv'
+    },
+    admin: {
+      pendingListings: 'Gözləyən Elanlar',
+      noPending: 'Gözləyən elan yoxdur.',
+      approve: 'Təsdiqlə',
+      reject: 'Rədd et',
+      durationDays: 'Müddət',
+      pendingLoadError: 'Gözləyən elanlar yüklənmədi.',
+      pendingApproved: 'Elan təsdiqləndi və yayımlandı.',
+      pendingRejected: 'Elan rədd edildi.'
+    },
+    user: {
+      panelTitle: 'İstifadəçi Paneli',
+      myListings: 'Elanlarım',
+      addListing: 'Elan əlavə et',
+      newListing: 'Yeni elan',
+      editListing: 'Elanı düzəlt',
+      listingSubmitted: 'Elan təsdiq üçün göndərildi.',
+      listingUpdatedPending: 'Elan yeniləndi və yenidən təsdiq üçün göndərildi.',
+      listingDeleted: 'Elan silindi.',
+      listingDeleteFailed: 'Silinmədi.'
+    },
+
       language: 'Язык:',
       followUs: 'Подписывайтесь:',
       copyright: '© 2024 LEGENDACAR - Аренда авто в Грузии. Все права защищены.'
