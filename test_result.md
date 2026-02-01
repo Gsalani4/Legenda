@@ -553,7 +553,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Backend listings regression test (new filters)"
+    - "Site settings banner fields"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
