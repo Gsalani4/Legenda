@@ -308,6 +308,254 @@ class BackendTester:
         except Exception as e:
             self.log_test("GET /bookings/{id}", False, f"Request error: {str(e)}")
             return False
+
+    def test_admin_login(self):
+        """Test admin login with known credentials"""
+        try:
+            login_data = {
+                "username": "LegendTaxi",
+                "password": "Gr!7pA9z#Lm2Qx"
+            }
+            
+            response = self.session.post(f"{self.base_url}/admin/login", 
+                                       json=login_data,
+                                       headers={"Content-Type": "application/json"})
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("success") and "access_token" in data:
+                    self.admin_token = data["access_token"]
+                    self.log_test("Admin Login", True, f"Token obtained successfully")
+                    return True
+                else:
+                    self.log_test("Admin Login", False, "Invalid response format", data)
+                    return False
+            else:
+                self.log_test("Admin Login", False, f"HTTP {response.status_code}", response.text)
+                return False
+        except Exception as e:
+            self.log_test("Admin Login", False, f"Request error: {str(e)}")
+            return False
+
+    def test_get_admin_users(self):
+        """Test GET /api/admin/users - get list of users"""
+        if not self.admin_token:
+            self.log_test("GET /admin/users", False, "No admin token available")
+            return False
+        
+        try:
+            headers = {"Authorization": f"Bearer {self.admin_token}"}
+            response = self.session.get(f"{self.base_url}/admin/users", headers=headers)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("success") and "users" in data:
+                    users = data["users"]
+                    if len(users) > 0:
+                        # Store first user ID for detailed testing
+                        self.test_user_id = users[0]["id"]
+                        user_count = len(users)
+                        first_user = f"{users[0].get('first_name', '')} {users[0].get('last_name', '')}"
+                        self.log_test("GET /admin/users", True, 
+                                    f"Found {user_count} users, first: {first_user}")
+                        return True
+                    else:
+                        self.log_test("GET /admin/users", False, "No users found", data)
+                        return False
+                else:
+                    self.log_test("GET /admin/users", False, "Invalid response format", data)
+                    return False
+            else:
+                self.log_test("GET /admin/users", False, f"HTTP {response.status_code}", response.text)
+                return False
+        except Exception as e:
+            self.log_test("GET /admin/users", False, f"Request error: {str(e)}")
+            return False
+
+    def test_get_user_detail(self):
+        """Test GET /api/admin/users/{user_id} - get specific user details"""
+        if not self.admin_token or not self.test_user_id:
+            self.log_test("GET /admin/users/{id}", False, "No admin token or user ID available")
+            return False
+        
+        try:
+            headers = {"Authorization": f"Bearer {self.admin_token}"}
+            response = self.session.get(f"{self.base_url}/admin/users/{self.test_user_id}", headers=headers)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("success") and "user" in data:
+                    user = data["user"]
+                    required_fields = ["id", "first_name", "last_name", "phone"]
+                    missing_fields = [field for field in required_fields if field not in user]
+                    
+                    if not missing_fields:
+                        user_name = f"{user.get('first_name')} {user.get('last_name')}"
+                        self.log_test("GET /admin/users/{id}", True, 
+                                    f"User details retrieved: {user_name}, Phone: {user.get('phone')}")
+                        return True
+                    else:
+                        self.log_test("GET /admin/users/{id}", False, f"Missing fields: {missing_fields}", data)
+                        return False
+                else:
+                    self.log_test("GET /admin/users/{id}", False, "Invalid response format", data)
+                    return False
+            else:
+                self.log_test("GET /admin/users/{id}", False, f"HTTP {response.status_code}", response.text)
+                return False
+        except Exception as e:
+            self.log_test("GET /admin/users/{id}", False, f"Request error: {str(e)}")
+            return False
+
+    def test_update_user(self):
+        """Test PUT /api/admin/users/{user_id} - update user details"""
+        if not self.admin_token or not self.test_user_id:
+            self.log_test("PUT /admin/users/{id}", False, "No admin token or user ID available")
+            return False
+        
+        try:
+            headers = {"Authorization": f"Bearer {self.admin_token}", "Content-Type": "application/json"}
+            
+            # First, get current user data
+            get_response = self.session.get(f"{self.base_url}/admin/users/{self.test_user_id}", headers=headers)
+            if get_response.status_code != 200:
+                self.log_test("PUT /admin/users/{id}", False, "Could not get current user data")
+                return False
+            
+            current_user = get_response.json()["user"]
+            original_last_name = current_user.get("last_name", "")
+            
+            # Update with test suffix
+            update_data = {
+                "last_name": f"{original_last_name}-test"
+            }
+            
+            response = self.session.put(f"{self.base_url}/admin/users/{self.test_user_id}", 
+                                      json=update_data, headers=headers)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("success"):
+                    # Revert the change
+                    revert_data = {"last_name": original_last_name}
+                    revert_response = self.session.put(f"{self.base_url}/admin/users/{self.test_user_id}", 
+                                                     json=revert_data, headers=headers)
+                    
+                    if revert_response.status_code == 200:
+                        self.log_test("PUT /admin/users/{id}", True, 
+                                    f"User updated and reverted successfully")
+                        return True
+                    else:
+                        self.log_test("PUT /admin/users/{id}", True, 
+                                    f"User updated but revert failed (HTTP {revert_response.status_code})")
+                        return True
+                else:
+                    self.log_test("PUT /admin/users/{id}", False, "Update failed", data)
+                    return False
+            else:
+                self.log_test("PUT /admin/users/{id}", False, f"HTTP {response.status_code}", response.text)
+                return False
+        except Exception as e:
+            self.log_test("PUT /admin/users/{id}", False, f"Request error: {str(e)}")
+            return False
+
+    def test_get_user_listings(self):
+        """Test GET /api/admin/users/{user_id}/listings - get user's listings"""
+        if not self.admin_token or not self.test_user_id:
+            self.log_test("GET /admin/users/{id}/listings", False, "No admin token or user ID available")
+            return False
+        
+        try:
+            headers = {"Authorization": f"Bearer {self.admin_token}"}
+            response = self.session.get(f"{self.base_url}/admin/users/{self.test_user_id}/listings", headers=headers)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("success") and "listings" in data and "allowed_expiry_days" in data:
+                    listings = data["listings"]
+                    allowed_days = data["allowed_expiry_days"]
+                    
+                    # Store first listing ID if available
+                    if len(listings) > 0:
+                        self.test_listing_id = listings[0]["id"]
+                    
+                    self.log_test("GET /admin/users/{id}/listings", True, 
+                                f"Found {len(listings)} listings, allowed expiry days: {allowed_days}")
+                    return True
+                else:
+                    self.log_test("GET /admin/users/{id}/listings", False, "Invalid response format", data)
+                    return False
+            else:
+                self.log_test("GET /admin/users/{id}/listings", False, f"HTTP {response.status_code}", response.text)
+                return False
+        except Exception as e:
+            self.log_test("GET /admin/users/{id}/listings", False, f"Request error: {str(e)}")
+            return False
+
+    def test_set_listing_expiry(self):
+        """Test POST /api/admin/listings/{listing_id}/set-expiry - set listing expiry"""
+        if not self.admin_token or not self.test_listing_id:
+            self.log_test("POST /admin/listings/{id}/set-expiry", False, "No admin token or listing ID available")
+            return False
+        
+        try:
+            headers = {"Authorization": f"Bearer {self.admin_token}", "Content-Type": "application/json"}
+            expiry_data = {"days": 5}
+            
+            response = self.session.post(f"{self.base_url}/admin/listings/{self.test_listing_id}/set-expiry", 
+                                       json=expiry_data, headers=headers)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("success") and "expires_at" in data:
+                    expires_at = data["expires_at"]
+                    # Verify it's a valid ISO datetime string
+                    try:
+                        datetime.fromisoformat(expires_at.replace('Z', '+00:00'))
+                        self.log_test("POST /admin/listings/{id}/set-expiry", True, 
+                                    f"Expiry set successfully: {expires_at}")
+                        return True
+                    except ValueError:
+                        self.log_test("POST /admin/listings/{id}/set-expiry", False, 
+                                    f"Invalid datetime format: {expires_at}", data)
+                        return False
+                else:
+                    self.log_test("POST /admin/listings/{id}/set-expiry", False, "Invalid response format", data)
+                    return False
+            else:
+                self.log_test("POST /admin/listings/{id}/set-expiry", False, f"HTTP {response.status_code}", response.text)
+                return False
+        except Exception as e:
+            self.log_test("POST /admin/listings/{id}/set-expiry", False, f"Request error: {str(e)}")
+            return False
+
+    def test_archive_listing(self):
+        """Test POST /api/admin/listings/{listing_id}/archive - archive listing"""
+        if not self.admin_token or not self.test_listing_id:
+            self.log_test("POST /admin/listings/{id}/archive", False, "No admin token or listing ID available")
+            return False
+        
+        try:
+            headers = {"Authorization": f"Bearer {self.admin_token}"}
+            
+            response = self.session.post(f"{self.base_url}/admin/listings/{self.test_listing_id}/archive", 
+                                       headers=headers)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("success"):
+                    self.log_test("POST /admin/listings/{id}/archive", True, 
+                                f"Listing archived successfully")
+                    return True
+                else:
+                    self.log_test("POST /admin/listings/{id}/archive", False, "Archive failed", data)
+                    return False
+            else:
+                self.log_test("POST /admin/listings/{id}/archive", False, f"HTTP {response.status_code}", response.text)
+                return False
+        except Exception as e:
+            self.log_test("POST /admin/listings/{id}/archive", False, f"Request error: {str(e)}")
+            return False
     
     def run_all_tests(self):
         """Run all backend API tests"""
