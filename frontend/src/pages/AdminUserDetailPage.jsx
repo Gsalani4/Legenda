@@ -91,7 +91,6 @@ const AdminUserDetailPage = () => {
   };
 
   const doArchive = async (listingId) => {
-    // eslint-disable-next-line no-alert
     if (!window.confirm(t.adminUserDetail.archiveConfirm)) return;
     await archiveListingAdmin(token, listingId);
     toast({ title: t.common.success, description: t.adminUserDetail.archived });
@@ -99,7 +98,6 @@ const AdminUserDetailPage = () => {
   };
 
   const doDelete = async (listingId) => {
-    // eslint-disable-next-line no-alert
     if (!window.confirm(t.adminUserDetail.deleteConfirm)) return;
     await deleteListingAdmin(token, listingId);
     toast({ title: t.common.success, description: t.adminUserDetail.deleted });
