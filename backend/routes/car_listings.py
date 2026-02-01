@@ -38,6 +38,12 @@ async def get_listings(
                 {"expires_at": {"$gt": now}},
             ]
             
+        # Auto-disable VIP if expired
+        await db.car_listings.update_many(
+            {"is_vip": True, "vip_until": {"$ne": None, "$lte": now}},
+            {"$set": {"is_vip": False, "vip_rank": None, "vip_updated_at": now}},
+        )
+
         listings = await db.car_listings.find(query).sort("created_at", -1).limit(limit).to_list(limit)
         
         listing_list = []
