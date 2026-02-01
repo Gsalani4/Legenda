@@ -164,61 +164,124 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* Advanced Filters */}
+      {/* Search + Filters (Modal) */}
       <div className="bg-black border-b border-gray-800">
-        <div className="container mx-auto px-4 py-4">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between gap-3">
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              setAppliedFilters({
-                min_price: filters.min_price,
-                max_price: filters.max_price,
-                min_year: filters.min_year,
-                max_year: filters.max_year,
-                min_mileage: filters.min_mileage,
-                max_mileage: filters.max_mileage,
-                fuel_type: filters.fuel_type,
-                transmission: filters.transmission
-              });
+              const text = searchText.trim().toLowerCase();
+              if (!text) {
+                setSearchSuggestion(null);
+                return;
+              }
+
+              // Try to map the keyword to existing card fields.
+              const fuelValues = ['benzin', 'dizel', 'elektrik', 'hibrit'];
+              const transValues = ['otomatik', 'manuel'];
+
+              if (fuelValues.includes(text)) {
+                setSearchSuggestion({ type: 'fuel_type', value: text.charAt(0).toUpperCase() + text.slice(1) });
+                return;
+              }
+              if (transValues.includes(text)) {
+                setSearchSuggestion({ type: 'transmission', value: text.charAt(0).toUpperCase() + text.slice(1) });
+                return;
+              }
+              const num = Number(text.replace(/[^0-9]/g, ''));
+              if (!Number.isNaN(num) && num > 0) {
+                // Heuristic: 4 digits => year; otherwise treat as max price.
+                if (String(num).length === 4) {
+                  setSearchSuggestion({ type: 'year', value: num });
+                  return;
+                }
+                setSearchSuggestion({ type: 'max_price', value: num });
+                return;
+              }
+
+              // default: brand/model free search suggestion
+              setSearchSuggestion({ type: 'text', value: text });
             }}
-            className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3"
+            className="flex items-center gap-2 w-full max-w-xl"
           >
-            <input className="h-10 rounded-md bg-[#111111] border border-gray-700 px-3 text-white text-sm" placeholder="Min ₾" value={filters.min_price} onChange={(e) => setFilters({ ...filters, min_price: e.target.value })} />
-            <input className="h-10 rounded-md bg-[#111111] border border-gray-700 px-3 text-white text-sm" placeholder="Max ₾" value={filters.max_price} onChange={(e) => setFilters({ ...filters, max_price: e.target.value })} />
-            <input className="h-10 rounded-md bg-[#111111] border border-gray-700 px-3 text-white text-sm" placeholder="Min year" value={filters.min_year} onChange={(e) => setFilters({ ...filters, min_year: e.target.value })} />
-            <input className="h-10 rounded-md bg-[#111111] border border-gray-700 px-3 text-white text-sm" placeholder="Max year" value={filters.max_year} onChange={(e) => setFilters({ ...filters, max_year: e.target.value })} />
-            <input className="h-10 rounded-md bg-[#111111] border border-gray-700 px-3 text-white text-sm" placeholder="Min km" value={filters.min_mileage} onChange={(e) => setFilters({ ...filters, min_mileage: e.target.value })} />
-            <input className="h-10 rounded-md bg-[#111111] border border-gray-700 px-3 text-white text-sm" placeholder="Max km" value={filters.max_mileage} onChange={(e) => setFilters({ ...filters, max_mileage: e.target.value })} />
-
-            <select className="h-10 rounded-md bg-[#111111] border border-gray-700 px-3 text-white text-sm" value={filters.fuel_type} onChange={(e) => setFilters({ ...filters, fuel_type: e.target.value })}>
-              <option value="">Fuel</option>
-              <option value="Benzin">Benzin</option>
-              <option value="Dizel">Dizel</option>
-              <option value="Elektrik">Elektrik</option>
-              <option value="Hibrit">Hibrit</option>
-            </select>
-
-            <select className="h-10 rounded-md bg-[#111111] border border-gray-700 px-3 text-white text-sm" value={filters.transmission} onChange={(e) => setFilters({ ...filters, transmission: e.target.value })}>
-              <option value="">Vites</option>
-              <option value="Otomatik">Otomatik</option>
-              <option value="Manuel">Manuel</option>
-            </select>
-
-            <div className="col-span-2 md:col-span-4 lg:col-span-8 flex gap-2">
-              <Button type="submit" className="bg-[#FF7A00] hover:bg-[#ff8c1a]">Uygula</Button>
-              <Button
-                type="button"
-                variant="outline"
-                className="bg-black text-white border-gray-700 hover:bg-[#111111]"
-                onClick={() => {
-                  setFilters({ min_price: '', max_price: '', min_year: '', max_year: '', min_mileage: '', max_mileage: '', fuel_type: '', transmission: '' });
-                  setAppliedFilters(null);
-                }}
-              >
-                Temizle
-              </Button>
-            </div>
+            <Input
+              className="bg-[#111111] border-gray-700 text-white"
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+              placeholder="Ara: marka / model / yıl / benzin / otomatik"
+            />
+            <Button type="submit" className="bg-[#FF7A00] hover:bg-[#ff8c1a]">
+              <Search className="w-4 h-4 mr-2" />
+              Ara
+            </Button>
           </form>
+
+          <Dialog open={searchOpen} onOpenChange={setSearchOpen}>
+            <DialogTrigger asChild>
+              <Button variant="outline" className="bg-black text-white border-gray-700 hover:bg-[#111111]">
+                <SlidersHorizontal className="w-4 h-4 mr-2" />
+                Filtre
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="bg-[#111111] border-gray-800 text-white">
+              <DialogHeader>
+                <DialogTitle>Filtreler</DialogTitle>
+              </DialogHeader>
+
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  // For now, we only use client-side suggestion selection; advanced API filters were removed from UI.
+                  setSearchOpen(false);
+                }}
+                className="space-y-4"
+              >
+                <div className="text-sm text-gray-300">
+                  Yazdığınız kelime bir alanla eşleşirse aşağıdan tek tıkla seçebilirsiniz.
+                </div>
+
+                {searchSuggestion ? (
+                  <div className="p-3 bg-black border border-gray-800 rounded">
+                    <div className="text-xs text-gray-400 mb-2">Önerilen seçim</div>
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="text-sm">
+                        <span className="text-gray-400">{searchSuggestion.type}</span>: {String(searchSuggestion.value)}
+                      </div>
+                      <Button
+                        type="button"
+                        className="bg-[#FF7A00] hover:bg-[#ff8c1a]"
+                        onClick={() => {
+                          // Apply suggestion by filtering cards client-side.
+                          setAppliedFilters(searchSuggestion);
+                          setSearchOpen(false);
+                        }}
+                      >
+                        Seç
+                      </Button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="text-sm text-gray-400">Henüz öneri yok.</div>
+                )}
+
+                <div className="flex justify-end gap-2">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    className="bg-black text-white border-gray-700 hover:bg-[#111111]"
+                    onClick={() => {
+                      setAppliedFilters(null);
+                      setSearchSuggestion(null);
+                      setSearchText('');
+                      setSearchOpen(false);
+                    }}
+                  >
+                    Temizle
+                  </Button>
+                </div>
+              </form>
+            </DialogContent>
+          </Dialog>
         </div>
       </div>
 
