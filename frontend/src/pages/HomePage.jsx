@@ -140,9 +140,90 @@ const HomePage = () => {
         </div>
       </div>
 
+      {/* VIP Banner */}
+      {vipListings.length > 0 && (
+        <div className="container mx-auto px-4 pt-8">
+          <div className="bg-[#111111] border border-[#D4AF37]/40 rounded-lg p-4 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="px-3 py-1 rounded bg-[#D4AF37] text-black font-bold tracking-wide">
+                VİP
+              </div>
+              <div className="text-white font-semibold">VİP İlanlar</div>
+            </div>
+            <div className="text-sm text-gray-300">{vipListings.length}</div>
+          </div>
+
+          <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {vipListings.map((listing) => (
+              <Card key={`vip-${listing.id}`} className="overflow-hidden bg-[#111111] border-[#D4AF37]/50 hover:border-[#D4AF37] transition-all duration-300 cursor-pointer" onClick={() => window.location.href = `/car/${listing.id}`}>
+                <div className="relative h-48 bg-black">
+                  {listing.images && listing.images[0] ? (
+                    <img
+                      src={listing.images[0]}
+                      alt={`${listing.brand} ${listing.model}`}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <Car className="w-16 h-16 text-gray-400" />
+                    </div>
+                  )}
+
+                  <div className="absolute top-3 left-3 flex gap-2">
+                    <Badge className="bg-[#FF7A00] text-white">
+                      {getListingTypeText(listing.listing_type)}
+                    </Badge>
+                    <Badge className="bg-[#D4AF37] text-black font-bold">VİP</Badge>
+                  </div>
+
+                  <div className="absolute bottom-3 right-3 bg-black/70 text-white px-2 py-1 rounded flex items-center gap-1 text-sm">
+                    <Eye className="w-4 h-4 text-[#FF7A00]" />
+                    {listing.views}
+                  </div>
+                </div>
+
+                <CardContent className="p-4">
+                  <h3 className="text-xl font-bold text-white mb-2">
+                    {listing.brand} {listing.model}
+                  </h3>
+                  <p className="text-gray-400 text-sm mb-3">{listing.year} {translateModelText(currentLanguage)}</p>
+                  <div className="grid grid-cols-2 gap-2 mb-4">
+                    <div className="flex items-center gap-2 text-sm text-gray-300">
+                      <Gauge className="w-4 h-4 text-[#FF7A00]" />
+                      {listing.mileage.toLocaleString()} km
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-gray-300">
+                      <Fuel className="w-4 h-4 text-[#FF7A00]" />
+                      {translateFuelType(listing.fuel_type, currentLanguage)}
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-gray-300">
+                      <Settings className="w-4 h-4 text-[#FF7A00]" />
+                      {translateTransmission(listing.transmission, currentLanguage)}
+                    </div>
+                  </div>
+                  <div className="border-t border-gray-800 pt-3">
+                    <p className="text-2xl font-bold text-white">{getPriceText(listing)}</p>
+                  </div>
+                </CardContent>
+
+                <CardFooter className="bg-black border-t border-gray-800 p-4">
+                  <Button className="w-full bg-[#D4AF37] hover:bg-[#e2c14e] text-black font-semibold">
+                    {currentLanguage === 'ka' && 'დეტალები'}
+                    {currentLanguage === 'en' && 'View Details'}
+                    {currentLanguage === 'ru' && 'Подробнее'}
+                    {currentLanguage === 'tr' && 'Detaylar'}
+                    {currentLanguage === 'az' && 'Ətraflı'}
+                  </Button>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Listings Grid */}
       <div className="container mx-auto px-4 py-8">
-        {listings.length === 0 ? (
+        {normalListings.length === 0 ? (
           <div className="text-center py-16">
             <Car className="w-16 h-16 text-gray-300 mx-auto mb-4" />
             <p className="text-gray-500 text-lg">
