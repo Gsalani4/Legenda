@@ -17,6 +17,7 @@ from routes.admin_pending import router as admin_pending_router
 from routes.admin_users import router as admin_users_router
 from routes.admin_user_detail import router as admin_user_detail_router
 from routes.admin_listings import router as admin_listings_router
+from routes.admin_vip import router as admin_vip_router
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
