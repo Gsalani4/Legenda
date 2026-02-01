@@ -385,10 +385,11 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Admin users page functionality"
-    - "Car detail page owner label"
-    - "Auth flows verification"
-  stuck_tasks: []
+    - "Admin user detail page end-to-end"
+    - "Translations stability"
+    - "Admin users page navigation to detail"
+  stuck_tasks:
+    - "Translations stability"
   test_all: false
   test_priority: "high_first"
 
