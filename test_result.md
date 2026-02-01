@@ -412,9 +412,10 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Translations stability"
-  stuck_tasks:
-    - "Translations stability"
+    - "Listing status + expiry (admin)"
+    - "Admin active/archived listings pages"
+    - "Search on users + listings"
+  stuck_tasks: []
   test_all: false
   test_priority: "high_first"
 
