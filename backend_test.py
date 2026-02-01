@@ -560,7 +560,7 @@ class BackendTester:
     def run_all_tests(self):
         """Run all backend API tests"""
         print("=" * 60)
-        print("MGZAVROBANI Car Rental Backend API Tests")
+        print("LEGENDACAR Backend API Tests")
         print("=" * 60)
         print(f"Testing backend at: {self.base_url}")
         print()
@@ -575,7 +575,15 @@ class BackendTester:
             self.test_get_locations_georgian,
             self.test_get_locations_english,
             self.test_create_booking,
-            self.test_get_booking
+            self.test_get_booking,
+            # Admin user detail tests
+            self.test_admin_login,
+            self.test_get_admin_users,
+            self.test_get_user_detail,
+            self.test_update_user,
+            self.test_get_user_listings,
+            self.test_set_listing_expiry,
+            self.test_archive_listing
         ]
         
         passed = 0
@@ -600,6 +608,49 @@ class BackendTester:
             return False
         else:
             print("✅ ALL TESTS PASSED")
+            return True
+
+    def run_admin_user_detail_tests_only(self):
+        """Run only the admin user detail tests"""
+        print("=" * 60)
+        print("LEGENDACAR Admin User Detail API Tests")
+        print("=" * 60)
+        print(f"Testing backend at: {self.base_url}")
+        print()
+        
+        # Run admin tests in sequence
+        admin_tests = [
+            self.test_admin_login,
+            self.test_get_admin_users,
+            self.test_get_user_detail,
+            self.test_update_user,
+            self.test_get_user_listings,
+            self.test_set_listing_expiry,
+            self.test_archive_listing
+        ]
+        
+        passed = 0
+        total = len(admin_tests)
+        
+        for test in admin_tests:
+            if test():
+                passed += 1
+        
+        print("=" * 60)
+        print(f"ADMIN TEST SUMMARY: {passed}/{total} tests passed")
+        print("=" * 60)
+        
+        # Return success if all admin tests pass
+        admin_failures = []
+        for result in self.test_results:
+            if not result["success"] and any(keyword in result["test"] for keyword in ["Admin", "admin", "PUT", "GET /admin"]):
+                admin_failures.append(result["test"])
+        
+        if admin_failures:
+            print(f"❌ ADMIN TEST FAILURES: {', '.join(admin_failures)}")
+            return False
+        else:
+            print("✅ ALL ADMIN TESTS PASSED")
             return True
 
 def main():
