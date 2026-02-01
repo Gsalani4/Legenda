@@ -180,7 +180,7 @@ const UserPanel = () => {
             </div>
 
             {loading ? (
-              <div className="text-gray-400">Yükleniyor...</div>
+              <div className="text-gray-400">{t.common.loading}</div>
             ) : (
               <div className="grid gap-4">
                 {listings.map((l) => (
