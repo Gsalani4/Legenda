@@ -42,11 +42,6 @@ const HomePage = () => {
       setLoading(true);
       const paramsObj = {};
       if (filter !== 'all') paramsObj.listing_type = filter;
-      if (appliedFilters) {
-        Object.entries(appliedFilters).forEach(([k, v]) => {
-          if (v !== '' && v != null) paramsObj[k] = v;
-        });
-      }
       const response = await axios.get(`${API_URL}/listings`, { params: paramsObj });
       setListings(response.data.listings || []);
     } catch (error) {
