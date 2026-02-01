@@ -299,6 +299,12 @@ const AdminPanel = () => {
                 <Button onClick={() => window.location.href = '/admin/pending'} variant="outline" className="bg-black text-white border-gray-700 hover:bg-[#111111]">
                   Bekleyen İlanlar
                 </Button>
+                <Button onClick={() => window.location.href = '/admin/listings/active'} variant="outline" className="bg-black text-white border-gray-700 hover:bg-[#111111]">
+                  Aktif İlanlar
+                </Button>
+                <Button onClick={() => window.location.href = '/admin/listings/archived'} variant="outline" className="bg-black text-white border-gray-700 hover:bg-[#111111]">
+                  Arşiv İlanlar
+                </Button>
                 <Button onClick={() => window.location.href = '/admin/users'} variant="outline" className="bg-black text-white border-gray-700 hover:bg-[#111111]">
                   Kullanıcılar
                 </Button>
