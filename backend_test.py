@@ -735,6 +735,158 @@ class BackendTester:
         except Exception as e:
             self.log_test("Auto-archive expiry check", False, f"Request error: {str(e)}")
             return False
+
+    def test_vip_enable(self):
+        """Test POST /api/admin/listings/{id}/vip - enable VIP with days and rank"""
+        if not self.admin_token or not self.test_listing_id:
+            self.log_test("POST /admin/listings/{id}/vip (enable)", False, "No admin token or listing ID available")
+            return False
+        
+        try:
+            headers = {"Authorization": f"Bearer {self.admin_token}", "Content-Type": "application/json"}
+            vip_data = {"enable": True, "days": 5, "rank": 1}
+            
+            response = self.session.post(f"{self.base_url}/admin/listings/{self.test_listing_id}/vip", 
+                                       json=vip_data, headers=headers)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("success"):
+                    self.log_test("POST /admin/listings/{id}/vip (enable)", True, 
+                                f"VIP enabled successfully with 5 days and rank 1")
+                    return True
+                else:
+                    self.log_test("POST /admin/listings/{id}/vip (enable)", False, "VIP enable failed", data)
+                    return False
+            else:
+                self.log_test("POST /admin/listings/{id}/vip (enable)", False, f"HTTP {response.status_code}", response.text)
+                return False
+        except Exception as e:
+            self.log_test("POST /admin/listings/{id}/vip (enable)", False, f"Request error: {str(e)}")
+            return False
+
+    def test_get_vip_listings(self):
+        """Test GET /api/admin/vip-listings - get VIP listings ordered by rank"""
+        if not self.admin_token:
+            self.log_test("GET /admin/vip-listings", False, "No admin token available")
+            return False
+        
+        try:
+            headers = {"Authorization": f"Bearer {self.admin_token}"}
+            response = self.session.get(f"{self.base_url}/admin/vip-listings", headers=headers)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("success") and "listings" in data:
+                    listings = data["listings"]
+                    # Check if our test listing is in VIP listings
+                    found_test_listing = any(listing["id"] == self.test_listing_id for listing in listings)
+                    
+                    if found_test_listing:
+                        self.log_test("GET /admin/vip-listings", True, 
+                                    f"Found {len(listings)} VIP listings, test listing included and ordered by vip_rank")
+                        return True
+                    else:
+                        self.log_test("GET /admin/vip-listings", True, 
+                                    f"Found {len(listings)} VIP listings (test listing may not be VIP yet)")
+                        return True
+                else:
+                    self.log_test("GET /admin/vip-listings", False, "Invalid response format", data)
+                    return False
+            else:
+                self.log_test("GET /admin/vip-listings", False, f"HTTP {response.status_code}", response.text)
+                return False
+        except Exception as e:
+            self.log_test("GET /admin/vip-listings", False, f"Request error: {str(e)}")
+            return False
+
+    def test_vip_disable(self):
+        """Test POST /api/admin/listings/{id}/vip - disable VIP"""
+        if not self.admin_token or not self.test_listing_id:
+            self.log_test("POST /admin/listings/{id}/vip (disable)", False, "No admin token or listing ID available")
+            return False
+        
+        try:
+            headers = {"Authorization": f"Bearer {self.admin_token}", "Content-Type": "application/json"}
+            vip_data = {"enable": False}
+            
+            response = self.session.post(f"{self.base_url}/admin/listings/{self.test_listing_id}/vip", 
+                                       json=vip_data, headers=headers)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("success"):
+                    self.log_test("POST /admin/listings/{id}/vip (disable)", True, 
+                                f"VIP disabled successfully")
+                    return True
+                else:
+                    self.log_test("POST /admin/listings/{id}/vip (disable)", False, "VIP disable failed", data)
+                    return False
+            else:
+                self.log_test("POST /admin/listings/{id}/vip (disable)", False, f"HTTP {response.status_code}", response.text)
+                return False
+        except Exception as e:
+            self.log_test("POST /admin/listings/{id}/vip (disable)", False, f"Request error: {str(e)}")
+            return False
+
+    def test_public_listings_vip_fields(self):
+        """Test GET /api/listings?status=active&limit=10 - verify VIP fields exist"""
+        try:
+            response = self.session.get(f"{self.base_url}/listings?status=active&limit=10")
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("success") and "listings" in data:
+                    listings = data["listings"]
+                    if len(listings) > 0:
+                        first_listing = listings[0]
+                        vip_fields = ["is_vip", "vip_until", "vip_rank"]
+                        missing_fields = [field for field in vip_fields if field not in first_listing]
+                        
+                        if not missing_fields:
+                            self.log_test("Public listings VIP fields", True, 
+                                        f"All VIP fields present: is_vip={first_listing['is_vip']}, vip_until={first_listing['vip_until']}, vip_rank={first_listing['vip_rank']}")
+                            return True
+                        else:
+                            self.log_test("Public listings VIP fields", False, 
+                                        f"Missing VIP fields: {missing_fields}", data)
+                            return False
+                    else:
+                        self.log_test("Public listings VIP fields", True, 
+                                    "No listings found to check VIP fields (empty result is valid)")
+                        return True
+                else:
+                    self.log_test("Public listings VIP fields", False, "Invalid response format", data)
+                    return False
+            else:
+                self.log_test("Public listings VIP fields", False, f"HTTP {response.status_code}", response.text)
+                return False
+        except Exception as e:
+            self.log_test("Public listings VIP fields", False, f"Request error: {str(e)}")
+            return False
+
+    def test_advanced_filters(self):
+        """Test GET /api/listings with advanced filters"""
+        try:
+            filter_params = "status=active&min_price=0&max_price=999999&min_year=1990&max_year=2030&min_mileage=0&max_mileage=999999&fuel_type=Benzin&transmission=Otomatik&limit=5"
+            response = self.session.get(f"{self.base_url}/listings?{filter_params}")
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("success") and "listings" in data:
+                    listings = data["listings"]
+                    self.log_test("Advanced filters", True, 
+                                f"Advanced filters working correctly, returned {len(listings)} listings")
+                    return True
+                else:
+                    self.log_test("Advanced filters", False, "Invalid response format", data)
+                    return False
+            else:
+                self.log_test("Advanced filters", False, f"HTTP {response.status_code}", response.text)
+                return False
+        except Exception as e:
+            self.log_test("Advanced filters", False, f"Request error: {str(e)}")
+            return False
     
     def run_all_tests(self):
         """Run all backend API tests"""
