@@ -67,7 +67,11 @@ async def get_listings(
                 "contact_phone": listing.get("contact_phone", "+995 500 88 30 88"),
                 "contact_email": listing.get("contact_email", "info@legendacar.ge"),
                 "views": listing.get("views", 0),
-                "created_at": listing["created_at"].isoformat()
+                "created_at": listing["created_at"].isoformat(),
+                "expires_at": listing.get("expires_at").isoformat() if hasattr(listing.get("expires_at"), "isoformat") else None,
+                "is_vip": bool(listing.get("is_vip", False)),
+                "vip_until": listing.get("vip_until").isoformat() if hasattr(listing.get("vip_until"), "isoformat") else None,
+                "vip_rank": listing.get("vip_rank")
             })
         
         return {"success": True, "listings": listing_list}
