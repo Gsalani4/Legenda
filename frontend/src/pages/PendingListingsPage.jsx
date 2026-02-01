@@ -67,7 +67,7 @@ const PendingListingsPage = () => {
             </Button>
             <h1 className="text-2xl font-bold">{t.admin.pendingListings}</h1>
           </div>
-          <Badge className="bg-yellow-600 text-black">{listings.length}</Badge>
+          <Badge className="bg-[#FF7A00] text-black">{listings.length}</Badge>
         </div>
       </div>
 
