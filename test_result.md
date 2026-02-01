@@ -419,6 +419,18 @@ frontend:
     needs_retesting: false
     status_history:
 
+  - task: "Advanced filters (price/year/km/fuel/transmission)"
+    implemented: true
+    working: "NA"
+    file: "backend/routes/car_listings.py, frontend/src/pages/HomePage.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Added backend query params for listings: min_price/max_price/min_year/max_year/min_mileage/max_mileage/fuel_type/transmission. Added homepage advanced filter form with Apply/Clear buttons (not live) that calls /api/listings with params."
+
   - task: "SEO meta tags (car detail)"
     implemented: true
     working: "NA"
