@@ -10,7 +10,7 @@ import sys
 from datetime import datetime, timedelta
 
 # Backend URL from frontend/.env
-BACKEND_URL = "https://carmatch-39.preview.emergentagent.com/api"
+BACKEND_URL = "https://wheelspot-2.preview.emergentagent.com/api"
 
 class BackendTester:
     def __init__(self):
