@@ -138,7 +138,7 @@ const UserPanel = () => {
       toast({ title: t.common.success, description: t.user.listingDeleted });
       await load();
     } catch (e) {
-      toast({ title: 'Hata', description: 'Silinemedi.', variant: 'destructive' });
+      toast({ title: t.common.error, description: t.user.listingDeleteFailed, variant: 'destructive' });
     }
   };
 
