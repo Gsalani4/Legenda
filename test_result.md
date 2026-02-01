@@ -397,7 +397,6 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Admin user detail page end-to-end"
     - "Translations stability"
     - "Admin users page navigation to detail"
   stuck_tasks:
