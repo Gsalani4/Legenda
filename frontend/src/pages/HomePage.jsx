@@ -27,6 +27,10 @@ const HomePage = () => {
   });
   const [appliedFilters, setAppliedFilters] = useState(null);
 
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchText, setSearchText] = useState('');
+  const [searchSuggestion, setSearchSuggestion] = useState(null);
+
   useEffect(() => {
     loadListings();
   }, [filter, appliedFilters]);
