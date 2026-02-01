@@ -12,14 +12,18 @@ const AdminUsersPage = () => {
   const { t } = useLanguage();
   const [token] = useState(() => localStorage.getItem('admin_token'));
   const [users, setUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [q, setQ] = useState('');
 
   const load = async () => {
     if (!token) return;
     setLoading(true);
     try {
       const res = await getUsers(token);
-      setUsers(res.users || []);
+      const list = res.users || [];
+      setUsers(list);
+      setFilteredUsers(list);
     } catch (e) {
       toast({ title: t.common.error, description: t.common.operationFailed, variant: 'destructive' });
     } finally {
