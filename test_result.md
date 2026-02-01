@@ -451,7 +451,7 @@ frontend:
     priority: "high"
     needs_retesting: false
     status_history:
-      - working: "NA"
+      - working: true
         agent: "main"
         comment: "Installed react-helmet-async, wrapped app with HelmetProvider, added Seo component, and added title/description/OG tags for /car/:id pages based on listing data (brand/model/year/description/first image)."
       - working: true
