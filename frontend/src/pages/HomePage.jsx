@@ -17,11 +17,14 @@ const HomePage = () => {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all'); // 'all', 'rental', 'sale'
 
+  const [filterForm, setFilterForm] = useState({
+    brand: '',
+    model: '',
+    min_year: '',
+    max_year: '',
+    fuel_type: ''
+  });
   const [appliedFilters, setAppliedFilters] = useState(null);
-
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [searchText, setSearchText] = useState('');
-  const [searchSuggestion, setSearchSuggestion] = useState(null);
 
   useEffect(() => {
     loadListings();
