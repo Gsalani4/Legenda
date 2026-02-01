@@ -30,7 +30,7 @@ const HomePage = () => {
     loadListings();
   }, [filter]);
 
-  const loadListings = async (filtersOverride = null) => {
+  const loadListings = useCallback(async (filtersOverride = null) => {
     try {
       setLoading(true);
       const paramsObj = {};
@@ -52,7 +52,7 @@ const HomePage = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filter, appliedFilters]);
 
   const vipListings = listings
     .filter((l) => l.is_vip)
