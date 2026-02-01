@@ -26,10 +26,6 @@ const HomePage = () => {
   });
   const [appliedFilters, setAppliedFilters] = useState(null);
 
-  useEffect(() => {
-    loadListings();
-  }, [loadListings]);
-
   const loadListings = useCallback(async (filtersOverride = null) => {
     try {
       setLoading(true);
