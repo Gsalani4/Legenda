@@ -57,7 +57,7 @@ async def approve_listing(listing_id: str, payload: dict = None, username: str =
         if days not in {1, 5, 7, 10, 15, 20, 30}:
             raise HTTPException(status_code=400, detail="Invalid days")
 
-        expires_at = datetime.utcnow() + timedelta(days=days)
+        expires_at = datetime.now(timezone.utc) + timedelta(days=days)
 
         result = await db.car_listings.update_one(
             {"_id": ObjectId(listing_id)},
