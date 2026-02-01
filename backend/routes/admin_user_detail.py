@@ -121,7 +121,7 @@ async def archive_listing(listing_id: str, username: str = Depends(verify_admin_
         db = get_database()
         res = await db.car_listings.update_one(
             {"_id": ObjectId(listing_id)},
-            {"$set": {"status": "archived", "archived_at": datetime.utcnow(), "archived_by": username, "updated_at": datetime.utcnow()}},
+            {"$set": {"status": "archived", "archived_at": datetime.now(timezone.utc), "archived_by": username, "updated_at": datetime.now(timezone.utc)}},
         )
         if res.matched_count == 0:
             raise HTTPException(status_code=404, detail="Listing not found")
