@@ -29,6 +29,13 @@ export const vehicleTranslations = {
       ru: 'Гибрид',
       tr: 'Hibrit',
       az: 'Hibrid'
+    },
+    'Plug-in Hybrid': {
+      ka: 'პლაგინ ჰიბრიდი',
+      en: 'Plug-in Hybrid',
+      ru: 'Подключаемый гибрид',
+      tr: 'Plug-in Hibrit',
+      az: 'Plug-in Hibrid'
     }
   },
   
