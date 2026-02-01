@@ -17,6 +17,7 @@ import {
   deleteListingAdmin,
   setListingExpiryAdmin
 } from '../services/adminUserDetailApi';
+import { setAdminListingStatus } from '../services/adminListingsApi';
 
 const AdminUserDetailPage = () => {
   const { toast } = useToast();
