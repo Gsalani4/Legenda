@@ -1199,6 +1199,8 @@ def main():
             success = tester.run_admin_listings_tests_only()
         elif sys.argv[1] == "vip_filters":
             success = tester.run_vip_and_filters_tests_only()
+        elif sys.argv[1] == "regression":
+            success = tester.run_listings_regression_tests_only()
         else:
             success = tester.run_all_tests()
     else:
