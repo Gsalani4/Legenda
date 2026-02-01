@@ -204,7 +204,7 @@ const UserPanel = () => {
                           </Button>
                           <Button variant="destructive" size="sm" onClick={() => handleDelete(l.id)}>
                             <Trash2 className="w-4 h-4 mr-1" />
-                            Sil
+                            {t.common.delete}
                           </Button>
                         </div>
                       </div>
