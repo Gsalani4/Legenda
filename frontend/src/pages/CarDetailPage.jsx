@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Seo from '../components/Seo';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Car, Fuel, Gauge, Settings, Phone, Mail, Calendar, Eye, ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
