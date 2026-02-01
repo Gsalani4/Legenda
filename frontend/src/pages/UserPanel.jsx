@@ -14,6 +14,7 @@ import { getMyListings, createMyListing, updateMyListing, deleteMyListing } from
 
 const UserPanel = () => {
   const { toast } = useToast();
+  const { t } = useLanguage();
   const [token, setToken] = useState(() => localStorage.getItem('user_token'));
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
