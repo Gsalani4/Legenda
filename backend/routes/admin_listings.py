@@ -53,6 +53,13 @@ async def admin_listings(
                     {"contact_phone": rx},
                 ]
 
+        # Auto-disable VIP if expired
+        now = datetime.now(timezone.utc)
+        await db.car_listings.update_many(
+            {"is_vip": True, "vip_until": {"$ne": None, "$lte": now}},
+            {"$set": {"is_vip": False, "vip_rank": None, "vip_updated_at": now}},
+        )
+
         listings = await db.car_listings.find(query).sort("created_at", -1).limit(limit).to_list(limit)
 
         out = []
