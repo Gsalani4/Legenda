@@ -200,7 +200,7 @@ const UserPanel = () => {
                         <div className="flex gap-2">
                           <Button variant="outline" size="sm" className="bg-black text-white border-gray-700 hover:bg-[#111111]" onClick={() => startEdit(l)}>
                             <Edit className="w-4 h-4 mr-1" />
-                            Düzenle
+                            {t.common.edit}
                           </Button>
                           <Button variant="destructive" size="sm" onClick={() => handleDelete(l.id)}>
                             <Trash2 className="w-4 h-4 mr-1" />
