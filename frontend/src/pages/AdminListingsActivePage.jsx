@@ -10,6 +10,8 @@ import { useLanguage } from '../context/LanguageContext';
 import { getAdminListings, setAdminListingStatus } from '../services/adminListingsApi';
 import { setVipAdmin } from '../services/adminVipApi';
 
+const ALLOWED_DAYS = [1, 5, 7, 10, 15, 20, 30];
+
 const AdminListingsActivePage = () => {
   const { toast } = useToast();
   const { t } = useLanguage();
@@ -19,6 +21,8 @@ const AdminListingsActivePage = () => {
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(true);
   const [listings, setListings] = useState([]);
+  const [vipDays, setVipDays] = useState({});
+  const [vipRank, setVipRank] = useState({});
 
   const load = async (search = '') => {
     if (!token) return;
