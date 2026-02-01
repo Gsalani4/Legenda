@@ -122,7 +122,7 @@ const UserPanel = () => {
         toast({ title: t.common.success, description: t.user.listingUpdatedPending });
       } else {
         await createMyListing(token, formData);
-        toast({ title: 'Başarılı!', description: 'İlan onaya gönderildi.' });
+        toast({ title: t.common.success, description: t.user.listingSubmitted });
       }
       await load();
       resetForm();
