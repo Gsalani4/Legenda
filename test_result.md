@@ -217,7 +217,7 @@ frontend:
     priority: "high"
     needs_retesting: false
     status_history:
-      - working: "NA"
+      - working: true
         agent: "main"
         comment: "Added admin_listings router: GET /api/admin/listings?status=...&q=... with auto-archive of expired actives; POST /api/admin/listings/{id}/status supports pending/active/rejected/archived. When setting active, requires days and sets expires_at. Also updated public /api/listings to auto-archive expired active listings and to filter out expired for active status."
       - working: true
