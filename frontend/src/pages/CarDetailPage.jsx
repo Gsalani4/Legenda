@@ -103,8 +103,14 @@ const CarDetailPage = () => {
     return texts[currentLanguage][type] || texts['en'][type];
   };
 
+  const seoTitle = `${listing.brand} ${listing.model} ${listing.year} | LEGENDACAR`;
+  const seoDescription = (listing.description || '').slice(0, 160);
+  const seoImage = listing.images && listing.images[0] ? listing.images[0] : null;
+  const seoUrl = `${window.location.origin}/car/${listing.id}`;
+
   return (
     <div className="min-h-screen bg-[#0B0B0B]">
+      <Seo title={seoTitle} description={seoDescription} image={seoImage} url={seoUrl} />
       <div className="container mx-auto px-4 py-8">
         {/* Back Button */}
         <Button variant="ghost" onClick={() => navigate('/')} className="mb-6 text-white hover:text-[#FF7A00] hover:bg-[#111111]">
