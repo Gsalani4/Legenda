@@ -1313,6 +1313,46 @@ class BackendTester:
             print("✅ ALL LISTINGS REGRESSION TESTS PASSED")
             return True
 
+    def run_site_settings_banner_tests_only(self):
+        """Run only the site settings banner tests"""
+        print("=" * 60)
+        print("LEGENDACAR Site Settings Banner Tests")
+        print("=" * 60)
+        print(f"Testing backend at: {self.base_url}")
+        print()
+        
+        # Run site settings banner tests in sequence
+        banner_tests = [
+            self.test_get_settings_banner_fields,
+            self.test_admin_login,
+            self.test_update_settings_banner_fields,
+            self.test_verify_settings_banner_update
+        ]
+        
+        passed = 0
+        total = len(banner_tests)
+        
+        for test in banner_tests:
+            if test():
+                passed += 1
+        
+        print("=" * 60)
+        print(f"SITE SETTINGS BANNER TEST SUMMARY: {passed}/{total} tests passed")
+        print("=" * 60)
+        
+        # Return success if all banner tests pass
+        banner_failures = []
+        for result in self.test_results:
+            if not result["success"]:
+                banner_failures.append(result["test"])
+        
+        if banner_failures:
+            print(f"❌ SITE SETTINGS BANNER TEST FAILURES: {', '.join(banner_failures)}")
+            return False
+        else:
+            print("✅ ALL SITE SETTINGS BANNER TESTS PASSED")
+            return True
+
 def main():
     """Main test execution"""
     tester = BackendTester()
