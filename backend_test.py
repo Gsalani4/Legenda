@@ -1105,47 +1105,43 @@ class BackendTester:
             print("✅ ALL ADMIN LISTINGS TESTS PASSED")
             return True
 
-    def run_vip_and_filters_tests_only(self):
-        """Run only the VIP and advanced filters tests"""
+    def run_listings_regression_tests_only(self):
+        """Run only the listings regression tests as requested"""
         print("=" * 60)
-        print("LEGENDACAR VIP + Advanced Filters API Tests")
+        print("LEGENDACAR Listings Regression Tests")
         print("=" * 60)
         print(f"Testing backend at: {self.base_url}")
         print()
         
-        # Run VIP and filters tests in sequence
-        vip_filter_tests = [
-            self.test_admin_login,
-            self.test_admin_listings_active,  # To get a listing_id
-            self.test_vip_enable,
-            self.test_get_vip_listings,
-            self.test_vip_disable,
-            self.test_public_listings_vip_fields,
-            self.test_advanced_filters
+        # Run listings regression tests in sequence
+        regression_tests = [
+            self.test_listings_regression_basic,
+            self.test_listings_regression_brand_filter,
+            self.test_listings_regression_complex_filters
         ]
         
         passed = 0
-        total = len(vip_filter_tests)
+        total = len(regression_tests)
         
-        for test in vip_filter_tests:
+        for test in regression_tests:
             if test():
                 passed += 1
         
         print("=" * 60)
-        print(f"VIP + FILTERS TEST SUMMARY: {passed}/{total} tests passed")
+        print(f"LISTINGS REGRESSION TEST SUMMARY: {passed}/{total} tests passed")
         print("=" * 60)
         
-        # Return success if all VIP and filter tests pass
-        vip_failures = []
+        # Return success if all regression tests pass
+        regression_failures = []
         for result in self.test_results:
-            if not result["success"]:
-                vip_failures.append(result["test"])
+            if not result["success"] and "regression" in result["test"]:
+                regression_failures.append(result["test"])
         
-        if vip_failures:
-            print(f"❌ VIP + FILTERS TEST FAILURES: {', '.join(vip_failures)}")
+        if regression_failures:
+            print(f"❌ LISTINGS REGRESSION TEST FAILURES: {', '.join(regression_failures)}")
             return False
         else:
-            print("✅ ALL VIP + FILTERS TESTS PASSED")
+            print("✅ ALL LISTINGS REGRESSION TESTS PASSED")
             return True
 
 def main():
