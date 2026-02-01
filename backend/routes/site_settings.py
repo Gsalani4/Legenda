@@ -61,6 +61,7 @@ async def update_settings(settings_update: SiteSettingsUpdate):
             new_settings = {
                 "contact": settings_update.contact.dict() if settings_update.contact else ContactInfo().dict(),
                 "social_media": settings_update.social_media.dict() if settings_update.social_media else SocialMedia().dict(),
+                "banner": settings_update.banner.dict() if settings_update.banner else BannerSettings().dict(),
                 "updated_at": datetime.utcnow()
             }
             await db.site_settings.insert_one(new_settings)
