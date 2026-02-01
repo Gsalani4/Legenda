@@ -418,6 +418,18 @@ frontend:
     priority: "high"
     needs_retesting: false
     status_history:
+
+  - task: "SEO meta tags (car detail)"
+    implemented: true
+    working: "NA"
+    file: "frontend/src/components/Seo.jsx, frontend/src/pages/CarDetailPage.jsx, frontend/src/index.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Installed react-helmet-async, wrapped app with HelmetProvider, added Seo component, and added title/description/OG tags for /car/:id pages based on listing data (brand/model/year/description/first image)."
       - working: true
         agent: "testing"
         comment: "✅ AUTH FLOWS VERIFIED: All authentication flows confirmed working correctly. Admin login with LegendTaxi credentials successful. User registration form displays 6 required fields. Sign In form uses single identifier+password with NO Admin/User toggle, confirming UI simplification is properly implemented. Both admin and user authentication paths functioning as expected."
