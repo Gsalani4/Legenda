@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "End-to-end test for new auth + roles + approvals workflow"
+user_problem_statement: "Test new top banner behavior and admin upload UI"
 
 backend:
   - task: "Backend APIs (legacy tests)"
