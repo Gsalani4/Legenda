@@ -160,7 +160,7 @@ const UserPanel = () => {
     <div className="min-h-screen bg-[#0B0B0B] text-white">
       <div className="bg-black border-b border-gray-800 py-4">
         <div className="container mx-auto px-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold">Kullanıcı Paneli</h1>
+          <h1 className="text-2xl font-bold">{t.user.panelTitle}</h1>
           <Button variant="ghost" onClick={logout} className="text-white hover:bg-[#111111]">
             <LogOut className="w-4 h-4 mr-2" />
             Çıkış
