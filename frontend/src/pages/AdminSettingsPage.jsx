@@ -24,6 +24,10 @@ const AdminSettingsPage = () => {
       facebook: '',
       instagram: '',
       whatsapp: ''
+    },
+    banner: {
+      desktop_image_url: '',
+      mobile_image_url: ''
     }
   });
   const [saving, setSaving] = useState(false);
