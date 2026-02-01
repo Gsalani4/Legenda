@@ -290,6 +290,7 @@ const UserPanel = () => {
                         <SelectItem value="Dizel">Dizel</SelectItem>
                         <SelectItem value="Elektrik">Elektrik</SelectItem>
                         <SelectItem value="Hibrit">Hibrit</SelectItem>
+                        <SelectItem value="Plug-in Hybrid">Plug-in Hybrid</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
