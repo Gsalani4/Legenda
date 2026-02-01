@@ -19,6 +19,9 @@ class BackendTester:
         self.test_results = []
         self.vehicle_id = None
         self.booking_id = None
+        self.admin_token = None
+        self.test_user_id = None
+        self.test_listing_id = None
         
     def log_test(self, test_name, success, details="", response_data=None):
         """Log test results"""
