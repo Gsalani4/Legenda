@@ -41,7 +41,7 @@ const Header = ({ transparent = false }) => {
       </div>
       
       {/* Main Logo Section - Center */}
-      <div className="bg-transparent py-1">
+      <div className={`${transparent ? 'bg-black/[0.03]' : 'bg-black'} py-1`}>
         <div className="container mx-auto px-4">
           <a href="/" className="flex flex-col items-center justify-center leading-none">
             <div className="text-[24px] md:text-[28px] font-bold tracking-wide text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.9)]">
