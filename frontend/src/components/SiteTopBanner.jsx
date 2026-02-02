@@ -14,7 +14,7 @@ const SiteTopBanner = () => {
         <img
           src={mobile}
           alt="Top banner"
-          className="block sm:hidden w-full h-[60px] object-cover"
+          className="block sm:hidden w-full h-[64px] object-cover"
           loading="lazy"
           decoding="async"
         />
@@ -23,7 +23,7 @@ const SiteTopBanner = () => {
         <img
           src={desktop}
           alt="Top banner"
-          className="hidden sm:block w-full h-[150px] object-cover"
+          className="hidden sm:block w-full h-[120px] object-cover"
           loading="lazy"
           decoding="async"
         />

@@ -218,7 +218,7 @@ const AdminSettingsPage = () => {
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-2">
-                <Label>Masaüstü Görseli (1680x150)</Label>
+                <Label>Masaüstü Görseli (Önerilen: yatay banner, ~120px yükseklik)</Label>
                 <SingleImageUploader
                   value={formData.banner?.desktop_image_url}
                   onChange={(url) => setFormData({
@@ -229,7 +229,7 @@ const AdminSettingsPage = () => {
               </div>
 
               <div className="space-y-2">
-                <Label>Mobil Görsel (80x60)</Label>
+                <Label>Mobil Görsel (Önerilen: yatay banner, ~64px yükseklik)</Label>
                 <SingleImageUploader
                   value={formData.banner?.mobile_image_url}
                   onChange={(url) => setFormData({
