@@ -45,6 +45,7 @@ async def get_settings():
                 "contact": settings["contact"],
                 "social_media": settings["social_media"],
                 "banner": settings.get("banner", {"desktop_image_url": "", "mobile_image_url": ""}),
+                "hero": settings.get("hero", {"desktop_images": [], "mobile_images": []}),
                 "updated_at": settings["updated_at"].isoformat() if "updated_at" in settings else None
             }
         }
