@@ -15,8 +15,15 @@ class ContactInfo(BaseModel):
 
 
 class BannerSettings(BaseModel):
+    # Legacy top banner (single image)
     desktop_image_url: str = ""
     mobile_image_url: str = ""
+
+
+class HeroSettings(BaseModel):
+    # Home hero slider images (max 5)
+    desktop_images: list[str] = []
+    mobile_images: list[str] = []
 
 class SiteSettings(BaseModel):
     id: Optional[str] = Field(default=None, alias="_id")
