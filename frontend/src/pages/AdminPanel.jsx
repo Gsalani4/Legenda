@@ -296,9 +296,9 @@ const AdminPanel = () => {
       <div className="container mx-auto px-4 py-8 text-white">
         {!showForm ? (
           <div className="space-y-6">
-            <div className="flex justify-between items-center">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
               <h2 className="text-2xl font-bold">İlanlar ({listings.length})</h2>
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 <Button onClick={() => window.location.href = '/admin/pending'} variant="outline" className="bg-black text-white border-gray-700 hover:bg-[#111111]">
                   Bekleyen İlanlar
                 </Button>
