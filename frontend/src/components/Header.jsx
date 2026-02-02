@@ -55,7 +55,7 @@ const Header = ({ transparent = false }) => {
       </div>
       
       {/* Navigation Menu */}
-      <div className="border-t border-gray-800 bg-transparent">
+      <div className={`border-t border-gray-800 ${transparent ? 'bg-black/[0.03]' : 'bg-black'}`}>
         <div className="container mx-auto px-4">
           <nav className="flex items-center justify-center gap-8 py-1">
             <a href="/" className="text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.85)] hover:text-[#FF7A00] transition-colors font-medium text-sm md:text-base uppercase tracking-wide">
