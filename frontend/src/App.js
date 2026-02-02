@@ -26,7 +26,7 @@ function AppLayout() {
 
   return (
     <>
-      <Header transparent />
+      <Header transparent={false} />
       <main className="flex-1">
         <Routes>
                 <Route path="/" element={<HomePage />} />
