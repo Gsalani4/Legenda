@@ -197,7 +197,7 @@ const HomePage = () => {
             }}
             className="flex flex-col lg:flex-row lg:items-end gap-3"
           >
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 w-full">
+            <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 w-full ${filtersOpenMobile ? 'block' : 'hidden'} sm:grid`}>
               <div className="space-y-2">
                 <div className="text-sm text-gray-300">Marka</div>
                 <Select value={filterForm.brand} onValueChange={(val) => setFilterForm({ ...filterForm, brand: val, model: '' })}>
