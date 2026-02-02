@@ -25,6 +25,7 @@ const HomePage = () => {
     fuel_type: ''
   });
   const [appliedFilters, setAppliedFilters] = useState(null);
+  const [filtersOpenMobile, setFiltersOpenMobile] = useState(false);
 
   const loadListings = useCallback(async (filtersOverride = null) => {
     try {
