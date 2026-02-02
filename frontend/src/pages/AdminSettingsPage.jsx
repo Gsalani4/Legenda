@@ -245,6 +245,42 @@ const AdminSettingsPage = () => {
                 />
               </div>
             </CardContent>
+
+          {/* Ana Sayfa Hero Slider */}
+          <Card className="bg-[#111111] border-gray-800 text-white">
+            <CardHeader>
+              <CardTitle>Ana Sayfa Hero (Slider)</CardTitle>
+              <CardDescription className="text-gray-400">
+                En fazla 5 görsel yükleyebilirsiniz. 6 saniyede bir sağdan sola kayar. Tek görsel varsa sabit kalır.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="space-y-2">
+                <Label>Masaüstü Görselleri</Label>
+                <MultiImageUploader
+                  max={5}
+                  value={formData.hero?.desktop_images || []}
+                  onChange={(imgs) => setFormData({
+                    ...formData,
+                    hero: { ...formData.hero, desktop_images: imgs }
+                  })}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label>Mobil Görseller</Label>
+                <MultiImageUploader
+                  max={5}
+                  value={formData.hero?.mobile_images || []}
+                  onChange={(imgs) => setFormData({
+                    ...formData,
+                    hero: { ...formData.hero, mobile_images: imgs }
+                  })}
+                />
+              </div>
+            </CardContent>
+          </Card>
+
           </Card>
 
           <div className="flex gap-2">
