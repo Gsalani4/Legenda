@@ -153,6 +153,18 @@ backend:
         agent: "testing"
         comment: "✅ SITE SETTINGS BANNER FIELDS TESTING COMPLETE: Comprehensive testing of site settings banner functionality completed successfully. All 4 test scenarios passed without errors: 1) GET /api/settings returns proper response with settings.banner containing desktop_image_url and mobile_image_url fields (initially empty strings) ✅ 2) Admin login POST /api/admin/login with LegendTaxi/Gr!7pA9z#Lm2Qx credentials successful and token obtained ✅ 3) PUT /api/settings with Authorization header successfully updates banner.desktop_image_url to '/api/uploads/test.jpg' and banner.mobile_image_url to '/api/uploads/test2.jpg' while preserving existing contact/social values ✅ 4) GET /api/settings verification confirms banner fields were updated correctly with expected values ✅ No schema/validation issues detected. All banner field operations working correctly with proper authentication and data persistence."
 
+  - task: "Site settings empty strings handling"
+    implemented: true
+    working: true
+    file: "backend/routes/site_settings.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ SITE SETTINGS EMPTY STRINGS TESTING COMPLETE: Comprehensive testing of site settings with empty strings completed successfully. All 3 test scenarios passed without errors: 1) Admin login POST /api/admin/login with LegendTaxi/Gr!7pA9z#Lm2Qx credentials successful and token obtained ✅ 2) PUT /api/settings with Authorization header successfully updates contact.email='' and social_media fields (facebook='', instagram='', whatsapp='') while preserving existing phone/address/working_hours ✅ 3) GET /api/settings verification confirms empty strings are preserved correctly and existing fields remain intact ✅ No validation issues detected. Empty string handling working correctly with proper field preservation and data persistence."
+
   - task: "Top banner behavior and admin upload UI"
     implemented: true
     working: true
