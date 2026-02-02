@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import SiteTopBanner from './components/SiteTopBanner';
 import Footer from './components/Footer';
+import { useLocation } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import CarDetailPage from './pages/CarDetailPage';
 import AdminEntry from './pages/AdminEntry';
