@@ -1091,6 +1091,100 @@ class BackendTester:
         except Exception as e:
             self.log_test("GET /settings (verify banner update)", False, f"Request error: {str(e)}")
             return False
+
+    def test_update_settings_empty_strings(self):
+        """Test PUT /api/settings with empty strings for email and social media fields"""
+        if not self.admin_token:
+            self.log_test("PUT /settings (empty strings)", False, "No admin token available")
+            return False
+        
+        try:
+            headers = {"Authorization": f"Bearer {self.admin_token}", "Content-Type": "application/json"}
+            
+            # First, get current settings to preserve existing phone/address/working_hours
+            get_response = self.session.get(f"{self.base_url}/settings")
+            if get_response.status_code != 200:
+                self.log_test("PUT /settings (empty strings)", False, "Could not get current settings")
+                return False
+            
+            current_settings = get_response.json()["settings"]
+            current_contact = current_settings.get("contact", {})
+            
+            # Update with empty strings for email and social media fields
+            update_data = {
+                "contact": {
+                    "phone": current_contact.get("phone", "+995 500 88 30 88"),
+                    "email": "",  # Empty string
+                    "address": current_contact.get("address", "თამაზ გამყრელიძის 19"),
+                    "working_hours": current_contact.get("working_hours", "ორშ - შაბ 8.00 - 18.00")
+                },
+                "social_media": {
+                    "facebook": "",  # Empty string
+                    "instagram": "",  # Empty string
+                    "whatsapp": ""   # Empty string
+                }
+            }
+            
+            response = self.session.put(f"{self.base_url}/settings", 
+                                      json=update_data, headers=headers)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("success"):
+                    self.log_test("PUT /settings (empty strings)", True, 
+                                f"Settings updated with empty strings successfully")
+                    return True
+                else:
+                    self.log_test("PUT /settings (empty strings)", False, "Update failed", data)
+                    return False
+            else:
+                self.log_test("PUT /settings (empty strings)", False, f"HTTP {response.status_code}", response.text)
+                return False
+        except Exception as e:
+            self.log_test("PUT /settings (empty strings)", False, f"Request error: {str(e)}")
+            return False
+
+    def test_verify_settings_empty_strings(self):
+        """Test GET /api/settings - verify empty strings are returned correctly"""
+        try:
+            response = self.session.get(f"{self.base_url}/settings")
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("success") and "settings" in data:
+                    settings = data["settings"]
+                    contact = settings.get("contact", {})
+                    social_media = settings.get("social_media", {})
+                    
+                    # Verify empty strings are preserved
+                    email_empty = contact.get("email") == ""
+                    facebook_empty = social_media.get("facebook") == ""
+                    instagram_empty = social_media.get("instagram") == ""
+                    whatsapp_empty = social_media.get("whatsapp") == ""
+                    
+                    # Verify existing fields are preserved
+                    phone_exists = contact.get("phone") != ""
+                    address_exists = contact.get("address") != ""
+                    working_hours_exists = contact.get("working_hours") != ""
+                    
+                    if (email_empty and facebook_empty and instagram_empty and whatsapp_empty and
+                        phone_exists and address_exists and working_hours_exists):
+                        self.log_test("GET /settings (verify empty strings)", True, 
+                                    f"Empty strings preserved correctly: email='', facebook='', instagram='', whatsapp=''. Existing fields preserved: phone='{contact.get('phone')}', address='{contact.get('address')}', working_hours='{contact.get('working_hours')}'")
+                        return True
+                    else:
+                        self.log_test("GET /settings (verify empty strings)", False, 
+                                    f"Empty strings not preserved correctly. email='{contact.get('email')}', facebook='{social_media.get('facebook')}', instagram='{social_media.get('instagram')}', whatsapp='{social_media.get('whatsapp')}'", data)
+                        return False
+                else:
+                    self.log_test("GET /settings (verify empty strings)", False, "Invalid response format", data)
+                    return False
+            else:
+                self.log_test("GET /settings (verify empty strings)", False, f"HTTP {response.status_code}", response.text)
+                return False
+        except Exception as e:
+            self.log_test("GET /settings (verify empty strings)", False, f"Request error: {str(e)}")
+            return False
     
     def run_all_tests(self):
         """Run all backend API tests"""
