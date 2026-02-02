@@ -299,19 +299,19 @@ const AdminPanel = () => {
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
               <h2 className="text-2xl font-bold">İlanlar ({listings.length})</h2>
               <div className="flex flex-wrap gap-2">
-                <Button onClick={() => window.location.href = '/admin/pending'} variant="outline" className="bg-black text-white border-gray-700 hover:bg-[#111111]">
+                <Button onClick={() => window.location.href = '/admin/pending'} variant="outline" className="bg-black text-white border-gray-700 hover:bg-[#111111] w-full sm:w-auto justify-center">
                   Bekleyen İlanlar
                 </Button>
-                <Button onClick={() => window.location.href = '/admin/listings/active'} variant="outline" className="bg-black text-white border-gray-700 hover:bg-[#111111]">
+                <Button onClick={() => window.location.href = '/admin/listings/active'} variant="outline" className="bg-black text-white border-gray-700 hover:bg-[#111111] w-full sm:w-auto justify-center">
                   Aktif İlanlar
                 </Button>
-                <Button onClick={() => window.location.href = '/admin/listings/archived'} variant="outline" className="bg-black text-white border-gray-700 hover:bg-[#111111]">
+                <Button onClick={() => window.location.href = '/admin/listings/archived'} variant="outline" className="bg-black text-white border-gray-700 hover:bg-[#111111] w-full sm:w-auto justify-center">
                   Arşiv İlanlar
                 </Button>
-                <Button onClick={() => window.location.href = '/admin/users'} variant="outline" className="bg-black text-white border-gray-700 hover:bg-[#111111]">
+                <Button onClick={() => window.location.href = '/admin/users'} variant="outline" className="bg-black text-white border-gray-700 hover:bg-[#111111] w-full sm:w-auto justify-center">
                   Kullanıcılar
                 </Button>
-                <Button onClick={() => window.location.href = '/admin/settings'} variant="outline" className="bg-black text-white border-gray-700 hover:bg-[#111111]">
+                <Button onClick={() => window.location.href = '/admin/settings'} variant="outline" className="bg-black text-white border-gray-700 hover:bg-[#111111] w-full sm:w-auto justify-center">
                   <Settings className="w-4 h-4 mr-2" />
                   Site Ayarları
                 </Button>
