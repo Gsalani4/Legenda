@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
-import SiteTopBanner from './components/SiteTopBanner';
+// (removed) SiteTopBanner – replaced by Home hero slider
 import Footer from './components/Footer';
 import { useLocation } from 'react-router-dom';
 import HomePage from './pages/HomePage';
