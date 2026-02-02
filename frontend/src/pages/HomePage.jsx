@@ -122,7 +122,7 @@ const HomePage = () => {
         <div className="absolute inset-0">
           <HomeHeroSlider />
         </div>
-        <div className="absolute inset-0 bg-black/[0.03]" />
+        <div className="absolute inset-0 bg-black/[0.05]" />
         <div className="relative">
         <div className="container mx-auto px-4">
           <div className="h-1 w-14 bg-[#FF7A00] mb-4" />

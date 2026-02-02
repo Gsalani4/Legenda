@@ -35,8 +35,8 @@ const Slider = ({ images, heightClass }) => {
         ))}
       </div>
 
-      {/* Subtle overlay (3%) so text sits on top without killing the image */}
-      <div className="absolute inset-0 bg-black/[0.03]" />
+      {/* Subtle overlay (5%) so text sits on top without killing the image */}
+      <div className="absolute inset-0 bg-black/[0.05]" />
     </div>
   );
 };
@@ -55,7 +55,7 @@ const HomeHeroSlider = () => {
         <Slider images={desktop} heightClass="h-[160px]" />
       </div>
       <div className="block sm:hidden">
-        <Slider images={mobile} heightClass="h-[120px]" />
+        <Slider images={mobile} heightClass="h-[140px]" />
       </div>
     </>
   );
