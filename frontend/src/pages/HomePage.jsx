@@ -296,7 +296,7 @@ const HomePage = () => {
                   const cleared = { brand: '', model: '', min_year: '', max_year: '', fuel_type: '' };
                   setFilterForm(cleared);
                   setAppliedFilters(null);
-                  loadListings(null);
+                  setFiltersOpenMobile(false);
                 }}
               >
                 Temizle
