@@ -315,7 +315,7 @@ const AdminPanel = () => {
                   <Settings className="w-4 h-4 mr-2" />
                   Site Ayarları
                 </Button>
-                <Button onClick={() => setShowForm(true)} className="bg-[#FF7A00] hover:bg-[#ff8c1a]">
+                <Button onClick={() => setShowForm(true)} className="bg-[#FF7A00] hover:bg-[#ff8c1a] w-full sm:w-auto justify-center">
                   <Plus className="w-4 h-4 mr-2" />
                   Yeni İlan Ekle
                 </Button>
