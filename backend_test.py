@@ -1447,6 +1447,45 @@ class BackendTester:
             print("✅ ALL SITE SETTINGS BANNER TESTS PASSED")
             return True
 
+    def run_empty_strings_test_only(self):
+        """Run only the empty strings test"""
+        print("=" * 60)
+        print("LEGENDACAR Site Settings Empty Strings Test")
+        print("=" * 60)
+        print(f"Testing backend at: {self.base_url}")
+        print()
+        
+        # Run empty strings test in sequence
+        empty_strings_tests = [
+            self.test_admin_login,
+            self.test_update_settings_empty_strings,
+            self.test_verify_settings_empty_strings
+        ]
+        
+        passed = 0
+        total = len(empty_strings_tests)
+        
+        for test in empty_strings_tests:
+            if test():
+                passed += 1
+        
+        print("=" * 60)
+        print(f"EMPTY STRINGS TEST SUMMARY: {passed}/{total} tests passed")
+        print("=" * 60)
+        
+        # Return success if all empty strings tests pass
+        empty_strings_failures = []
+        for result in self.test_results:
+            if not result["success"]:
+                empty_strings_failures.append(result["test"])
+        
+        if empty_strings_failures:
+            print(f"❌ EMPTY STRINGS TEST FAILURES: {', '.join(empty_strings_failures)}")
+            return False
+        else:
+            print("✅ ALL EMPTY STRINGS TESTS PASSED")
+            return True
+
 def main():
     """Main test execution"""
     tester = BackendTester()
