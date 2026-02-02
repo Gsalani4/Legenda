@@ -1502,6 +1502,8 @@ def main():
             success = tester.run_listings_regression_tests_only()
         elif sys.argv[1] == "settings_banner":
             success = tester.run_site_settings_banner_tests_only()
+        elif sys.argv[1] == "empty_strings":
+            success = tester.run_empty_strings_test_only()
         else:
             success = tester.run_all_tests()
     else:
