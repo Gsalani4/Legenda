@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Clock, MapPin } from 'lucide-react';
+import { Phone, MapPin } from 'lucide-react';
 import { useSettings } from '../context/SettingsContext';
 import { useLanguage } from '../context/LanguageContext';
 
