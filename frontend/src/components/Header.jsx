@@ -17,24 +17,18 @@ const Header = ({ transparent = false }) => {
       <div className="border-b border-gray-800 bg-black">
         <div className="container mx-auto px-4 py-1">
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 text-sm">
-            {/* Sol taraf - Çalışma saatleri ve Adres */}
-            <div className="flex items-center gap-6">
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-[#FF7A00]" />
-                <span className="text-gray-200 drop-shadow-[0_1px_1px_rgba(0,0,0,0.85)]">{settings.contact.working_hours}</span>
-              </div>
+            {/* Sol taraf - Adres + Telefon (mobilde yan yana) */}
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-[#FF7A00]" />
                 <span className="text-gray-200 drop-shadow-[0_1px_1px_rgba(0,0,0,0.85)]">{settings.contact.address}</span>
               </div>
-            </div>
-            
-            {/* Sağ taraf - Telefon */}
-            <div className="flex items-center gap-2">
-              <Phone className="w-4 h-4 text-[#FF7A00]" />
-              <a href={`tel:${settings.contact.phone}`} className="text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.85)] hover:text-[#FF7A00] transition-colors font-medium">
-                {settings.contact.phone}
-              </a>
+              <div className="flex items-center gap-2">
+                <Phone className="w-4 h-4 text-[#FF7A00]" />
+                <a href={`tel:${settings.contact.phone}`} className="text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.85)] hover:text-[#FF7A00] transition-colors font-medium">
+                  {settings.contact.phone}
+                </a>
+              </div>
             </div>
           </div>
         </div>
