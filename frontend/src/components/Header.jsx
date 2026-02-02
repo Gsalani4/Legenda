@@ -14,7 +14,7 @@ const Header = ({ transparent = false }) => {
   return (
     <header className={`sticky top-0 z-50 shadow-2xl ${headerClass}`}>
       {/* Top Contact Bar */}
-      <div className="bg-black border-b border-gray-800">
+      <div className={`border-b border-gray-800 ${transparent ? 'bg-transparent' : 'bg-black'}`}>
         <div className="container mx-auto px-4 py-1">
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 text-sm">
             {/* Sol taraf - Çalışma saatleri ve Adres */}
