@@ -40,10 +40,21 @@ function AppLayout() {
                 <Route path="/admin/listings/active" element={<AdminListingsActivePage />} />
                 <Route path="/admin/listings/archived" element={<AdminListingsArchivedPage />} />
                 <Route path="/user" element={<UserPanel />} />
-              </Routes>
-            </main>
-            <Footer />
-            <Toaster />
+        </Routes>
+      </main>
+      <Footer />
+      <Toaster />
+    </>
+  );
+}
+
+function App() {
+  return (
+    <LanguageProvider>
+      <SettingsProvider>
+        <div className="App min-h-screen flex flex-col">
+          <BrowserRouter>
+            <AppLayout />
           </BrowserRouter>
         </div>
       </SettingsProvider>
