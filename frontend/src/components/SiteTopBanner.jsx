@@ -9,7 +9,7 @@ const SiteTopBanner = ({ overlapHeader = false }) => {
   if (!desktop && !mobile) return null;
 
   return (
-    <div className="bg-black border-b border-gray-800">
+    <div className={`bg-black border-b border-gray-800 ${overlapHeader ? '-mt-[104px] sm:-mt-[88px]' : ''}`}>
       {mobile && (
         <img
           src={mobile}
