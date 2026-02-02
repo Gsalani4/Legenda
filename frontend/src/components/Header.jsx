@@ -9,7 +9,7 @@ const Header = ({ transparent = false }) => {
 
   const headerClass = transparent
     ? 'bg-black/[0.03] backdrop-blur-[2px]'
-    : 'bg-black/[0.03] backdrop-blur-[2px]';
+    : 'bg-black';
 
   return (
     <header className={`sticky top-0 z-50 shadow-2xl ${headerClass}`}>
