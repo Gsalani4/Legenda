@@ -16,7 +16,7 @@ const SiteTopBanner = ({ overlapHeader = false }) => {
         <img
           src={mobile}
           alt="Top banner"
-          className="block sm:hidden w-full h-[84px] object-cover"
+          className="block sm:hidden w-full h-[84px] object-cover opacity-100"
           loading="lazy"
           decoding="async"
         />
