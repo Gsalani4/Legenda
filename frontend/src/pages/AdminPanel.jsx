@@ -284,7 +284,7 @@ const AdminPanel = () => {
   return (
     <div className="min-h-screen bg-[#0B0B0B]">
       <div className="bg-black border-b border-gray-800 text-white py-4">
-        <div className="container mx-auto px-4 flex justify-between items-center">
+        <div className="container mx-auto px-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
           <h1 className="text-2xl font-bold">LEGENDACAR Admin</h1>
           <Button variant="ghost" onClick={handleLogout} className="text-white hover:bg-[#111111]">
             <LogOut className="w-4 h-4 mr-2" />
