@@ -7,8 +7,12 @@ const Header = ({ transparent = false }) => {
   const { settings } = useSettings();
   const { t } = useLanguage();
 
+  const headerClass = transparent
+    ? 'bg-black/60 backdrop-blur-md'
+    : 'bg-black';
+
   return (
-    <header className="bg-black sticky top-0 z-50 shadow-2xl">
+    <header className={`sticky top-0 z-50 shadow-2xl ${headerClass}`}>
       {/* Top Contact Bar */}
       <div className="bg-black border-b border-gray-800">
         <div className="container mx-auto px-4 py-1">
