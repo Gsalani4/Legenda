@@ -29,6 +29,10 @@ export const SettingsProvider = ({ children }) => {
     banner: {
       desktop_image_url: '',
       mobile_image_url: ''
+    },
+    hero: {
+      desktop_images: [],
+      mobile_images: []
     }
   });
   const [loading, setLoading] = useState(true);
