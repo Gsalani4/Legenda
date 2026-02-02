@@ -268,6 +268,18 @@ frontend:
     stuck_count: 0
     priority: "high"
     needs_retesting: false
+
+  - task: "Admin settings optional fields"
+    implemented: true
+    working: true
+    file: "frontend/src/pages/AdminSettingsPage.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ VERIFIED: Removed required attributes from AdminSettingsPage inputs. Site settings can be saved with empty email/social links. Backend preserves empty strings correctly."
     status_history:
       - working: true
         agent: "testing"
