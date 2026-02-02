@@ -8,7 +8,7 @@ const Header = ({ transparent = false }) => {
   const { t } = useLanguage();
 
   const headerClass = transparent
-    ? 'bg-black/60 backdrop-blur-md'
+    ? 'bg-black/10 backdrop-blur-md'
     : 'bg-black';
 
   return (
