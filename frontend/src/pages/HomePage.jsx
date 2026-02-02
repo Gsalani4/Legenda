@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import HomeHeroSlider from '../components/HomeHeroSlider';
 import { Car, Fuel, Gauge, Settings, Phone, Mail, Eye, SlidersHorizontal, ChevronDown } from 'lucide-react';
 import { Card, CardContent, CardFooter } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
@@ -117,7 +118,12 @@ const HomePage = () => {
   return (
     <div className="min-h-screen bg-[#0B0B0B]">
       {/* Hero Section (Option A: dark + orange accent) */}
-      <div className="bg-black border-b border-gray-800 text-white py-8">
+      <div className="relative border-b border-gray-800 text-white py-8">
+        <div className="absolute inset-0">
+          <HomeHeroSlider />
+        </div>
+        <div className="absolute inset-0 bg-black/[0.03]" />
+        <div className="relative">
         <div className="container mx-auto px-4">
           <div className="h-1 w-14 bg-[#FF7A00] mb-4" />
           <h1 className="text-2xl md:text-3xl font-bold mb-2 tracking-wide">
@@ -137,6 +143,7 @@ const HomePage = () => {
             {currentLanguage === 'tr' && 'En İyi Fiyatlarla Kaliteli Araçlar'}
             {currentLanguage === 'az' && 'Ən Yaxşı Qiymətlərlə Keyfiyyətli Avtomobillər'}
           </p>
+        </div>
         </div>
       </div>
 

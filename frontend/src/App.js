@@ -26,8 +26,7 @@ function AppLayout() {
 
   return (
     <>
-      <Header transparent />
-      <SiteTopBanner overlapHeader />
+      <Header transparent={false} />
       <main className="flex-1">
         <Routes>
                 <Route path="/" element={<HomePage />} />
