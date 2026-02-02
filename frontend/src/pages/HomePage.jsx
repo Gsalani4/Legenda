@@ -168,6 +168,20 @@ const HomePage = () => {
       {/* Filters Bar */}
       <div className="bg-black border-b border-gray-800">
         <div className="container mx-auto px-4 py-4">
+          {/* Mobile toggle */}
+          <div className="flex sm:hidden items-center justify-between">
+            <Button
+              type="button"
+              variant="outline"
+              className="bg-black text-white border-gray-700 hover:bg-[#111111]"
+              onClick={() => setFiltersOpenMobile((v) => !v)}
+            >
+              <SlidersHorizontal className="w-4 h-4 mr-2" />
+              Filtre
+              <ChevronDown className={`w-4 h-4 ml-2 transition-transform ${filtersOpenMobile ? 'rotate-180' : ''}`} />
+            </Button>
+          </div>
+
           <form
             onSubmit={(e) => {
               e.preventDefault();
