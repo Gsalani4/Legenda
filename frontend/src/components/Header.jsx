@@ -3,7 +3,7 @@ import { Phone, Clock, MapPin } from 'lucide-react';
 import { useSettings } from '../context/SettingsContext';
 import { useLanguage } from '../context/LanguageContext';
 
-const Header = () => {
+const Header = ({ transparent = false }) => {
   const { settings } = useSettings();
   const { t } = useLanguage();
 
