@@ -83,6 +83,9 @@ async def update_settings(settings_update: SiteSettingsUpdate):
 
             if settings_update.banner:
                 update_data["banner"] = settings_update.banner.dict()
+
+            if settings_update.hero:
+                update_data["hero"] = settings_update.hero.dict()
             
             await db.site_settings.update_one(
                 {"_id": current_settings["_id"]},
