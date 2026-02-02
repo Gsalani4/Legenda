@@ -44,7 +44,8 @@ export const SettingsProvider = ({ children }) => {
         setSettings((prev) => ({
           ...prev,
           ...response.data.settings,
-          banner: response.data.settings.banner || prev.banner
+          banner: response.data.settings.banner || prev.banner,
+          hero: response.data.settings.hero || prev.hero
         }));
       }
     } catch (error) {
