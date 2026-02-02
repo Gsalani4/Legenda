@@ -25,7 +25,7 @@ const SiteTopBanner = ({ overlapHeader = false }) => {
         <img
           src={desktop}
           alt="Top banner"
-          className="hidden sm:block w-full h-[125px] object-cover"
+          className="hidden sm:block w-full h-[125px] object-cover opacity-100"
           loading="lazy"
           decoding="async"
         />
