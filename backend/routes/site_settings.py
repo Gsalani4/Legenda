@@ -30,6 +30,10 @@ async def get_settings():
                     "desktop_image_url": "",
                     "mobile_image_url": ""
                 },
+                "hero": {
+                    "desktop_images": [],
+                    "mobile_images": []
+                },
                 "updated_at": datetime.utcnow()
             }
             await db.site_settings.insert_one(default_settings)
