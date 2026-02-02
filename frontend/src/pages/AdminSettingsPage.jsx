@@ -46,7 +46,8 @@ const AdminSettingsPage = () => {
 
     setFormData({
       ...settings,
-      banner: settings.banner || { desktop_image_url: '', mobile_image_url: '' }
+      banner: settings.banner || { desktop_image_url: '', mobile_image_url: '' },
+      hero: settings.hero || { desktop_images: [], mobile_images: [] }
     });
   }, [settings, navigate]);
 
