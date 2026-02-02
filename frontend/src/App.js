@@ -20,16 +20,16 @@ import { Toaster } from './components/ui/sonner';
 import { LanguageProvider } from './context/LanguageContext';
 import { SettingsProvider } from './context/SettingsContext';
 
-function App() {
+function AppLayout() {
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+
   return (
-    <LanguageProvider>
-      <SettingsProvider>
-        <div className="App min-h-screen flex flex-col">
-          <BrowserRouter>
-            <Header />
-            <SiteTopBanner />
-            <main className="flex-1">
-              <Routes>
+    <>
+      <Header transparent={isHome} />
+      <SiteTopBanner overlapHeader={isHome} />
+      <main className="flex-1">
+        <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/car/:id" element={<CarDetailPage />} />
                 <Route path="/admin" element={<AdminEntry />} />
