@@ -109,7 +109,6 @@ const AdminSettingsPage = () => {
                     contact: { ...formData.contact, phone: e.target.value }
                   })}
                   placeholder="+995 500 88 30 88"
-                  required
                 />
               </div>
 
@@ -124,7 +123,6 @@ const AdminSettingsPage = () => {
                     contact: { ...formData.contact, email: e.target.value }
                   })}
                   placeholder="info@legendacar.ge"
-                  required
                 />
               </div>
 
@@ -138,7 +136,6 @@ const AdminSettingsPage = () => {
                     contact: { ...formData.contact, address: e.target.value }
                   })}
                   placeholder="თამაზ გამყრელიძის 19"
-                  required
                 />
               </div>
 
@@ -152,7 +149,6 @@ const AdminSettingsPage = () => {
                     contact: { ...formData.contact, working_hours: e.target.value }
                   })}
                   placeholder="ორშ - შაბ 8.00 - 18.00"
-                  required
                 />
               </div>
             </CardContent>
@@ -176,7 +172,6 @@ const AdminSettingsPage = () => {
                     social_media: { ...formData.social_media, facebook: e.target.value }
                   })}
                   placeholder="https://www.facebook.com/..."
-                  required
                 />
               </div>
 
@@ -191,7 +186,6 @@ const AdminSettingsPage = () => {
                     social_media: { ...formData.social_media, instagram: e.target.value }
                   })}
                   placeholder="https://www.instagram.com/..."
-                  required
                 />
               </div>
 
@@ -206,7 +200,6 @@ const AdminSettingsPage = () => {
                     social_media: { ...formData.social_media, whatsapp: e.target.value }
                   })}
                   placeholder="https://wa.me/..."
-                  required
                 />
                 <p className="text-xs text-gray-400">Örnek: https://wa.me/995598123456</p>
               </div>
