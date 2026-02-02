@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSettings } from '../context/SettingsContext';
 
-const SiteTopBanner = () => {
+const SiteTopBanner = ({ overlapHeader = false }) => {
   const { settings } = useSettings();
   const desktop = settings?.banner?.desktop_image_url;
   const mobile = settings?.banner?.mobile_image_url;
