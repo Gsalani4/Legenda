@@ -55,15 +55,31 @@ const HomePage = () => {
     loadListings();
   }, [loadListings]);
 
+  const matchesAppliedFilters = (listing) => {
+    const f = appliedFilters;
+    if (!f) return true;
+
+    if (f.brand && listing.brand !== f.brand) return false;
+    if (f.model && listing.model !== f.model) return false;
+    if (f.fuel_type && listing.fuel_type !== f.fuel_type) return false;
+
+    const year = Number(listing.year);
+    if (f.min_year && !Number.isNaN(year) && year < Number(f.min_year)) return false;
+    if (f.max_year && !Number.isNaN(year) && year > Number(f.max_year)) return false;
+
+    return true;
+  };
+
   const vipListings = listings
     .filter((l) => l.is_vip)
     .sort((a, b) => {
       const ar = a.vip_rank ?? 999999;
       const br = b.vip_rank ?? 999999;
       return ar - br;
-    });
+    })
+    .filter(matchesAppliedFilters);
 
-  const normalListings = listings.filter((l) => !l.is_vip);
+  const normalListings = listings.filter((l) => !l.is_vip && matchesAppliedFilters(l));
   const filteredVipListings = vipListings;
 
   const getListingTypeText = (type) => {
