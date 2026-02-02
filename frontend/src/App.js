@@ -22,12 +22,12 @@ import { SettingsProvider } from './context/SettingsContext';
 
 function AppLayout() {
   const location = useLocation();
-  const isHome = location.pathname === '/';
+  const _isHome = location.pathname === '/';
 
   return (
     <>
-      <Header transparent={isHome} />
-      <SiteTopBanner overlapHeader={isHome} />
+      <Header transparent />
+      <SiteTopBanner overlapHeader />
       <main className="flex-1">
         <Routes>
                 <Route path="/" element={<HomePage />} />

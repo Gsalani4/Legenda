@@ -8,13 +8,13 @@ const Header = ({ transparent = false }) => {
   const { t } = useLanguage();
 
   const headerClass = transparent
-    ? 'bg-black/10 backdrop-blur-md'
-    : 'bg-black';
+    ? 'bg-black/10 backdrop-blur-sm'
+    : 'bg-black/10 backdrop-blur-sm';
 
   return (
     <header className={`sticky top-0 z-50 shadow-2xl ${headerClass}`}>
       {/* Top Contact Bar */}
-      <div className={`border-b border-gray-800 ${transparent ? 'bg-transparent' : 'bg-black'}`}>
+      <div className="border-b border-gray-800 bg-transparent">
         <div className="container mx-auto px-4 py-1">
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 text-sm">
             {/* Sol taraf - Çalışma saatleri ve Adres */}
@@ -41,7 +41,7 @@ const Header = ({ transparent = false }) => {
       </div>
       
       {/* Main Logo Section - Center */}
-      <div className={`${transparent ? 'bg-transparent' : 'bg-black'} py-1`}>
+      <div className="bg-transparent py-1">
         <div className="container mx-auto px-4">
           <a href="/" className="flex flex-col items-center justify-center leading-none">
             <div className="text-[24px] md:text-[28px] font-bold tracking-wide text-white">
@@ -55,7 +55,7 @@ const Header = ({ transparent = false }) => {
       </div>
       
       {/* Navigation Menu */}
-      <div className={`border-t border-gray-800 ${transparent ? 'bg-transparent' : 'bg-black'}`}>
+      <div className="border-t border-gray-800 bg-transparent">
         <div className="container mx-auto px-4">
           <nav className="flex items-center justify-center gap-8 py-1">
             <a href="/" className="text-white hover:text-[#FF7A00] transition-colors font-medium text-sm md:text-base uppercase tracking-wide">
