@@ -592,7 +592,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Top banner image (desktop+mobile) via site settings"
+    - "Site settings empty strings handling"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
