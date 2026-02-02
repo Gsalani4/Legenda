@@ -30,6 +30,7 @@ class SiteSettings(BaseModel):
     contact: ContactInfo = Field(default_factory=ContactInfo)
     social_media: SocialMedia = Field(default_factory=SocialMedia)
     banner: BannerSettings = Field(default_factory=BannerSettings)
+    hero: HeroSettings = Field(default_factory=HeroSettings)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
 
     class Config:
