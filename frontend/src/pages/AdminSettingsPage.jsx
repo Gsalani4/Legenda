@@ -28,6 +28,10 @@ const AdminSettingsPage = () => {
     banner: {
       desktop_image_url: '',
       mobile_image_url: ''
+    },
+    hero: {
+      desktop_images: [],
+      mobile_images: []
     }
   });
   const [saving, setSaving] = useState(false);
