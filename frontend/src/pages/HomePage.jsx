@@ -263,7 +263,7 @@ const HomePage = () => {
               </div>
             </div>
 
-            <div className="flex gap-2">
+            <div className={`flex gap-2 ${filtersOpenMobile ? 'flex' : 'hidden'} sm:flex`}>
               <Button type="submit" className="bg-[#FF7A00] hover:bg-[#ff8c1a]">Uygula</Button>
               <Button
                 type="button"
