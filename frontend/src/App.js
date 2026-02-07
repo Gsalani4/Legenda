@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import Header from './components/Header';
 // (removed) SiteTopBanner – replaced by Home hero slider
 import Footer from './components/Footer';
@@ -55,6 +56,7 @@ function App() {
           <BrowserRouter>
             <AppLayout />
           </BrowserRouter>
+          <SpeedInsights />
         </div>
       </SettingsProvider>
     </LanguageProvider>
