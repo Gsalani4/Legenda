@@ -291,6 +291,8 @@ const UserPanel = () => {
                         <SelectItem value="Elektrik">Elektrik</SelectItem>
                         <SelectItem value="Hibrit">Hibrit</SelectItem>
                         <SelectItem value="Plug-in Hybrid">Plug-in Hybrid</SelectItem>
+                        <SelectItem value="Benzin + LPG">Benzin + LPG</SelectItem>
+                        <SelectItem value="Hibrit + LPG">Hibrit + LPG</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>

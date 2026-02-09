@@ -36,6 +36,20 @@ export const vehicleTranslations = {
       ru: 'Подключаемый гибрид',
       tr: 'Plug-in Hibrit',
       az: 'Plug-in Hibrid'
+    },
+    'Benzin + LPG': {
+      ka: 'ბენზინი + LPG',
+      en: 'Gasoline + LPG',
+      ru: 'Бензин + LPG',
+      tr: 'Benzin + LPG',
+      az: 'Benzin + LPG'
+    },
+    'Hibrit + LPG': {
+      ka: 'ჰიბრიდი + LPG',
+      en: 'Hybrid + LPG',
+      ru: 'Гибрид + LPG',
+      tr: 'Hibrit + LPG',
+      az: 'Hibrid + LPG'
     }
   },
   
