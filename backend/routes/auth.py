@@ -40,6 +40,7 @@ def verify_user_token(credentials: HTTPAuthorizationCredentials = Depends(securi
 async def register(user: UserCreate):
     try:
         db = get_database()
+        db_users = db["users"]
 
         # Unique phone
         existing_phone = await db.users.find_one({"phone": user.phone})
@@ -74,6 +75,7 @@ async def register(user: UserCreate):
 async def login(credentials: UserLogin):
     try:
         db = get_database()
+        db_users = db["users"]
 
         identifier = credentials.identifier.strip()
         query = {"email": identifier} if "@" in identifier else {"phone": identifier}
