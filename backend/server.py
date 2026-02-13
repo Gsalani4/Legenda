@@ -29,13 +29,29 @@ db = client[os.environ['DB_NAME']]
 
 # Create the main app
 app = FastAPI(title="LEGENDACAR API", version="2.0.0")
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "https://legendacar.com",
+        "https://www.legendacar.com",
+        "https://legendacar.onrender.com"
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 # Create API router
 api_router = APIRouter(prefix="/api")
 
 @api_router.get("/")
 async def root():
     return {"message": "LEGENDACAR Car Listings API", "status": "active", "version": "2.0.0"}
+    
+@api_router.get("/settings")
+def get_settings():
+    return {
+        "status": "ok"
+    }
 
 # Include routers
 api_router.include_router(listings_router, tags=["listings"])
