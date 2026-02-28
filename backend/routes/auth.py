@@ -68,6 +68,8 @@ async def register(user: UserCreate):
     except HTTPException:
         raise
     except Exception as e:
+        import traceback
+        print(traceback.format_exc())
         raise HTTPException(status_code=500, detail=str(e))
 
 
@@ -105,6 +107,8 @@ async def login(credentials: UserLogin):
     except HTTPException:
         raise
     except Exception as e:
+        import traceback
+        print(traceback.format_exc())
         raise HTTPException(status_code=500, detail=str(e))
 
 
