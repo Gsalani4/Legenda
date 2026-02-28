@@ -47,11 +47,6 @@ api_router = APIRouter(prefix="/api")
 async def root():
     return {"message": "LEGENDACAR Car Listings API", "status": "active", "version": "2.0.0"}
     
-@api_router.get("/settings")
-def get_settings():
-    return {
-        "status": "ok"
-    }
 
 # Include routers
 api_router.include_router(listings_router, tags=["listings"])
