@@ -41,12 +41,7 @@ export const SettingsProvider = ({ children }) => {
     try {
       const response = await axios.get(`${API_URL}/settings`);
       if (response.data.success) {
-        setSettings((prev) => ({
-          ...prev,
-          ...response.data.settings,
-          banner: response.data.settings.banner || prev.banner,
-          hero: response.data.settings.hero || prev.hero
-        }));
+       setSettings(response.data.settings);
       }
     } catch (error) {
       console.error('Error loading settings:', error);
