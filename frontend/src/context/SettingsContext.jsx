@@ -26,7 +26,30 @@ const [settings, setSettings] = useState({
     try {
       const response = await axios.get(`${API_URL}/settings`);
       if (response.data.success) {
-       setSettings(response.data.settings);
+       const data = response.data.settings;
+const backend = process.env.REACT_APP_BACKEND_URL;
+
+if (data.banner && data.banner.desktop_image_url && data.banner.desktop_image_url.startsWith("/")) {
+  data.banner.desktop_image_url = backend + data.banner.desktop_image_url;
+}
+
+if (data.banner && data.banner.mobile_image_url && data.banner.mobile_image_url.startsWith("/")) {
+  data.banner.mobile_image_url = backend + data.banner.mobile_image_url;
+}
+
+if (data.hero?.desktop_images) {
+  data.hero.desktop_images = data.hero.desktop_images.map(img =>
+    img.startsWith('/') ? backend + img : img
+  );
+}
+
+if (data.hero?.mobile_images) {
+  data.hero.mobile_images = data.hero.mobile_images.map(img =>
+    img.startsWith('/') ? backend + img : img
+  );
+}
+
+setSettings(data);
       }
     } catch (error) {
       console.error('Error loading settings:', error);
