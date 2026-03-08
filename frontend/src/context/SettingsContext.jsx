@@ -14,7 +14,12 @@ export const useSettings = () => {
 };
 
 export const SettingsProvider = ({ children }) => {
-const [settings, setSettings] = useState(null);
+const [settings, setSettings] = useState({
+  contact: {},
+  social_media: {},
+  banner: {},
+  hero: {}
+});
   const [loading, setLoading] = useState(true);
 
   const loadSettings = async () => {
