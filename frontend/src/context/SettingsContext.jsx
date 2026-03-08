@@ -14,27 +14,7 @@ export const useSettings = () => {
 };
 
 export const SettingsProvider = ({ children }) => {
-  const [settings, setSettings] = useState({
-    contact: {
-      phone: '+995 500 88 30 88',
-      email: 'info@legendacar.ge',
-      address: 'თამაზ გამყრელიძის 19',
-      working_hours: 'ორშ - შაბ 8.00 - 18.00'
-    },
-    social_media: {
-      facebook: 'https://www.facebook.com/profile.php?id=61573020256578',
-      instagram: 'https://www.instagram.com/legendacar/',
-      whatsapp: 'https://wa.me/995598123456'
-    },
-    banner: {
-      desktop_image_url: '',
-      mobile_image_url: ''
-    },
-    hero: {
-      desktop_images: [],
-      mobile_images: []
-    }
-  });
+const [settings, setSettings] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const loadSettings = async () => {
